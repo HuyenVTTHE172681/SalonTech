@@ -1,0 +1,179 @@
+<div class="booking-wrapper">
+  <div class="booking-action">
+    <!-- ======= Booking LEFT ======= -->
+    <div class="booking-action--left">
+      <div class="title">Danh sách đơn hàng</div>
+      <!-- ======= BUTTON ADD ======= -->
+      <div class="fillter-left">
+        <div class="card-buttons">
+          <p-button
+            label="Thêm khách hàng"
+            icon="pi pi-plus"
+            [style]="{
+              background: '#3b3420',
+              'border-color': '#3b3420',
+              'font-size': '12px'
+            }"
+          />
+        </div>
+        <!-- ======= BUTTON FILTER ======= -->
+        <div class="card-status">
+          <p>Trạng thái:</p>
+          <div class="card tabview">
+            <p-dropdown
+              [options]="statusList"
+              [(ngModel)]="selectedStatus"
+              optionLabel="name"
+              placeholder="Tất cả"
+              (onChange)="onStatusChange($event)"
+              [style]="{
+                color: 'black',
+                border: 'none',
+                'font-size': '10px',
+                background: 'transparent',
+              }"
+            ></p-dropdown>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ======= Booking RIGHT ======= -->
+    <div class="booking-action--right">
+      <!-- DATE INPUT -->
+      <div class="flex-auto">
+        <div class="title-line" style="opacity: 0">
+          <span for="icondisplay" class="font-bold block mb-2"> Ngày </span>
+        </div>
+        <p-calendar
+          [(ngModel)]="fromDate"
+          [showIcon]="true"
+          inputId="icondisplay1"
+          placeholder="Từ ngày"
+          [style]="{ width: '140px', height: '30px', marginRight: '14px' }"
+        ></p-calendar>
+        <p-calendar
+          [(ngModel)]="toDate"
+          [showIcon]="true"
+          inputId="icondisplay1"
+          placeholder="Đến ngày"
+          [style]="{ width: '140px', height: '30px', marginRight: '14px' }"
+        ></p-calendar>
+      </div>
+
+      <!-- FILTER  -->
+      <div class="flex-auto">
+        <div class="title-line">
+          <span for="icondisplay" class="font-bold block mb-2">
+            Tìm kiếm theo tên
+          </span>
+        </div>
+        <div class="search">
+          <span class="p-input-icon-right">
+            <i
+              class="pi pi-search"
+              [style]="{
+                marginRight: '14px',
+                fontSize: '13px',
+                marginTop: '-5px'
+              }"
+            ></i>
+            <input
+              pInputText
+              placeholder="Nhập từ khóa..."
+              [style]="{ width: '200px', height: '30px', marginRight: '14px' }"
+            />
+          </span>
+          <div class="p-toolbar-group-start">
+            <p-button
+              icon="pi pi-spin pi-spinner"
+              class="mr-2"
+              [style]="{
+                width: '35px',
+                height: '30px',
+                marginRight: '14px',
+                'background-color': '#3b3420',
+                'border-color': '#3b3420',
+              }"
+            />
+            <p-button
+              label="Lấy dữ liệu"
+              [style]="{
+                width: '100px',
+                height: '30px',
+                'font-size': '12px',
+                'flex-shrink': '0',
+                'background-color': '#3b3420',
+                'border-color': '#3b3420',
+              }"
+            ></p-button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Table -->
+  <div class="card">
+    <p-table [value]="bookings" [tableStyle]="{ 'min-width': '50rem' }">
+      <ng-template class="table-header" pTemplate="header">
+        <tr class="table-header__content">
+          <th>
+            <p-checkbox
+              [(ngModel)]="checked"
+              [binary]="true"
+              inputId="binary"
+            />
+          </th>
+          <th>Mã booking</th>
+          <th>Tên khách hàng</th>
+          <th>Số điện thoại</th>
+          <th>Thợ</th>
+          <th>Salon</th>
+          <th>Dịch vụ</th>
+          <th>Lĩnh vực</th>
+          <th>Chức năng</th>
+        </tr>
+      </ng-template>
+
+      <ng-template pTemplate="body" let-booking let-rowIndex="rowIndex">
+        <tr [ngClass]="{ 'yellow-background': rowIndex < 3 }">
+          <td>
+            <p-checkbox
+              [(ngModel)]="checked"
+              [binary]="true"
+              inputId="binary"
+            />
+          </td>
+          <td>{{ booking?._id }}</td>
+          <td>{{ booking?.customer?.user?.name }}</td>
+          <td>{{ booking?.customer?.user?.phone }}</td>
+          <td>{{ booking?.employee?.user?.name }}</td>
+          <td>{{ booking?.salon?.name }}</td>
+          <td>{{ booking?.serviceNames }}</td>
+          <td>{{ booking?.sectorCodes }}</td>
+          <td><i class="pi pi-ellipsis-v"></i></td>
+        </tr>
+      </ng-template>
+    </p-table>
+
+    <!-- Paginator -->
+  </div>
+
+  <div class="paginator">
+    <div class="pahinator-left">
+      <!-- Tổng bản ghi: {{ bookings ? bookings.length : 0 }} -->
+      Tổng bản ghi: {{ totalItems }}
+    </div>
+    <div class="justify-content-end">
+      <p-paginator
+        (onPageChange)="onPageChange($event)"
+        [first]="(page - 1) * size"
+        [rows]="size"
+        [totalRecords]="totalItems"
+        [rowsPerPageOptions]="[2, 4, 6]"
+        [showFirstLastIcon]="false"
+      />
+    </div>
+  </div>
+</div>

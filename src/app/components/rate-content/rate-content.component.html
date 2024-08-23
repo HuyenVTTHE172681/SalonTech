@@ -1,0 +1,239 @@
+<div class="customer-wrapper">
+  <!-- Action search/filter/add -->
+  <div class="customer-action">
+    <!-- ======= LEFT ======= -->
+    <div class="customer-action--left">
+      <div class="title">Danh sách đơn hàng</div>
+      <!-- ======= BUTTON FILTER/ADD ======= -->
+      <div class="fillter-left">
+        <div class="card buttons">
+          <p-button
+            label="Thêm salon"
+            icon="pi pi-plus"
+            [style]="{
+              background: '#8b4513',
+              'border-color': '#8b4513',
+              'font-size': '12px'
+            }"
+          />
+        </div>
+
+        <!-- <div class="card tabview">
+          <p-tabView
+            [style]="{ 'font-size': '12px', height: '74px' }"
+            (onChange)="filterStatus($event)"
+          >
+            <p-tabPanel header="Tất cả"></p-tabPanel>
+            <p-tabPanel header="Đang hoạt động"></p-tabPanel>
+            <p-tabPanel header="Dừng hoạt động"></p-tabPanel>
+          </p-tabView>
+        </div> -->
+      </div>
+    </div>
+
+    <!-- =======  RIGHT ======= -->
+    <div class="customer-action--right">
+      <!-- DATE INPUT -->
+      <div class="flex-auto">
+        <div class="title-line" style="opacity: 0">
+          <span for="icondisplay" class="font-bold block mb-2"> Ngày </span>
+        </div>
+        <p-calendar
+          [(ngModel)]="fromDate"
+          [showIcon]="true"
+          inputId="icondisplay1"
+          placeholder="Từ ngày"
+          [style]="{ width: '140px', height: '30px', marginRight: '14px' }"
+        ></p-calendar>
+        <p-calendar
+          [(ngModel)]="toDate"
+          [showIcon]="true"
+          inputId="icondisplay1"
+          placeholder="Đến ngày"
+          [style]="{ width: '140px', height: '30px', marginRight: '14px' }"
+        ></p-calendar>
+      </div>
+      <!-- FILTER  -->
+      <div class="flex-auto">
+        <div class="title-line">
+          <span for="icondisplay" class="font-bold block mb-2">
+            Tìm kiếm theo tên
+          </span>
+        </div>
+        <div class="search">
+          <span class="p-input-icon-right">
+            <i
+              class="pi pi-search"
+              [style]="{
+                marginRight: '14px',
+                fontSize: '13px',
+                marginTop: '-5px'
+              }"
+            ></i>
+            <input
+              pInputText
+              placeholder="Nhập từ khóa..."
+              [style]="{
+                width: '200px',
+                height: '30px',
+                marginRight: '14px'
+              }"
+            />
+          </span>
+          <div class="p-toolbar-group-start">
+            <p-button
+              icon="pi pi-spin pi-spinner"
+              class="mr-2"
+              [style]="{
+                width: '35px',
+                height: '30px',
+                marginRight: '14px',
+                'background-color': '#3b3420',
+                'border-color': '#3b3420',
+              }"
+            />
+            <p-button
+              label="Lấy dữ liệu"
+              [style]="{
+                width: '100px',
+                height: '30px',
+                'font-size': '12px',
+                'flex-shrink': '0',
+                'background-color': '#3b3420',
+                'border-color': '#3b3420',
+              }"
+            ></p-button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Export file excel -->
+  <div class="export-file">
+    <span class="selected active">Đã chọn (00)</span>
+    <span> | </span>
+    <span class="excel">
+      <p-menubar
+        [model]="items"
+        [style]="{
+          fontSize: '12px',
+          border: 'none',
+          backgroundColor: 'white',
+          height: '30px'
+        }"
+      ></p-menubar>
+    </span>
+    <!-- <p-toast /> -->
+  </div>
+
+  <!-- Table -->
+  <div class="card">
+    <p-table
+      [value]="rates"
+      responsiveLayout="stack"
+      [breakpoint]="'960px'"
+      [tableStyle]="{ 'min-width': '50rem' }"
+    >
+      <ng-template pTemplate="header" let-columns>
+        <tr>
+          <th>
+            <p-checkbox
+              [(ngModel)]="checked"
+              [binary]="true"
+              inputId="binary"
+            />
+          </th>
+          <th>Mã booking</th>
+          <th>Tên Salon</th>
+          <th>Tên thợ</th>
+          <th>Đánh giá Salon</th>
+          <th>Đánh giá thợ</th>
+          <th>Nội dung</th>
+          <th
+            style="
+              border-left: 1px solid #e9e9e9;
+              box-shadow: -2px 0 10px -3px #e9e9e9;
+            "
+          >
+            Chức năng
+          </th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-rate let-columns="columns">
+        <tr>
+          <td>
+            <p-checkbox
+              [(ngModel)]="checked"
+              [binary]="true"
+              inputId="binary"
+            />
+          </td>
+          <td>{{ rate?.booking_id }}</td>
+          <td>
+            {{ rate?.salon_id }}
+          </td>
+          <td>
+            {{ rate?.employee?.user?.name }}
+          </td>
+          <td>
+            <p-rating
+              [(ngModel)]="rate.salon_rate"
+              [readonly]="true"
+              [cancel]="false"
+              class="custom-rating"
+            />
+          </td>
+          <td>
+            <p-rating
+              [(ngModel)]="rate.employee_rate"
+              [readonly]="true"
+              [cancel]="false"
+              class="custom-rating"
+            />
+          </td>
+          <td>
+            <span *ngIf="!rate.showComment">
+              {{ rate?.comment | slice : 0 : 4 }}
+              <span *ngIf="rate?.comment?.length > 4">...</span>
+              <a href="javascript:void(0)" (click)="toggleComment(rate)">
+                Xem thêm</a
+              >
+            </span>
+            <span *ngIf="rate.showComment">
+              {{ rate?.comment }}
+              <a href="javascript:void(0)" (click)="toggleComment(rate)"
+                >Thu gọn</a
+              >
+            </span>
+          </td>
+          <td
+            style="
+              border-left: 1px solid #e9e9e9;
+              box-shadow: -2px 0 10px -3px #e9e9e9;
+            "
+          >
+            <i class="pi pi-ellipsis-v"></i>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+
+  <div class="paginator">
+    <div class="pahinator-left">
+      <!-- Tổng bản ghi: {{ salons ? salons.length : 0 }} -->
+      Tổng bản ghi: {{ totalItems }}
+    </div>
+    <div class="justify-content-end">
+      <p-paginator
+        (onPageChange)="onPageChange($event)"
+        [first]="(page - 1) * size"
+        [rows]="size"
+        [totalRecords]="totalItems"
+        [rowsPerPageOptions]="[2, 4, 6]"
+        [showFirstLastIcon]="false"
+      />
+    </div>
+  </div>
+</div>

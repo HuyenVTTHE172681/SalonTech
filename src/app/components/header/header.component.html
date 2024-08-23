@@ -1,0 +1,59 @@
+<div class="navbar">
+  <!-- ====== HEADER LOGO LEFT ====== -->
+  <div class="site-left">
+    <i class="pi pi-align-justify" style="font-size: 1.5rem"></i>
+    <h2>LOGO</h2>
+  </div>
+
+  <!-- ====== HEADER CENTER ====== -->
+  <div class="navbar-center">
+    <div class="navbar-center-item">
+      <!-- ====== CENTER ACTIVE ====== -->
+
+      <ng-container *ngFor="let item of menu.slice(0, 6)">
+        <a
+          *ngIf="item.path"
+          [routerLink]="item.path"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          class="nav-item nav-link"
+        >
+          <span class="item-title">{{ item.name }}</span>
+          <div class="item-base"></div>
+        </a>
+      </ng-container>
+
+      <div class="dropdown" *ngIf="menu.length > 6">
+        <i class="pi pi-ellipsis-h"></i>
+        <div class="dropdown-options">
+          <ng-container *ngFor="let item of menu.slice(6)">
+            <a [routerLink]="item.path" class="dropdown-item">
+              {{ item.name }}
+            </a>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="site-right">
+    <div class="icon1">
+      <i class="pi pi-ellipsis-h"></i>
+    </div>
+
+    <a href="#" class="icon2">
+      <i class="pi pi-bell" style="font-size: 2rem; color: black"></i>
+      <span>4</span>
+    </a>
+
+    <h3>Tano TV</h3>
+
+    <div class="avata">
+      <p-avatar
+        image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png"
+        shape="circle"
+      />
+      <i class="pi pi-angle-down" style="font-size: 1.5rem; color: black"></i>
+    </div>
+  </div>
+</div>

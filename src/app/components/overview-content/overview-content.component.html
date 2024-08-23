@@ -1,0 +1,83 @@
+<div class="overview">
+  <div class="overview-header">
+    <h3>Quản trị hệ thống Salon tech</h3>
+  </div>
+  <div class="overview-wrap">
+    <!-- =========== LEFT =========== -->
+    <div class="overview-left">
+      <div class="title">CÀI ĐẶT HỆ THỐNG</div>
+      <div class="menu-list">
+        <div class="menu-item">
+          <a routerLink="home/overview-service">Khởi tạo lĩnh vực - dịch vụ</a>
+        </div>
+        <div class="menu-item">
+          <a href="#">Khởi tạo tài khoản</a>
+        </div>
+      </div>
+    </div>
+    <!-- =========== CENTER =========== -->
+    <div class="overview-center">
+      <!-- =========== CENTER CONTENT =========== -->
+      <div class="content-wrapper">
+        <div class="title-wrapper">
+          <div class="title">Thống kê</div>
+          <div class="time">Tháng 8</div>
+        </div>
+        <div class="content-list">
+          <div class="content-item">
+            <div class="icon">
+              <i
+                class="pi pi-shopping-bag"
+                style="font-size: 1.5rem; color: black"
+              ></i>
+            </div>
+            <span>
+              <div class="quantity">{{ data?.booking_total }}</div>
+              <div class="description">Đơn hàng</div>
+            </span>
+          </div>
+          <div class="content-item">
+            <div class="icon">
+              <i
+                class="pi pi-users"
+                style="font-size: 1.5rem; color: black"
+              ></i>
+            </div>
+            <span>
+              <div class="quantity">{{ data?.customer_total }}</div>
+              <div class="description">Khách hàng</div>
+            </span>
+          </div>
+          <div class="content-item">
+            <div class="icon">
+              <i
+                class="pi pi-dollar"
+                style="font-size: 1.5rem; color: black"
+              ></i>
+            </div>
+            <span>
+              <div class="quantity">{{ data?.revenue }}</div>
+              <div class="description">Doanh thu</div>
+            </span>
+          </div>
+        </div>
+      </div>
+      <!-- =========== CENTER CHART =========== -->
+      <!-- <div class="chart-wrapper">
+        <div class="chart-option">
+          <a href="#" class="active">Tháng</a> | <a href="">Tuần</a>
+        </div>
+        <p-chart type="line" [data]="data" [options]="options" />
+      </div> -->
+    </div>
+    <!-- =========== RIGHT =========== -->
+    <div class="overview-right">
+      <div class="title">BÁO CÁO</div>
+      <div class="menu-list">
+        <div class="menu-item"><a href="#">Tổng hợp đơn booking</a></div>
+        <div class="menu-item"><a href="#">Báo cáo doanh thu</a></div>
+        <div class="menu-item"><a href="#">Update</a></div>
+      </div>
+    </div>
+  </div>
+</div>

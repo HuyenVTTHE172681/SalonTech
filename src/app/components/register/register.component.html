@@ -1,0 +1,210 @@
+<form
+  [formGroup]="registerForm"
+  (ngSubmit)="register()"
+  style="
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  "
+>
+  <p-card [style]="{ width: '400px' }">
+    <ng-template pTemplate="header">
+      <img
+        alt="Card"
+        src="../assets/login.png"
+        style="display: block; margin: 0 auto; width: 156px"
+      />
+    </ng-template>
+
+    <div class="field" style="position: relative; margin-bottom: 20px">
+      <input
+        type="text"
+        pInputText
+        formControlName="email"
+        class="w-full"
+        name="email"
+        placeholder="Nhap email"
+        style="
+          border-radius: 7px;
+          border-left: solid 3px #8b4513;
+          border-top: none;
+          border-right: none;
+          border-bottom: none;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        "
+      />
+      <small
+        *ngIf="email.invalid && (email.dirty || email.touched)"
+        class="block p-error"
+      >
+        <div *ngIf="email.errors?.['required']">Email is required.</div>
+        <div *ngIf="email.errors?.['email']">Email should be valid</div>
+      </small>
+      <i
+        class="pi pi-user"
+        style="
+          position: absolute;
+          top: 0;
+          right: 0;
+          height: 100%;
+          width: 40px;
+          background-color: #8b4513;
+          color: white;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 0 7px 7px 0;
+        "
+      ></i>
+    </div>
+
+    <div class="field" style="position: relative; margin-bottom: 20px">
+      <input
+        type="text"
+        pInputText
+        formControlName="userName"
+        class="w-full"
+        name="userName"
+        placeholder="Nhap tai khoan"
+        style="
+          border-radius: 7px;
+          border-left: solid 3px #8b4513;
+          border-top: none;
+          border-right: none;
+          border-bottom: none;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        "
+      />
+      <i
+        class="pi pi-user"
+        style="
+          position: absolute;
+          top: 0;
+          right: 0;
+          height: 100%;
+          width: 40px;
+          background-color: #8b4513;
+          color: white;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 0 7px 7px 0;
+        "
+      ></i>
+    </div>
+
+    <div class="field" style="position: relative; margin-bottom: 20px">
+      <input
+        type="password"
+        pInputText
+        formControlName="password"
+        class="w-full"
+        name="password"
+        placeholder="Nhap mat khau"
+        style="
+          border-radius: 7px;
+          border-left: solid 3px #8b4513;
+          border-top: none;
+          border-right: none;
+          border-bottom: none;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        "
+      />
+
+      <i
+        class="pi pi-lock"
+        style="
+          position: absolute;
+          top: 0;
+          right: 0;
+          height: 100%;
+          width: 40px;
+          background-color: #8b4513;
+          color: white;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 0 7px 7px 0;
+        "
+      ></i>
+      <small
+        *ngIf="password.invalid && (password.dirty || password.touched)"
+        class="block p-error"
+      >
+        <div *ngIf="password.errors?.['required']">Password is required.</div>
+      </small>
+    </div>
+
+    <div class="field" style="position: relative; margin-bottom: 20px">
+      <input
+        type="password"
+        pInputText
+        formControlName="confirmPassword"
+        class="w-full"
+        name="confirmPassword"
+        placeholder="Xác nhận mật khẩu"
+        style="
+          border-radius: 7px;
+          border-left: solid 3px #8b4513;
+          border-top: none;
+          border-right: none;
+          border-bottom: none;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        "
+      />
+      <i
+        class="pi pi-lock"
+        style="
+          position: absolute;
+          top: 0;
+          right: 0;
+          height: 100%;
+          width: 40px;
+          background-color: #8b4513;
+          color: white;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 0 7px 7px 0;
+        "
+      ></i>
+      <small
+        *ngIf="
+          confirmPassword.invalid &&
+          (confirmPassword.dirty || confirmPassword.touched)
+        "
+        class="block p-error"
+      >
+        <div *ngIf="confirmPassword.errors?.['required']">
+          Confirm the password
+        </div>
+      </small>
+      <small
+        class="block p-error"
+        *ngIf="registerForm.errors?.['passwordMismatch'] && confirmPassword.valid && password.valid"
+      >
+        Password should match
+      </small>
+    </div>
+
+    <p-button
+      label="Đăng ký"
+      severity="secondary"
+      class="w-full"
+      [style]="{
+        display: 'block',
+        margin: '0 auto',
+        width: '200px',
+        background: '#8b4513',
+        'margin-top': '35px',
+        'border-color': '#8b4513'
+      }"
+    ></p-button>
+
+    <p>
+      Already have an account?
+      <a routerLink="/login">Login here</a>
+    </p>
+  </p-card>
+</form>

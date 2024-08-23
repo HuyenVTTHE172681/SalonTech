@@ -1,0 +1,63 @@
+<form [formGroup]="loginObj" (ngSubmit)="login()" class="login-form">
+  <p-card [style]="{ width: '400px' }">
+    <ng-template pTemplate="header">
+      <img alt="Card" src="../assets/login.png" class="login-image" />
+    </ng-template>
+
+    <div class="field">
+      <input
+        type="text"
+        pInputText
+        formControlName="userName"
+        class="input-field"
+        placeholder="Nhập tài khoản"
+      />
+      <i class="pi pi-user input-icon"></i>
+      <div
+        *ngIf="
+          loginObj.get('userName')?.touched && loginObj.get('userName')?.invalid
+        "
+        class="error-message"
+      >
+        Tài khoản là bắt buộc.
+      </div>
+    </div>
+
+    <div class="field">
+      <input
+        type="password"
+        pInputText
+        formControlName="password"
+        class="input-field"
+        placeholder="Nhập mật khẩu"
+      />
+      <i class="pi pi-lock input-icon"></i>
+      <div
+        *ngIf="
+          loginObj.get('password')?.touched && loginObj.get('password')?.invalid
+        "
+        class="error-message"
+      >
+        Mật khẩu là bắt buộc.
+      </div>
+    </div>
+
+    <p-button
+      label="Đăng nhập"
+      [style]="{
+        display: 'block',
+        margin: '0 auto',
+        width: '200px',
+        background: '#8b4513',
+        'margin-top': '35px',
+        'border-color': '#8b4513'
+      }"
+      (click)="login()"
+    ></p-button>
+
+    <p>
+      Don't have an account?
+      <a routerLink="/register">Register here</a>
+    </p>
+  </p-card>
+</form>
