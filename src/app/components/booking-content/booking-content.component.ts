@@ -68,21 +68,7 @@ export class BookingContentComponent implements OnInit {
           console.log('Booking:', data);
           this.bookings = data.items;
           this.totalItems = data.totalItems;
-
-          // Print list services
-          // this.bookings.forEach((booking) => {
-          //   console.log(`Booking ID: ${booking._id}`);
-          //   if (booking.services && booking.services.length > 0) {
-          //     booking.services.map((service) => {
-          //       console.log(`  - Dịch vụ: ${service.name}`);
-          //     });
-          //   } else {
-          //     console.log('  - Không có dịch vụ nào.');
-          //   }
-          // });
-
-          // Convert services to comma-separated string
-          // Gọi list service name dự trên list id
+          
           this.bookings.forEach((booking) => {
             booking.serviceNames = booking.services
               ?.map((service) => service.name)

@@ -1,0 +1,92 @@
+<app-header></app-header>
+
+<div class="overview-service-page">
+  <!-- TITLE -->
+  <div class="service-title">
+    <a class="icon-back" routerLink="/home"
+      ><i
+        class="pi pi-angle-left"
+        style="font-size: 1.5rem; margin-right: 8px"
+      ></i>
+      Lĩnh vực</a
+    >
+
+    <a class="icon-center">Tổng quan</a>
+
+    <a class="icon-close" routerLink="/home">
+      <i class="pi pi-times icon-close"></i>
+    </a>
+  </div>
+
+  <div class="overview-sector-wrapper">
+    <!-- FORM ADD NEW LĨNH VỰC -->
+    <form class="sector-form">
+      <div class="title-form">Thông tin chung</div>
+      <div class="form-detail-content">
+        <div class="detail-content-input1">
+          <span>Tên lĩnh vực</span>
+          <input
+            type="text"
+            pInputText
+            formControlName="userName"
+            class="input-field"
+            placeholder="Nhập mã booking"
+          />
+        </div>
+        <div class="detail-content-input2">
+          <span>Mã lĩnh vực</span>
+          <input
+            type="text"
+            pInputText
+            formControlName="userName"
+            class="input-field"
+            placeholder="Nhập mã lĩnh vực"
+          />
+        </div>
+      </div>
+      <div class="form-detail-checkbox">
+        <span>Cài đặt trạng thái</span>
+        <div class="form-checkbox">
+          <div class="flex align-items-center">
+            <p-radioButton
+              name="pizza"
+              value="Cheese"
+              [(ngModel)]="ingredient"
+              inputId="ingredient1"
+            />
+            <label for="ingredient1" class="ml-2"> Hoạt động </label>
+          </div>
+
+          <div class="flex align-items-center">
+            <p-radioButton
+              name="pizza"
+              value="Mushroom"
+              [(ngModel)]="ingredient"
+              inputId="ingredient2"
+            />
+            <label for="ingredient2" class="ml-2"> Đang hoạt động </label>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div class="overview-service-footer">
+    <p-button
+      label="Hủy"
+      severity="danger"
+      [style]="{ width: '100px', height: '30px' }"
+    />
+    <p-button
+      label="Lưu"
+      [outlined]="true"
+      severity="secondary"
+      [style]="{ width: '100px', height: '30px' }"
+    />
+    <p-button
+      label="Lưu & Thoát"
+      severity="success"
+      [style]="{ width: '180px', height: '30px' }"
+    />
+  </div>
+</div>
