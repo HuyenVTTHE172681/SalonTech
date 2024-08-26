@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Sector } from '../../model/sector';
 import { SectorService } from '../../services/sector.service';
+import { FormBuilder, NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 
 enum StatusSector {
   ALL = -1,
@@ -28,28 +30,35 @@ export class OverviewServiceContentComponent implements OnInit {
 
   selectedStatus: any = this.statusList[0];
 
-  constructor(private sectorSrv: SectorService) {}
+  constructor(
+    private sectorSrv: SectorService,
+    private router: Router,
+    private fb: FormBuilder
+  ) {}
 
   ngOnInit(): void {
+    this.selectedStatus =
+      this.statusList.find((status) => status.value === this.status) ||
+      this.statusList[0];
     this.getAllSector();
   }
 
   getStatus(status: number) {
     switch (status) {
-      case 1:
+      case StatusSector.ACTIVE:
         return 'Đang hoạt động';
-      case 0:
+      case StatusSector.INACTIVE:
         return 'Dừng hoạt động';
       default:
-        return 'Nothing';
+        return 'Unknown';
     }
   }
 
   getStyle(status: number) {
     switch (status) {
-      case 1:
+      case StatusSector.ACTIVE:
         return 'success';
-      case 0:
+      case StatusSector.INACTIVE:
         return 'danger';
       default:
         return 'warning';
@@ -62,7 +71,7 @@ export class OverviewServiceContentComponent implements OnInit {
 
   filterSectorWWithStatus() {
     this.filteredSectors =
-      this.status === -1
+      this.status === StatusSector.ALL
         ? this.sectors
         : this.sectors.filter((sector) => sector.status === this.status);
   }
@@ -82,11 +91,9 @@ export class OverviewServiceContentComponent implements OnInit {
 
   deleteSector(id: string) {
     console.log(id);
-    this.sectorSrv.deleteSector(id).subscribe(
-      (response) => {
-        this.sectors = this.sectors.filter((sector) => sector._id !== id);
-        this.filterSectorWWithStatus();
-      }
-    )
+    this.sectorSrv.deleteSector(id).subscribe((response) => {
+      this.sectors = this.sectors.filter((sector) => sector._id !== id);
+      this.filterSectorWWithStatus();
+    });
   }
 }

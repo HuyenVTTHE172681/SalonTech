@@ -20,28 +20,45 @@
 
   <div class="overview-sector-wrapper">
     <!-- FORM ADD NEW LĨNH VỰC -->
-    <form class="sector-form">
+    <form
+      [formGroup]="sectorForm"
+      (ngSubmit)="onSubmitFormAddSector(sectorForm)"
+      class="sector-form"
+    >
       <div class="title-form">Thông tin chung</div>
       <div class="form-detail-content">
         <div class="detail-content-input1">
-          <span>Tên lĩnh vực</span>
+          <span>Tên lĩnh vực*</span>
           <input
             type="text"
             pInputText
-            formControlName="userName"
+            formControlName="name"
             class="input-field"
             placeholder="Nhập mã booking"
           />
+          <span
+            *ngIf="
+              !sectorForm.get('name')?.valid && sectorForm.get('name')?.touched
+            "
+            >Trường này không được để trống</span
+          >
+          <br />
         </div>
         <div class="detail-content-input2">
-          <span>Mã lĩnh vực</span>
+          <span>Mã lĩnh vực*</span>
           <input
             type="text"
             pInputText
-            formControlName="userName"
+            formControlName="code"
             class="input-field"
             placeholder="Nhập mã lĩnh vực"
           />
+          <span
+            *ngIf="
+              !sectorForm.get('code')?.valid && sectorForm.get('code')?.touched
+            "
+            >Trường này không được được trở</span
+          ><br />
         </div>
       </div>
       <div class="form-detail-checkbox">
@@ -49,29 +66,38 @@
         <div class="form-checkbox">
           <div class="flex align-items-center">
             <p-radioButton
-              name="pizza"
-              value="Cheese"
-              [(ngModel)]="ingredient"
-              inputId="ingredient1"
+              name="status"
+              value="1"
+              formControlName="status"
+              inputId="ACTIVE"
             />
-            <label for="ingredient1" class="ml-2"> Hoạt động </label>
+            <label for="ACTIVE" class="ml-2">Hoạt động</label>
           </div>
 
           <div class="flex align-items-center">
             <p-radioButton
-              name="pizza"
-              value="Mushroom"
-              [(ngModel)]="ingredient"
-              inputId="ingredient2"
+              name="status"
+              value="0"
+              formControlName="status"
+              inputId="INACTIVE"
             />
-            <label for="ingredient2" class="ml-2"> Đang hoạt động </label>
+            <label for="INACTIVE" class="ml-2">Dừng hoạt động</label>
           </div>
         </div>
+      </div>
+      <div class="button-row">
+        <button
+          type="submit"
+          [disabled]="!sectorForm.valid"
+          class="btn btn-primary"
+        >
+          Add
+        </button>
       </div>
     </form>
   </div>
 
-  <div class="overview-service-footer">
+  <div class="overview-service-footer" #footer>
     <p-button
       label="Hủy"
       severity="danger"
@@ -82,6 +108,7 @@
       [outlined]="true"
       severity="secondary"
       [style]="{ width: '100px', height: '30px' }"
+      [disabled]="!sectorForm.valid"
     />
     <p-button
       label="Lưu & Thoát"
