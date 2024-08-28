@@ -1,3 +1,5 @@
+<app-header></app-header>
+
 <div class="overview-service-page">
   <!-- TITLE -->
   <div class="service-title">
@@ -33,15 +35,10 @@
           ></p-tabPanel>
         </p-tabView>
       </div>
-
       <div class="booking-action">
         <!-- ======= Booking LEFT ======= -->
         <div class="booking-action--left">
-          <div class="title-line">
-            <span for="icondisplay" class="font-bold block mb-2">
-              Công cụ
-            </span>
-          </div>
+          <div class="title">Công cụ</div>
           <!-- ======= BUTTON ADD ======= -->
           <div class="fillter-left">
             <div class="card-buttons">
@@ -59,7 +56,7 @@
             <!-- ======= BUTTON FILTER ======= -->
             <div class="card-status">
               <p>Trạng thái:</p>
-              <div class="card tabview">
+              <!-- <div class="card tabview">
                 <p-dropdown
                   [options]="statusList"
                   [(ngModel)]="selectedStatus"
@@ -73,7 +70,7 @@
                 background: 'transparent',
               }"
                 ></p-dropdown>
-              </div>
+              </div> -->
             </div>
           </div>
         </div>
@@ -128,29 +125,31 @@
 
     <!-- TABLE -->
     <div class="card">
-      <p-table [value]="sectors" [tableStyle]="{ 'min-width': '50rem' }">
+      <p-table [value]="service" [tableStyle]="{ 'min-width': '50rem' }">
         <ng-template class="table-header" pTemplate="header">
           <tr class="table-header__content">
             <th>STT</th>
-            <th>Mã lĩnh vực</th>
+            <th>Mã dịch vụ</th>
+            <th>Tên dịch vụ</th>
             <th>Tên lĩnh vực</th>
             <th>Trạng thái</th>
             <th>Chức năng</th>
           </tr>
         </ng-template>
 
-        <ng-template pTemplate="body" let-sector let-rowIndex="rowIndex">
+        <ng-template pTemplate="body" let-service let-rowIndex="rowIndex">
           <tr>
             <td>{{ rowIndex + 1 }}</td>
-            <td>{{ sector?.code?.toUpperCase() }}</td>
-            <td>{{ sector?.name }}</td>
+            <td>{{ service?.code }}</td>
+            <td>{{ service?.name }}</td>
+            <!-- <td>{{ service?.sector?.name }}</td> -->
+            <td>{{ service?.sector_id }}</td>
             <td>
               <p-button
-                [label]="getStatus(sector?.status)"
+                [label]="getStatus(service?.status)"
                 [text]="true"
-                [severity]="getStyle(sector?.status)"
+                [severity]="getStyle(service?.status)"
               />
-              <!-- <span>{{ getStatus(sector?.status) }}</span> -->
             </td>
             <td>
               <p-button
@@ -159,7 +158,7 @@
                 [text]="true"
                 [routerLink]="[
                   '/home/overview-service/edit-service',
-                  sector._id
+                  service._id
                 ]"
               />
               <p-button
@@ -167,7 +166,7 @@
                 [rounded]="true"
                 [text]="true"
                 severity="danger"
-                (click)="deleteSector(sector._id)"
+                (click)="deleteService(service._id)"
               />
             </td>
           </tr>

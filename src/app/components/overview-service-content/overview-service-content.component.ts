@@ -22,6 +22,7 @@ export class OverviewServiceContentComponent implements OnInit {
   sectors: Sector[] = [];
   filteredSectors: Sector[] = [];
   totalItems: number = 0;
+  activeIndex: number = 0;
 
   statusList = [
     { name: 'Tất cả', value: StatusSector.ALL },
@@ -36,6 +37,10 @@ export class OverviewServiceContentComponent implements OnInit {
     private router: Router,
     private fb: FormBuilder
   ) {}
+
+  navigateTo(path: string): void {
+    this.router.navigate([path]);
+  }
 
   ngOnInit(): void {
     this.selectedStatus =
