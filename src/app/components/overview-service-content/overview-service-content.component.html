@@ -167,5 +167,23 @@
         </ng-template>
       </p-table>
     </div>
+
+    <!-- PAGINATION -->
+    <div class="paginator">
+      <div class="pahinator-left">
+        <!-- Tổng bản ghi: {{ bookings ? bookings.length : 0 }} -->
+        Tổng bản ghi: {{ totalItems }}
+      </div>
+      <div class="justify-content-end">
+        <p-paginator
+          (onPageChange)="onPageChange($event)"
+          [first]="(page - 1) * size"
+          [rows]="size"
+          [totalRecords]="totalItems"
+          [rowsPerPageOptions]="[2, 4, 6]"
+          [showFirstLastIcon]="false"
+        />
+      </div>
+    </div>
   </div>
 </div>

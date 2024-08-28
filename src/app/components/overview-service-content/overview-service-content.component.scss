@@ -108,5 +108,18 @@
       background: #3b3420;
       color: #fff;
     }
+
+    .paginator {
+      display: flex;
+      justify-content: space-between;
+      margin-left: 17px;
+      margin-right: 17px;
+
+      .pahinator-left {
+        display: block;
+        text-align: center;
+        padding: 1.5rem 0rem;
+      }
+    }
   }
 }

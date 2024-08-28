@@ -17,7 +17,7 @@ enum StatusSector {
 })
 export class OverviewServiceContentComponent implements OnInit {
   page: number = 1;
-  size: number = 10; // display 10 item per page
+  size: number = 5; // display 10 item per page
   status: number = StatusSector.ALL;
   sectors: Sector[] = [];
   filteredSectors: Sector[] = [];
@@ -60,6 +60,7 @@ export class OverviewServiceContentComponent implements OnInit {
   }
 
   filterStatus(event: any) {
+    this.page = 1;
     this.status = this.selectedStatus.value; // Cập nhật giá trị status
     this.getAllSector();
   }
@@ -92,5 +93,11 @@ export class OverviewServiceContentComponent implements OnInit {
       this.sectors = this.sectors.filter((sector) => sector._id !== id);
       this.filterSectorWithStatus();
     });
+  }
+
+  onPageChange(event: any) {
+    this.page = event.first / event.rows + 1;
+    console.log(this.page);
+    this.getAllSector();
   }
 }
