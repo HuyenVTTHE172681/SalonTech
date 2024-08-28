@@ -15,7 +15,8 @@ export class OverviewServiceAddComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
-    private sectorSrv: SectorService
+    private sectorSrv: SectorService,
+    private serviceSrv: SectorService
   ) {}
 
   ngOnInit(): void {
@@ -34,15 +35,13 @@ export class OverviewServiceAddComponent implements OnInit {
         status: Number(this.sectorForm.value.status),
       };
 
-      this.sectorSrv.addSector(formValue).subscribe(
+      this.serviceSrv.addSector(formValue).subscribe(
         (res) => {
-          alert('Thêm thành công với trạng thái ' + formValue.status);
-          console.log('Status:', formValue.status);
-          console.log('Form Value:', formValue);
-          this.router.navigate(['home/overview-service']);
+          alert('Them thanh cong');
+          this.router.navigate(['/home/overview-service']);
         },
         (err) => {
-          console.log('Error:', err);
+          console.log(err);
         }
       );
     }

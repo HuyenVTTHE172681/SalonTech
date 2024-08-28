@@ -27,13 +27,17 @@ export class OverviewSectorContentComponent implements OnInit {
     { name: 'Dừng hoạt động', value: StatusService.INACTIVE },
   ];
 
+  selectedStatus: any = this.statusList[0];
+
   constructor(private serviceSrv: ServiceService, private router: Router) {}
 
-  navigateTo(path: string): void {
-    this.router.navigate([path]);
+  ngOnInit(): void {
+    this.getAllService();
   }
 
-  ngOnInit(): void {
+  filterStatus(event: any) {
+    this.page = 1;
+    this.status = this.selectedStatus.value;
     this.getAllService();
   }
 

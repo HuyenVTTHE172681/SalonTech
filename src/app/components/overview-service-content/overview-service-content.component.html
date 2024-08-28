@@ -17,21 +17,29 @@
   <div class="overview-sector-wrapper">
     <!-- CONTENT -->
     <div class="service-content">
-      <div class="content-header">
-        <p-tabView>
-          <p-tabPanel
-            header="Lĩnh vực"
-            rightIcon="pi pi-external-link"
-            style="font-size: 18px"
-            (click)="navigateTo('/home/overview-service')"
-          ></p-tabPanel>
-          <p-tabPanel
-            header="Dịch vụ"
-            rightIcon="pi pi-external-link"
-            style="font-size: 18px"
-            (click)="navigateTo('/home/overview-sector')"
-          ></p-tabPanel>
-        </p-tabView>
+      <div class="service-header">
+        <div class="content-header">
+          <a
+            class="tabView-item"
+            routerLink="/home/overview-service"
+            routerLinkActive="active-link"
+            [routerLinkActiveOptions]="{ exact: true }"
+          >
+            Lĩnh vực
+            <i class="pi pi-external-link" style="margin-right: 8px"></i>
+          </a>
+          <span style="margin: 15px"></span>
+
+          <a
+            class="tabView-item"
+            routerLink="/home/overview-sector"
+            routerLinkActive="active-link"
+            [routerLinkActiveOptions]="{ exact: true }"
+          >
+            Dịch vụ
+            <i class="pi pi-external-link" style="margin-right: 8px"></i>
+          </a>
+        </div>
       </div>
 
       <div class="booking-action">

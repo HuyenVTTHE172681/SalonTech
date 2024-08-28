@@ -1,0 +1,32 @@
+.tabView {
+  padding: 0px 100px;
+  margin-top: 10px;
+  border-bottom: #e5e7eb 1px solid;
+  display: inline-flex;
+  min-width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+
+  .tabView-item {
+    color: #9ea1a5;
+    font-size: 20px;
+    font-weight: 700;
+    text-decoration: none;
+    margin-right: 30px;
+
+    i {
+      margin-left: 10px;
+      font-size: 15px;
+    }
+  }
+
+  .tabView-item:hover {
+    border-bottom: #9ea1a5 2px solid;
+  }
+
+  .tabView-item:active {
+    border-bottom: #9ea1a5 2px solid;
+    color: #9ea1a5;
+  }
+}
