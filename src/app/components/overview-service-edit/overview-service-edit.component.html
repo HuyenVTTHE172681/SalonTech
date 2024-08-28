@@ -19,7 +19,7 @@
   </div>
 
   <div class="overview-sector-wrapper">
-    <!-- FORM ADD NEW LĨNH VỰC -->
+    <!-- FORM EDIT NEW LĨNH VỰC -->
     <form [formGroup]="sectorForm" class="sector-form">
       <div class="title-form">Thông tin chung</div>
       <div class="form-detail-content">
@@ -27,36 +27,29 @@
           <span>Tên lĩnh vực*</span>
           <input
             type="text"
-            pInputText
             formControlName="name"
             class="input-field"
-            placeholder="Nhập mã booking"
+            placeholder="Nhập tên lĩnh vực"
           />
-          <span
-            *ngIf="
-              !sectorForm.get('name')?.valid && sectorForm.get('name')?.touched
-            "
-            >Trường này không được để trống</span
-          >
-          <br />
+          <!-- <span *ngIf="sectorForm.get('name') && sectorForm.get('name').touched">
+          Trường này không được để trống
+        </span> -->
         </div>
+
         <div class="detail-content-input2">
           <span>Mã lĩnh vực*</span>
           <input
             type="text"
-            pInputText
             formControlName="code"
             class="input-field"
             placeholder="Nhập mã lĩnh vực"
           />
-          <span
-            *ngIf="
-              !sectorForm.get('code')?.valid && sectorForm.get('code')?.touched
-            "
-            >Trường này không được được trở</span
-          ><br />
+          <!-- <span *ngIf="sectorForm.get('code').invalid && sectorForm.get('code').touched">
+          Trường này không được để trống
+        </span> -->
         </div>
       </div>
+
       <div class="form-detail-checkbox">
         <span>Cài đặt trạng thái</span>
         <div class="form-checkbox">
@@ -97,12 +90,6 @@
       severity="secondary"
       [style]="{ width: '100px', height: '30px' }"
       [disabled]="!sectorForm.valid"
-      (click)="onSubmitFormAddSector(sectorForm)"
     />
-    <!-- <p-button
-      label="Lưu & Thoát"
-      severity="success"
-      [style]="{ width: '180px', height: '30px' }"
-    /> -->
   </div>
 </div>

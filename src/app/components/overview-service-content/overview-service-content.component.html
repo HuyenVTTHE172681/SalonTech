@@ -145,7 +145,15 @@
               />
             </td>
             <td>
-              <p-button icon="pi pi-pencil" [rounded]="true" [text]="true" />
+              <p-button
+                icon="pi pi-pencil"
+                [rounded]="true"
+                [text]="true"
+                [routerLink]="[
+                  '/home/overview-service/edit-service',
+                  sector._id
+                ]"
+              />
               <p-button
                 icon="pi pi-times"
                 [rounded]="true"

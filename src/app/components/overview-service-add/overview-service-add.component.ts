@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { SectorService } from '../../services/sector.service';
@@ -11,8 +11,6 @@ import { SectorService } from '../../services/sector.service';
 export class OverviewServiceAddComponent implements OnInit {
   ingredient!: string;
   sectorForm: any;
-
- 
 
   constructor(
     private formBuilder: FormBuilder,
@@ -41,5 +39,13 @@ export class OverviewServiceAddComponent implements OnInit {
         }
       );
     }
+  }
+
+  onCancel() {
+    this.sectorForm.reset();
+  }
+
+  onUpdateSector() {
+    
   }
 }

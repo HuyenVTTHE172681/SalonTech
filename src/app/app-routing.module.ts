@@ -11,6 +11,9 @@ import { VoucherComponent } from './components/voucher/voucher.component';
 import { RateComponent } from './components/rate/rate.component';
 import { ForumComponent } from './components/forum/forum.component';
 import { NotificationComponent } from './components/notification/notification.component';
+import { OverviewServiceComponent } from './components/overview-service/overview-service.component';
+import { OverviewServiceAddComponent } from './components/overview-service-add/overview-service-add.component';
+import { OverviewServiceEditComponent } from './components/overview-service-edit/overview-service-edit.component';
 
 const routes: Routes = [
   {
@@ -61,6 +64,18 @@ const routes: Routes = [
   {
     path: 'notification',
     component: NotificationComponent,
+  },
+  {
+    path: 'home/overview-service',
+    component: OverviewServiceComponent,
+  },
+  {
+    path: 'home/overview-service/add-service',
+    component: OverviewServiceAddComponent,
+  },
+  {
+    path: 'home/overview-service/edit-service/:id',
+    component: OverviewServiceEditComponent,
   },
 ];
 

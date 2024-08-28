@@ -31,6 +31,9 @@ import { RatingModule } from 'primeng/rating';
 import { MenubarModule } from 'primeng/menubar';
 import { ToastModule } from 'primeng/toast';
 import { MessagesModule } from 'primeng/messages';
+import { RadioButtonModule } from 'primeng/radiobutton';
+import { OverlayPanelModule } from 'primeng/overlaypanel';
+
 
 import { HeaderComponent } from './components/header/header.component';
 import { OverviewComponent } from './components/overview/overview.component';
@@ -56,6 +59,12 @@ import { ForumComponent } from './components/forum/forum.component';
 import { ForumContentComponent } from './components/forum-content/forum-content.component';
 import { NotificationComponent } from './components/notification/notification.component';
 import { NotificationContentComponent } from './components/notification-content/notification-content.component';
+import { OverviewServiceComponent } from './components/overview-service/overview-service.component';
+import { OverviewServiceContentComponent } from './components/overview-service-content/overview-service-content.component';
+import { OverviewAccountComponent } from './components/overview-account/overview-account.component';
+import { OverviewServiceAddComponent } from './components/overview-service-add/overview-service-add.component';
+import { ChildComponent } from './components/child/child.component';
+import { OverviewServiceEditComponent } from './components/overview-service-edit/overview-service-edit.component';
 
 @NgModule({
   declarations: [
@@ -81,6 +90,12 @@ import { NotificationContentComponent } from './components/notification-content/
     ForumContentComponent,
     NotificationComponent,
     NotificationContentComponent,
+    OverviewServiceComponent,
+    OverviewServiceContentComponent,
+    OverviewAccountComponent,
+    OverviewServiceAddComponent,
+    ChildComponent,
+    OverviewServiceEditComponent,
   ],
   imports: [
     BrowserModule,
@@ -110,6 +125,8 @@ import { NotificationContentComponent } from './components/notification-content/
     MessagesModule,
     RouterModule,
     BrowserAnimationsModule,
+    RadioButtonModule,
+    OverlayPanelModule,
   ],
   providers: [
     provideClientHydration(),
