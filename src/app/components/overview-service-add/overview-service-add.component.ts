@@ -28,10 +28,17 @@ export class OverviewServiceAddComponent implements OnInit {
 
   onSubmitFormAddSector(form: NgForm) {
     if (this.sectorForm.valid) {
-      this.sectorSrv.addSector(this.sectorForm.value).subscribe(
+      // Chuyển đổi status thành số trước khi gọi service
+      const formValue = {
+        ...this.sectorForm.value,
+        status: Number(this.sectorForm.value.status),
+      };
+
+      this.sectorSrv.addSector(formValue).subscribe(
         (res) => {
-          alert('Thêm thành công' + this.sectorForm.value.status);
-          console.log(this.sectorForm.value.status);
+          alert('Thêm thành công với trạng thái ' + formValue.status);
+          console.log('Status:', formValue.status);
+          console.log('Form Value:', formValue);
           this.router.navigate(['home/overview-service']);
         },
         (err) => {
@@ -43,9 +50,5 @@ export class OverviewServiceAddComponent implements OnInit {
 
   onCancel() {
     this.sectorForm.reset();
-  }
-
-  onUpdateSector() {
-    
   }
 }

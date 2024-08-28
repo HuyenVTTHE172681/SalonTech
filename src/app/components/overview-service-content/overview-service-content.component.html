@@ -141,8 +141,9 @@
               <p-button
                 [label]="getStatus(sector?.status)"
                 [text]="true"
-                [severity]="getStyle(sector.status)"
+                [severity]="getStyle(sector?.status)"
               />
+              <!-- <span>{{ getStatus(sector?.status) }}</span> -->
             </td>
             <td>
               <p-button

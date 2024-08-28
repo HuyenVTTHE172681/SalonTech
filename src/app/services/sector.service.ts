@@ -3,6 +3,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { Sector } from '../model/sector';
+import { IResponeList } from '../model/common.model';
 
 @Injectable({
   providedIn: 'root',
@@ -13,11 +14,16 @@ export class SectorService {
   constructor(private http: HttpClient) {}
 
   // Hàm để lấy dữ liệu từ API
-  getAllSector(page: number, size: number, status: number): Observable<any> {
+  getAllSector(
+    page: number,
+    size: number,
+    status: number,
+  ): Observable<IResponeList<Sector>> {
+    // Construct the query parameters string
+    let queryParams = `?page=${page}&size=${size}&status=${status}`;
+
     return this.http
-      .get(
-        `${this.baseUrl}/sector?filter=&page=${page}&size=${size}&status=${status}`
-      )
+      .get<IResponeList<Sector>>(`${this.baseUrl}/sector${queryParams}`)
       .pipe(catchError(this.handleError));
   }
 
@@ -57,7 +63,7 @@ export class SectorService {
       .put<Sector>(`${this.baseUrl}/sector/${id}`, sector)
       .pipe(catchError(this.handleError));
   }
-  
+
   // Hàm xử lý lỗi
   private handleError(error: HttpErrorResponse) {
     console.error('An error occurred:', error.message);

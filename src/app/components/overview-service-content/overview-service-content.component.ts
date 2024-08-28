@@ -21,6 +21,7 @@ export class OverviewServiceContentComponent implements OnInit {
   status: number = StatusSector.ALL;
   sectors: Sector[] = [];
   filteredSectors: Sector[] = [];
+  totalItems: number = 0;
 
   statusList = [
     { name: 'Tất cả', value: StatusSector.ALL },
@@ -43,22 +44,15 @@ export class OverviewServiceContentComponent implements OnInit {
     this.getAllSector();
   }
 
-  getStatus(status: number) {
-    switch (status) {
-      case StatusSector.ACTIVE:
-        return 'Đang hoạt động';
-      case StatusSector.INACTIVE:
-        return 'Dừng hoạt động';
-      default:
-        return 'Unknown';
-    }
+  getStatus(status: number): string {
+    return status === 1 ? 'Đang hoạt động' : 'Dừng hoạt động';
   }
 
   getStyle(status: number) {
     switch (status) {
-      case StatusSector.ACTIVE:
+      case 1:
         return 'success';
-      case StatusSector.INACTIVE:
+      case 0:
         return 'danger';
       default:
         return 'warning';
@@ -66,34 +60,37 @@ export class OverviewServiceContentComponent implements OnInit {
   }
 
   filterStatus(event: any) {
+    this.status = this.selectedStatus.value; // Cập nhật giá trị status
     this.getAllSector();
   }
 
-  filterSectorWWithStatus() {
+  filterSectorWithStatus() {
     this.filteredSectors =
       this.status === StatusSector.ALL
         ? this.sectors
         : this.sectors.filter((sector) => sector.status === this.status);
   }
+
   getAllSector() {
-    this.sectorSrv
-      .getAllSector(this.page, this.size, this.selectedStatus.value)
-      .subscribe(
-        (data) => {
-          this.sectors = data.items;
-          this.filterSectorWWithStatus();
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
+    this.sectorSrv.getAllSector(this.page, this.size, this.status).subscribe({
+      next: (data) => {
+        this.sectors = data.items;
+        console.log(data);
+        this.totalItems = data.totalItems;
+        this.filterSectorWithStatus();
+      },
+      error: (err) => {
+        console.log(err);
+        console.log('Ahuhu');
+      },
+    });
   }
 
   deleteSector(id: string) {
     console.log(id);
     this.sectorSrv.deleteSector(id).subscribe((response) => {
       this.sectors = this.sectors.filter((sector) => sector._id !== id);
-      this.filterSectorWWithStatus();
+      this.filterSectorWithStatus();
     });
   }
 }
