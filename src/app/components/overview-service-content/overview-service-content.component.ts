@@ -75,7 +75,7 @@ export class OverviewServiceContentComponent implements OnInit {
     this.sectorSrv.getAllSector(this.page, this.size, this.status).subscribe({
       next: (data) => {
         this.sectors = data.items;
-        console.log(data);
+        console.log('Sector: ',this.sectors);
         this.totalItems = data.totalItems;
         this.filterSectorWithStatus();
       },
