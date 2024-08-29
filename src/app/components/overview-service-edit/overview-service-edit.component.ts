@@ -23,7 +23,7 @@ export class OverviewServiceEditComponent implements OnInit {
       name: ['', [Validators.required]],
       code: ['', [Validators.required]],
       description: [''],
-      status: [0],
+      status: [null, Validators.required],
       modified_by: [''],
       modified_date: [''],
     });

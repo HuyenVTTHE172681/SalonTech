@@ -80,7 +80,8 @@ export class OverviewSectorContentComponent implements OnInit {
 
   // Handel paginator
   onPageChange(event: any) {
-    this.page = event.first / event.rows + 1;
+    this.page = event.page + 1;
+    this.size = event.rows;
     this.getAllService();
   }
 }

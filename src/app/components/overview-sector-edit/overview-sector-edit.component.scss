@@ -1,32 +1,121 @@
-.tabView {
-  padding: 0px 100px;
-  margin-top: 10px;
-  border-bottom: #e5e7eb 1px solid;
-  display: inline-flex;
-  min-width: 100%;
-  margin: 0;
-  padding: 0;
-  list-style-type: none;
+.overview-service-page {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  padding: 30px;
+  display: block;
+  justify-content: center;
 
-  .tabView-item {
-    color: #9ea1a5;
-    font-size: 20px;
-    font-weight: 700;
-    text-decoration: none;
-    margin-right: 30px;
+  .service-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 24px;
 
-    i {
-      margin-left: 10px;
-      font-size: 15px;
+    .icon-back {
+      font-size: 18px;
+      line-height: 24px;
+      color: #000000;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .icon-center {
+      font-size: 14px;
+      line-height: 24px;
+      color: #000000;
+      font-weight: 700;
+      text-decoration: none;
+      border-bottom: #000000 2px solid;
+    }
+
+    .icon-close {
+      font-size: 18px;
+      line-height: 24px;
+      color: #000000;
+      font-weight: 700;
+      text-decoration: none;
     }
   }
 
-  .tabView-item:hover {
-    border-bottom: #9ea1a5 2px solid;
+  .overview-sector-wrapper {
+    height: 500px;
+    max-width: 690px;
+    margin: 0 auto;
+    background: #fff;
+    box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.03);
+    border-radius: 5px;
+    padding: 30px;
+    position: relative;
+    margin-top: 30px;
+
+    .title-form {
+      font-size: 15px;
+      font-weight: 700;
+      color: #1b1b1c;
+      display: flex;
+      align-items: flex-end;
+      margin-bottom: 20px;
+
+      span {
+        flex-shrink: 0;
+        margin-right: 5px;
+      }
+    }
+
+    .title-form::after {
+      content: "";
+      height: 1px;
+      background: #cecece;
+      width: 100%;
+      margin-bottom: 4px;
+    }
+
+    .detail-content-input1 {
+      display: grid;
+      align-items: center;
+      margin-bottom: 15px;
+
+      span {
+        color: red;
+      }
+    }
+
+    .detail-content-input2 {
+      display: grid;
+      align-items: center;
+      margin-bottom: 15px;
+
+      span {
+        color: red;
+      }
+    }
+
+    .form-detail-checkbox {
+      display: grid;
+      margin: 4px;
+      margin-top: 140px;
+      margin-bottom: 30px;
+
+      span {
+        margin-bottom: 5px;
+        color: #9ea1a5;
+      }
+
+      .form-checkbox {
+        display: flex;
+        margin-top: 5px;
+        gap: 30px;
+      }
+    }
   }
 
-  .tabView-item:active {
-    border-bottom: #9ea1a5 2px solid;
-    color: #9ea1a5;
+  .overview-service-footer {
+    display: flex;
+    justify-content: right;
+    gap: 10px;
+    margin-top: 114px;
+    margin-bottom: 30px;
+    margin-right: 138px;
   }
 }

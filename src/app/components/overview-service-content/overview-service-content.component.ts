@@ -53,14 +53,23 @@ export class OverviewServiceContentComponent implements OnInit {
     return status === 1 ? 'Đang hoạt động' : 'Dừng hoạt động';
   }
 
+  // getStyle(status: number) {
+  //   switch (status) {
+  //     case 1:
+  //       return 'success';
+  //     case 0:
+  //       return 'danger';
+  //     default:
+  //       return 'warning';
+  //   }
+  // }
+
   getStyle(status: number) {
     switch (status) {
       case 1:
         return 'success';
-      case 0:
-        return 'danger';
       default:
-        return 'warning';
+        return 'danger';
     }
   }
 
@@ -101,8 +110,8 @@ export class OverviewServiceContentComponent implements OnInit {
   }
 
   onPageChange(event: any) {
-    this.page = event.first / event.rows + 1;
-    console.log(this.page);
+    this.page = event.page + 1;
+    this.size = event.rows;
     this.getAllSector();
   }
 }

@@ -4,6 +4,7 @@ import { ServiceService } from '../../services/service.service';
 import { Sector } from '../../model/sector';
 import { FormBuilder, NgForm, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-overview-sector-add',
@@ -12,8 +13,7 @@ import { Router } from '@angular/router';
 })
 export class OverviewSectorAddComponent implements OnInit {
   page: number = 1;
-  size: number = 5; // display 10 item per page
-  status: number = 1;
+  size: number = 10000; // display 10 item per page
   sectors: Sector[] = [];
 
   serviceForm: any;
@@ -59,11 +59,27 @@ export class OverviewSectorAddComponent implements OnInit {
     }
   }
 
+  // Nên chỉ thêm vào danh sách các sector hoạt động trong database để chọn trong dropdown list
+  // status: number = 1;
+  // getAllSector() {
+  //   this.sectorSrv.getAllSector(this.page, this.size, this.status).subscribe({
+  //     next: (data) => {
+  //       console.log('Data:', data);
+  //       this.sectors = data.items;
+  //     },
+  //     error: (err) => {
+  //       console.log(err);
+  //       console.log('Ahuhu');
+  //     },
+  //   });
+  // }
+
+  // Get all sector trong database "Đang hoạt động" và "Dừng hoạt động"
   getAllSector() {
-    this.sectorSrv.getAllSector(this.page, this.size, this.status).subscribe({
+    this.sectorSrv.getAllSectorNoStatus(this.page, this.size).subscribe({
       next: (data) => {
+        console.log('Data:', data);
         this.sectors = data.items;
-        console.log(data);
       },
       error: (err) => {
         console.log(err);
