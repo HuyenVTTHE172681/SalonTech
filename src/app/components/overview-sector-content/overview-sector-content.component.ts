@@ -19,6 +19,7 @@ export class OverviewSectorContentComponent implements OnInit {
   size: number = 3; // display 10 item per page
   status: number = StatusService.ALL;
   service: Service[] = [];
+  sector_id: string = '';
   totalItems: number = 0;
 
   statusList = [
@@ -57,16 +58,18 @@ export class OverviewSectorContentComponent implements OnInit {
   }
 
   getAllService() {
-    this.serviceSrv.getAllService(this.page, this.size, this.status).subscribe({
-      next: (data) => {
-        this.service = data.items;
-        this.totalItems = data.totalItems;
-      },
-      error: (error) => {
-        console.log(error);
-        console.log('Ahuhu');
-      },
-    });
+    this.serviceSrv
+      .getAllService(this.page, this.size, this.status, this.sector_id)
+      .subscribe({
+        next: (data) => {
+          this.service = data.items;
+          this.totalItems = data.totalItems;
+        },
+        error: (error) => {
+          console.log(error);
+          console.log('Ahuhu');
+        },
+      });
   }
 
   deleteService(id: string) {

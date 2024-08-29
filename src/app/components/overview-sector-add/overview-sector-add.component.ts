@@ -27,31 +27,37 @@ export class OverviewSectorAddComponent implements OnInit {
 
   ngOnInit(): void {
     this.serviceForm = this.fb.group({
-      name: [null, Validators.required],
-      code: ['', Validators.required],
+      selectedSector: [null, Validators.required],
+      code: [null, Validators.required],
+      name: ['', Validators.required],
       status: [null, Validators.required],
-    })
+    });
+
+    this.getAllSector();
   }
 
-  onSubmitFormAddService(form: NgForm) { 
-    if(this.serviceForm.valid) {
+  onSubmitFormAddService(form: NgForm) {
+    if (this.serviceForm.valid) {
+      // Chuyển đổi status thành số trước khi gọi service
       const formValue = {
         ...this.serviceForm.value,
         status: Number(this.serviceForm.value.status),
-  };
-      this.sectorSrv.addSector(formValue).subscribe(
+        sector_id: this.serviceForm.value.selectedSector._id,
+      };
+      console.log('Form Value:', formValue);
+
+      this.serviceSrv.addService(formValue).subscribe(
         (res) => {
           alert('Them thanh cong');
-          this.router.navigate(['home/overview-sector'])
+          this.router.navigate(['/home/overview-sector']);
         },
         (err) => {
-          console.log(err)
+          console.log(err);
+          console.log('Auhuhuhu');
         }
       );
     }
   }
-      
-    
 
   getAllSector() {
     this.sectorSrv.getAllSector(this.page, this.size, this.status).subscribe({

@@ -8,7 +8,7 @@
         class="pi pi-angle-left"
         style="font-size: 1.5rem; margin-right: 8px"
       ></i>
-      Lĩnh vực</a
+      Dịch vụ</a
     >
 
     <a class="icon-center">Thông tin</a>
@@ -27,19 +27,20 @@
         </span>
       </div>
       <div class="form-detail-content">
-        <!-- <div class="detail-content-input1">
+        <!-- List sector dropdown to choose in form -->
+        <div class="detail-content-input1">
           <p style="margin-bottom: 5px; color: #9ea1a5">
-            Chọn dịch vụ <span>*</span>
+            Chọn lĩnh vực <span>*</span>
           </p>
           <p-dropdown
             [options]="sectors"
-            [(ngModel)]="selectedCity"
+            formControlName="selectedSector"
             optionLabel="name"
             placeholder="Chọn lĩnh vực"
           />
-
           <br />
-        </div> -->
+        </div>
+
         <div class="detail-content-input1">
           <p style="margin-bottom: 5px; color: #9ea1a5">
             Tên lĩnh vực <span>*</span>
@@ -51,9 +52,18 @@
             class="input-field"
             placeholder="Nhập mã booking"
           />
-
+          <span
+            *ngIf="
+              !serviceForm.get('name')?.valid &&
+              serviceForm.get('name')?.touched
+            "
+            style="color: red"
+          >
+            Trường này không được để trống
+          </span>
           <br />
         </div>
+
         <div class="detail-content-input2">
           <p style="margin-bottom: 5px; color: #9ea1a5">
             Mã lĩnh vực <span>*</span>
@@ -65,7 +75,15 @@
             class="input-field"
             placeholder="Nhập mã lĩnh vực"
           />
-
+          <span
+            *ngIf="
+              !serviceForm.get('code')?.valid &&
+              serviceForm.get('code')?.touched
+            "
+            style="color: red"
+          >
+            Trường này không được được trọ
+          </span>
           <br />
         </div>
       </div>
@@ -113,7 +131,7 @@
       severity="secondary"
       [style]="{ width: '100px', height: '30px' }"
       [disabled]="!serviceForm.valid"
-      (click)="onSubmitFormAddService(serviceForm.value)"
+      (click)="onSubmitFormAddService(serviceForm)"
     />
     <!-- <p-button
       label="Lưu & Thoát"

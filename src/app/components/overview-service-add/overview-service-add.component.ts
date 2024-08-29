@@ -9,14 +9,12 @@ import { SectorService } from '../../services/sector.service';
   styleUrl: './overview-service-add.component.scss',
 })
 export class OverviewServiceAddComponent implements OnInit {
-  ingredient!: string;
   sectorForm: any;
 
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
-    private sectorSrv: SectorService,
-    private serviceSrv: SectorService
+    private sectorSrv: SectorService
   ) {}
 
   ngOnInit(): void {
@@ -35,7 +33,7 @@ export class OverviewServiceAddComponent implements OnInit {
         status: Number(this.sectorForm.value.status),
       };
 
-      this.serviceSrv.addSector(formValue).subscribe(
+      this.sectorSrv.addSector(formValue).subscribe(
         (res) => {
           alert('Them thanh cong');
           this.router.navigate(['/home/overview-service']);
