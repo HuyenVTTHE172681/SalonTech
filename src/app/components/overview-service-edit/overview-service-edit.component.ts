@@ -47,6 +47,7 @@ export class OverviewServiceEditComponent implements OnInit {
   onSubmitFormEditSector(): void {
     if (this.sectorForm.valid) {
       const updatedSector: Sector = this.sectorForm.value;
+      
       this.sectorSrv.updateSector(updatedSector._id, updatedSector).subscribe(
         (res) => {
           this.router.navigate(['/home/overview-service']);

@@ -127,7 +127,7 @@
 
     <!-- TABLE -->
     <div class="card">
-      <p-table [value]="service" [tableStyle]="{ 'min-width': '50rem' }">
+      <p-table [value]="services" [tableStyle]="{ 'min-width': '50rem' }">
         <ng-template class="table-header" pTemplate="header">
           <tr class="table-header__content">
             <th>STT</th>
@@ -159,7 +159,7 @@
                 [rounded]="true"
                 [text]="true"
                 [routerLink]="[
-                  '/home/overview-service/edit-service',
+                  '/home/overview-sector/edit-sector',
                   service._id
                 ]"
               />

@@ -18,9 +18,10 @@ export class OverviewSectorContentComponent implements OnInit {
   page: number = 1;
   size: number = 3; // display 10 item per page
   status: number = StatusService.ALL;
-  service: Service[] = [];
+  services: Service[] = [];
   sector_id: string = '';
   totalItems: number = 0;
+  filterService: Service[] = [];
 
   statusList = [
     { name: 'Tất cả', value: StatusService.ALL },
@@ -33,28 +34,36 @@ export class OverviewSectorContentComponent implements OnInit {
   constructor(private serviceSrv: ServiceService, private router: Router) {}
 
   ngOnInit(): void {
-    this.getAllService();
-  }
-
-  filterStatus(event: any) {
-    this.page = 1;
-    this.status = this.selectedStatus.value;
+    this.selectedStatus =
+      this.statusList.find((status) => status.value === this.status) ||
+      this.statusList[0];
     this.getAllService();
   }
 
   getStatus(status: number): string {
-    return status === 1 ? 'Đang hoạt động' : 'Dừng hoạt động';
+    return status === StatusService.ACTIVE ? 'Đang hoạt động' : 'Dừng hoạt động';
   }
 
   getStyle(status: number) {
     switch (status) {
-      case 1:
+      case StatusService.ACTIVE:
         return 'success';
-      case 0:
-        return 'danger';
       default:
-        return 'warning';
+        return 'danger';
     }
+  }
+
+  filterStatus(event: any) {
+    this.page = 1;
+    this.status = this.selectedStatus.value; // Cập nhật giá trị status
+    this.getAllService();
+  }
+
+  filterServiceWithStatus() {
+    this.filterService =
+      this.status === StatusService.ALL
+        ? this.services
+        : this.services.filter((service) => service.status === this.status);
   }
 
   getAllService() {
@@ -62,8 +71,9 @@ export class OverviewSectorContentComponent implements OnInit {
       .getAllService(this.page, this.size, this.status, this.sector_id)
       .subscribe({
         next: (data) => {
-          this.service = data.items;
+          this.services = data.items;
           this.totalItems = data.totalItems;
+          this.filterServiceWithStatus();
         },
         error: (error) => {
           console.log(error);
@@ -74,7 +84,8 @@ export class OverviewSectorContentComponent implements OnInit {
 
   deleteService(id: string) {
     this.serviceSrv.deleteService(id).subscribe((res) => {
-      this.service = this.service.filter((service) => service._id !== id);
+      this.services = this.services.filter((service) => service._id !== id);
+      this.filterServiceWithStatus();
     });
   }
 

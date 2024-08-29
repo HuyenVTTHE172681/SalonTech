@@ -74,27 +74,49 @@
     .detail-content-input1 {
       display: grid;
       align-items: center;
-      margin-bottom: 15px;
 
       span {
         color: red;
+      }
+
+      input {
+        font-size: 1rem;
+        color: #4b5563;
+        background: #ffffff;
+        padding: 0.75rem 0.75rem;
+        border: 1px solid #d1d5db;
+        transition: background-color 0.2s, color 0.2s, border-color 0.2s,
+          box-shadow 0.2s;
+        appearance: none;
+        border-radius: 6px;
       }
     }
 
     .detail-content-input2 {
       display: grid;
       align-items: center;
-      margin-bottom: 15px;
 
       span {
         color: red;
+      }
+
+      input {
+        font-size: 1rem;
+        color: #4b5563;
+        background: #ffffff;
+        padding: 0.75rem 0.75rem;
+        border: 1px solid #d1d5db;
+        transition: background-color 0.2s, color 0.2s, border-color 0.2s,
+          box-shadow 0.2s;
+        appearance: none;
+        border-radius: 6px;
       }
     }
 
     .form-detail-checkbox {
       display: grid;
       margin: 4px;
-      margin-top: 140px;
+      margin-top: 40px;
       margin-bottom: 30px;
 
       span {

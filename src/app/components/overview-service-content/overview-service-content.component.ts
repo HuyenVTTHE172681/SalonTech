@@ -22,7 +22,7 @@ export class OverviewServiceContentComponent implements OnInit {
   sectors: Sector[] = [];
   filteredSectors: Sector[] = [];
   totalItems: number = 0;
-  activeIndex: number = 0;
+  // activeIndex: number = 0;
 
   statusList = [
     { name: 'Tất cả', value: StatusSector.ALL },
@@ -38,10 +38,6 @@ export class OverviewServiceContentComponent implements OnInit {
     private fb: FormBuilder
   ) {}
 
-  navigateTo(path: string): void {
-    this.router.navigate([path]);
-  }
-
   ngOnInit(): void {
     this.selectedStatus =
       this.statusList.find((status) => status.value === this.status) ||
@@ -52,17 +48,6 @@ export class OverviewServiceContentComponent implements OnInit {
   getStatus(status: number): string {
     return status === 1 ? 'Đang hoạt động' : 'Dừng hoạt động';
   }
-
-  // getStyle(status: number) {
-  //   switch (status) {
-  //     case 1:
-  //       return 'success';
-  //     case 0:
-  //       return 'danger';
-  //     default:
-  //       return 'warning';
-  //   }
-  // }
 
   getStyle(status: number) {
     switch (status) {
