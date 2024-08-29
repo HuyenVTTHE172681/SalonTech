@@ -16,7 +16,7 @@ enum StatusService {
 })
 export class OverviewSectorContentComponent implements OnInit {
   page: number = 1;
-  size: number = 3; // display 10 item per page
+  size: number = 5; // display 10 item per page
   status: number = StatusService.ALL;
   services: Service[] = [];
   sector_id: string = '';
@@ -31,7 +31,7 @@ export class OverviewSectorContentComponent implements OnInit {
 
   selectedStatus: any = this.statusList[0];
 
-  constructor(private serviceSrv: ServiceService, private router: Router) {}
+  constructor(private serviceSrv: ServiceService) {}
 
   ngOnInit(): void {
     this.selectedStatus =
@@ -41,38 +41,52 @@ export class OverviewSectorContentComponent implements OnInit {
   }
 
   getStatus(status: number): string {
-    return status === StatusService.ACTIVE ? 'Đang hoạt động' : 'Dừng hoạt động';
+    switch (status) {
+      case 1:
+        return 'Đang hoạt động';
+      case 0:
+        return 'Dừng hoạt động';
+      default:
+        return 'Không xác định'; // Giá trị mặc định nếu không khớp với trạng thái
+    }
   }
 
   getStyle(status: number) {
     switch (status) {
-      case StatusService.ACTIVE:
+      case 1:
         return 'success';
       default:
         return 'danger';
     }
   }
-
   filterStatus(event: any) {
     this.page = 1;
-    this.status = this.selectedStatus.value; // Cập nhật giá trị status
+    this.status = Number(this.selectedStatus.value); // Chuyển đổi chuỗi thành số
     this.getAllService();
   }
 
   filterServiceWithStatus() {
+    console.log('Current Status:', this.status); // Debugging
     this.filterService =
-      this.status === StatusService.ALL
+      this.status === -1
         ? this.services
-        : this.services.filter((service) => service.status === this.status);
+        : this.services.filter((service) => {
+            console.log('Service Status:', service.status); // Debugging
+            // Chuyển đổi trạng thái của dịch vụ thành số trước khi so sánh
+            return Number(service.status) === this.status;
+          });
   }
-
   getAllService() {
     this.serviceSrv
       .getAllService(this.page, this.size, this.status, this.sector_id)
       .subscribe({
         next: (data) => {
-          this.services = data.items;
+          this.services = data.items.map((service) => ({
+            ...service,
+            status: Number(service.status), // Chuyển đổi trạng thái thành số
+          }));
           this.totalItems = data.totalItems;
+          console.log('Service: ', this.services);
           this.filterServiceWithStatus();
         },
         error: (error) => {
