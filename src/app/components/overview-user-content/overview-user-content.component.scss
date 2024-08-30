@@ -1,0 +1,152 @@
+.overview-service-page {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  padding: 30px;
+  display: block;
+  justify-content: center;
+
+  .service-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 24px;
+
+    .icon-back {
+      font-size: 18px;
+      line-height: 24px;
+      color: #000000;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .icon-close {
+      text-decoration: none;
+      color: #000000;
+    }
+  }
+
+  .overview-sector-wrapper {
+    padding: 0px 100px;
+    margin-top: 10px;
+
+    .booking-action {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+
+      .booking-action--left {
+        .title-line {
+          font-size: 14px;
+          line-height: 14px;
+          color: #9ea1a5;
+          margin-bottom: 12px;
+          font-weight: 700;
+          margin-top: 10px;
+          display: flex;
+          align-items: flex-end;
+
+          span {
+            flex-shrink: 0;
+            margin-right: 5px;
+          }
+        }
+
+        .title-line::after {
+          content: "";
+          height: 1px;
+          background: #cecece;
+          width: 100%;
+          margin-bottom: 4px;
+        }
+
+        .fillter-left {
+          display: flex;
+          align-items: center;
+          height: 60px;
+
+          .card-status {
+            display: flex;
+            align-items: center;
+            margin-left: 10px;
+            margin-right: 10px;
+            height: 30px;
+            font-size: 12px;
+
+            p {
+              margin-right: 5px;
+              color: #9ea1a5;
+            }
+          }
+        }
+      }
+
+      .booking-action--right {
+        display: flex;
+        align-items: center;
+
+        .search {
+          display: flex;
+          align-items: center;
+        }
+
+        .title-line {
+          font-size: 14px;
+          line-height: 14px;
+          color: #9ea1a5;
+          margin-bottom: 12px;
+          font-weight: 700;
+          margin-top: 10px;
+          display: flex;
+          align-items: flex-end;
+
+          span {
+            flex-shrink: 0;
+            margin-right: 5px;
+          }
+        }
+
+        .title-line::after {
+          content: "";
+          height: 1px;
+          background: #cecece;
+          width: 100%;
+          margin-bottom: 4px;
+        }
+      }
+    }
+
+    .export-file {
+      margin-bottom: 13px;
+      color: #9ea1a5;
+      font-size: 14px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      font-size: 14px;
+
+      .active {
+        color: black;
+        margin-right: 14px;
+      }
+    }
+
+    th {
+      background: #3b3420;
+      color: #fff;
+    }
+
+    .paginator {
+      display: flex;
+      justify-content: space-between;
+      margin-left: 17px;
+      margin-right: 17px;
+
+      .pahinator-left {
+        display: block;
+        text-align: center;
+        padding: 1.5rem 0rem;
+      }
+    }
+  }
+}

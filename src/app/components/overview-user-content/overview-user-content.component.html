@@ -1,0 +1,216 @@
+<app-header></app-header>
+
+<div class="overview-service-page">
+  <!-- TITLE -->
+  <div class="service-title">
+    <a class="icon-back" routerLink="/home"
+      ><i
+        class="pi pi-angle-left"
+        style="font-size: 1.5rem; margin-right: 8px"
+      ></i>
+      Khởi tạo tài khoản</a
+    >
+
+    <a class="icon-close" routerLink="/home">
+      <i class="pi pi-times icon-close" style="font-size: 1.5rem"></i>
+    </a>
+  </div>
+
+  <div class="overview-sector-wrapper">
+    <!-- CONTENT -->
+    <div class="service-content">
+
+      <div class="booking-action">
+        <!-- ======= Booking LEFT ======= -->
+        <div class="booking-action--left">
+          <div class="title-line">
+            <span for="icondisplay" class="font-bold block mb-2">
+              Công cụ
+            </span>
+          </div>
+          <!-- ======= BUTTON ADD ======= -->
+          <div class="fillter-left">
+            <div class="card-buttons">
+              <p-button
+                label="Thêm"
+                routerLink="/home/overview-service/add-service"
+                icon="pi pi-plus"
+                [style]="{
+                  background: '#3b3420',
+                  'border-color': '#3b3420',
+                  'font-size': '12px'
+                }"
+              />
+            </div>
+            <!-- ======= BUTTON FILTER ======= -->
+            <div class="card-status">
+              <p>Trạng thái:</p>
+              <!-- <div class="card tabview">
+                <p-dropdown
+                  [options]="statusList"
+                  [(ngModel)]="selectedStatus"
+                  optionLabel="name"
+                  placeholder="Tất cả"
+                  (onChange)="filterStatus($event)"
+                  [style]="{
+                color: 'black',
+                border: 'none',
+                'font-size': '10px',
+                background: 'transparent',
+              }"
+                ></p-dropdown>
+              </div> -->
+            </div>
+          </div>
+        </div>
+
+        <!-- ======= Booking RIGHT ======= -->
+        <div class="booking-action--right">
+          <!-- FILTER  -->
+          <div class="flex-auto">
+            <div class="title-line">
+              <span for="icondisplay" class="font-bold block mb-2">
+                Tìm kiếm theo tên
+              </span>
+            </div>
+            <div class="search">
+              <span class="p-input-icon-right">
+                <i
+                  class="pi pi-search"
+                  [style]="{
+                    marginRight: '14px',
+                    fontSize: '13px',
+                    marginTop: '-5px'
+                  }"
+                ></i>
+                <input
+                  pInputText
+                  placeholder="Nhập từ khóa..."
+                  [style]="{
+                    width: '200px',
+                    height: '30px',
+                    marginRight: '14px'
+                  }"
+                />
+              </span>
+              <div class="p-toolbar-group-start">
+                <p-button
+                  label="Lấy dữ liệu"
+                  [style]="{
+                width: '100px',
+                height: '30px',
+                'font-size': '12px',
+                'flex-shrink': '0',
+                'background-color': '#3b3420',
+                'border-color': '#3b3420',
+              }"
+                ></p-button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Export file excel -->
+      <div class="export-file">
+        <span class="selected active">Đã chọn (00)</span>
+        <span> | </span>
+        <span class="excel">
+          <p-menubar
+            [model]="items"
+            [style]="{
+              fontSize: '12px',
+              border: 'none',
+              backgroundColor: 'white',
+              height: '30px'
+            }"
+          ></p-menubar>
+        </span>
+        <!-- <p-toast /> -->
+      </div>
+    </div>
+
+    <!-- TABLE -->
+    <div class="card">
+      <p-table [tableStyle]="{ 'min-width': '50rem' }">
+        <ng-template class="table-header" pTemplate="header">
+          <tr class="table-header__content">
+            <th>
+              <p-checkbox
+                [(ngModel)]="checked"
+                [binary]="true"
+                inputId="binary"
+              />
+            </th>
+            <th>Họ và tên</th>
+            <th>Tài khoản</th>
+            <th>Email</th>
+            <th>Số điện thoại</th>
+            <th>Đăng ký lúc</th>
+            <th>Trạng thái</th>
+            <th
+              style="
+                border-left: 1px solid #e9e9e9;
+                box-shadow: -2px 0 10px -3px #e9e9e9;
+              "
+            >
+              Chức năng
+            </th>
+          </tr>
+        </ng-template>
+
+        <ng-template pTemplate="body" let-sector let-rowIndex="rowIndex">
+          <!-- <tr>
+            <td>{{ rowIndex + 1 }}</td>
+            <td>{{ sector?.code?.toUpperCase() }}</td>
+            <td>{{ sector?.name }}</td>
+            <td>
+              <p-button
+                [label]="getStatus(sector?.status)"
+                [text]="true"
+                [severity]="getStyle(sector?.status)"
+              />
+            </td>
+            <td>
+              <p-button
+                icon="pi pi-pencil"
+                [rounded]="true"
+                [text]="true"
+                [routerLink]="[
+                  '/home/overview-service/edit-service',
+                  sector._id
+                ]"
+              />
+              <p-button
+                icon="pi pi-times"
+                [rounded]="true"
+                [text]="true"
+                severity="danger"
+                (click)="deleteSector(sector._id)"
+              />
+            </td>
+          </tr> -->
+        </ng-template>
+      </p-table>
+    </div>
+
+    <!-- PAGINATION -->
+    <div class="paginator">
+      <div class="pahinator-left">
+        <!-- Tổng bản ghi: {{ bookings ? bookings.length : 0 }} -->
+        <!-- Tổng bản ghi: {{ totalItems }}
+      </div>
+      <div class="justify-content-end">
+        <p-paginator
+          (onPageChange)="onPageChange($event)"
+          [first]="(page - 1) * size"
+          [rows]="size"
+          [totalRecords]="totalItems"
+          [rowsPerPageOptions]="[4, 8, 12]"
+          [showFirstLastIcon]="false"
+        />
+      </div> -->
+      </div>
+    </div>
+  </div>
+</div>
