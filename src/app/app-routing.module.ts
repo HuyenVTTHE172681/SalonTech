@@ -14,6 +14,10 @@ import { NotificationComponent } from './components/notification/notification.co
 import { OverviewServiceComponent } from './components/overview-service/overview-service.component';
 import { OverviewServiceAddComponent } from './components/overview-service-add/overview-service-add.component';
 import { OverviewServiceEditComponent } from './components/overview-service-edit/overview-service-edit.component';
+import { OverviewSectorContentComponent } from './components/overview-sector-content/overview-sector-content.component';
+import { OverviewSectorAddComponent } from './components/overview-sector-add/overview-sector-add.component';
+import { OverviewSectorEditComponent } from './components/overview-sector-edit/overview-sector-edit.component';
+import { OverviewUserContentComponent } from './components/overview-user-content/overview-user-content.component';
 
 const routes: Routes = [
   {
@@ -76,6 +80,22 @@ const routes: Routes = [
   {
     path: 'home/overview-service/edit-service/:id',
     component: OverviewServiceEditComponent,
+  },
+  {
+    path: 'home/overview-sector',
+    component: OverviewSectorContentComponent,
+  },
+  {
+    path: 'home/overview-sector/add-sector',
+    component: OverviewSectorAddComponent,
+  },
+  {
+    path: 'home/overview-sector/edit-sector/:id',
+    component: OverviewSectorEditComponent,
+  },
+  {
+    path: 'home/overview-user',
+    component: OverviewUserContentComponent,
   },
 ];
 
