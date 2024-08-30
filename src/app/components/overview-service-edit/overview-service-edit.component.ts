@@ -47,13 +47,21 @@ export class OverviewServiceEditComponent implements OnInit {
   onSubmitFormEditSector(): void {
     if (this.sectorForm.valid) {
       const updatedSector: Sector = this.sectorForm.value;
-      
+
+      // Convert status from string to number
+      updatedSector.status = Number(updatedSector.status);
+
+      console.log('Update Sector data: ', updatedSector);
+
       this.sectorSrv.updateSector(updatedSector._id, updatedSector).subscribe(
         (res) => {
           this.router.navigate(['/home/overview-service']);
         },
         (err) => {
           console.error('Error updating sector:', err);
+          alert(
+            `Something went wrong; please try again later. Details: ${err.message}`
+          );
         }
       );
     }

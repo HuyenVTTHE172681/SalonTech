@@ -81,7 +81,7 @@ export class OverviewSectorEditComponent implements OnInit {
       // Convert status from string to number
       updateService.status = Number(updateService.status);
 
-      // Debugging: Print out the data to verify
+      // Debugging
       console.log('Update Service Data:', updateService);
 
       this.serviceSrv.updateService(updateService._id, updateService).subscribe(

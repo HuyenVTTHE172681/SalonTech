@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Sector } from '../../model/sector';
 import { SectorService } from '../../services/sector.service';
-import { FormBuilder, NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
 
 enum StatusSector {
   ALL = -1,
@@ -32,11 +30,7 @@ export class OverviewServiceContentComponent implements OnInit {
 
   selectedStatus: any = this.statusList[0];
 
-  constructor(
-    private sectorSrv: SectorService,
-    private router: Router,
-    private fb: FormBuilder
-  ) {}
+  constructor(private sectorSrv: SectorService) {}
 
   ngOnInit(): void {
     this.selectedStatus =
@@ -75,7 +69,7 @@ export class OverviewServiceContentComponent implements OnInit {
     this.sectorSrv.getAllSector(this.page, this.size, this.status).subscribe({
       next: (data) => {
         this.sectors = data.items;
-        console.log('Sector: ',this.sectors);
+        console.log('Sector: ', this.sectors);
         this.totalItems = data.totalItems;
         this.filterSectorWithStatus();
       },
