@@ -17,10 +17,22 @@ export class SectorService {
   getAllSector(
     page: number,
     size: number,
-    status: number,
+    status: number
   ): Observable<IResponeList<Sector>> {
     // Construct the query parameters string
     let queryParams = `?page=${page}&size=${size}&status=${status}`;
+
+    return this.http
+      .get<IResponeList<Sector>>(`${this.baseUrl}/sector${queryParams}`)
+      .pipe(catchError(this.handleError));
+  }
+
+  getAllSectorNoStatus(
+    page: number,
+    size: number
+  ): Observable<IResponeList<Sector>> {
+    // Construct the query parameters string
+    let queryParams = `?page=${page}&size=${size}`;
 
     return this.http
       .get<IResponeList<Sector>>(`${this.baseUrl}/sector${queryParams}`)
