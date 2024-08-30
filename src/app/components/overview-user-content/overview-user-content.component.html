@@ -19,7 +19,6 @@
   <div class="overview-sector-wrapper">
     <!-- CONTENT -->
     <div class="service-content">
-
       <div class="booking-action">
         <!-- ======= Booking LEFT ======= -->
         <div class="booking-action--left">
@@ -45,7 +44,7 @@
             <!-- ======= BUTTON FILTER ======= -->
             <div class="card-status">
               <p>Trạng thái:</p>
-              <!-- <div class="card tabview">
+              <div class="card tabview">
                 <p-dropdown
                   [options]="statusList"
                   [(ngModel)]="selectedStatus"
@@ -59,7 +58,7 @@
                 background: 'transparent',
               }"
                 ></p-dropdown>
-              </div> -->
+              </div>
             </div>
           </div>
         </div>
@@ -132,7 +131,7 @@
 
     <!-- TABLE -->
     <div class="card">
-      <p-table [tableStyle]="{ 'min-width': '50rem' }">
+      <p-table [value]="users" [tableStyle]="{ 'min-width': '50rem' }">
         <ng-template class="table-header" pTemplate="header">
           <tr class="table-header__content">
             <th>
@@ -159,20 +158,34 @@
           </tr>
         </ng-template>
 
-        <ng-template pTemplate="body" let-sector let-rowIndex="rowIndex">
-          <!-- <tr>
-            <td>{{ rowIndex + 1 }}</td>
-            <td>{{ sector?.code?.toUpperCase() }}</td>
-            <td>{{ sector?.name }}</td>
+        <ng-template pTemplate="body" let-user let-rowIndex="rowIndex">
+          <tr>
             <td>
-              <p-button
-                [label]="getStatus(sector?.status)"
-                [text]="true"
-                [severity]="getStyle(sector?.status)"
+              <p-checkbox
+                [(ngModel)]="checked"
+                [binary]="true"
+                inputId="binary"
               />
             </td>
+            <td>{{ user?.name }}</td>
+            <td>{{ user?.userName }}</td>
+            <td>{{ user?.email }}</td>
+            <td>{{ user?.phone }}</td>
+            <td>{{ user?.modified_date | date : "dd/MM/yyyy" }}</td>
             <td>
               <p-button
+                [label]="getStatus(user?.status)"
+                [text]="true"
+                [severity]="getStyle(user?.status)"
+              />
+            </td>
+            <td
+              style="
+                border-left: 1px solid #e9e9e9;
+                box-shadow: -2px 0 10px -3px #e9e9e9;
+              "
+            >
+              <!-- <p-button
                 icon="pi pi-pencil"
                 [rounded]="true"
                 [text]="true"
@@ -187,9 +200,20 @@
                 [text]="true"
                 severity="danger"
                 (click)="deleteSector(sector._id)"
-              />
+              /> -->
+              <p-button
+                label="Chi tiết"
+                routerLink="/detail/{{ user?._id }}"
+                [style]="{
+                  'font-size': '12px',
+                  'background-color': '#3b3420',
+                  'border-color': '#3b3420',
+                  height: '30px',
+                  width: '86px'
+                }"
+              ></p-button>
             </td>
-          </tr> -->
+          </tr>
         </ng-template>
       </p-table>
     </div>
@@ -198,7 +222,7 @@
     <div class="paginator">
       <div class="pahinator-left">
         <!-- Tổng bản ghi: {{ bookings ? bookings.length : 0 }} -->
-        <!-- Tổng bản ghi: {{ totalItems }}
+        Tổng bản ghi: {{ totalItems }}
       </div>
       <div class="justify-content-end">
         <p-paginator
@@ -209,7 +233,6 @@
           [rowsPerPageOptions]="[4, 8, 12]"
           [showFirstLastIcon]="false"
         />
-      </div> -->
       </div>
     </div>
   </div>

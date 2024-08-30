@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SectorService } from '../../services/sector.service';
-import { ServiceService } from '../../services/service.service';
+import { ServiceService } from '../../services/services.service';
 import { Sector } from '../../model/sector';
 import { FormBuilder, NgForm, Validators } from '@angular/forms';
 import { Router } from '@angular/router';

@@ -4,7 +4,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Service } from '../../model/service';
 import { Sector } from '../../model/sector';
-import { ServiceService } from '../../services/service.service';
+import { ServiceService } from '../../services/services.service';
 
 @Component({
   selector: 'app-overview-sector-edit',
