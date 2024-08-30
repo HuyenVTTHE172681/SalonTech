@@ -57,13 +57,12 @@
           }
         }
 
-        .tabView-item:focus {
-          border-bottom: #3b82f6 5px solid;
-          color: #3b82f6;
-        }
-
         .tabView-item:hover {
           border-bottom: #1f1700 2px solid;
+        }
+
+        .tabView-item:active {
+          border-bottom: #1f1700 4px solid;
         }
       }
     }

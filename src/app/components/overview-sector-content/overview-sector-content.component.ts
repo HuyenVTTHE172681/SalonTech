@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Service } from '../../model/service';
 import { ServiceService } from '../../services/service.service';
 import { Router } from '@angular/router';
+import { Sector } from '../../model/sector';
+import { SectorService } from '../../services/sector.service';
 
 enum StatusService {
   ALL = -1,
@@ -22,6 +24,7 @@ export class OverviewSectorContentComponent implements OnInit {
   sector_id: string = '';
   totalItems: number = 0;
   filterService: Service[] = [];
+  sector: Sector[] = [];
 
   statusList = [
     { name: 'Tất cả', value: StatusService.ALL },
@@ -31,7 +34,11 @@ export class OverviewSectorContentComponent implements OnInit {
 
   selectedStatus: any = this.statusList[0];
 
-  constructor(private serviceSrv: ServiceService) {}
+  constructor(
+    private serviceSrv: ServiceService,
+    private router: Router,
+    private sectorSrv: SectorService
+  ) {}
 
   ngOnInit(): void {
     this.selectedStatus =
@@ -110,5 +117,19 @@ export class OverviewSectorContentComponent implements OnInit {
     this.page = event.page + 1;
     this.size = event.rows;
     this.getAllService();
+  }
+
+  getAllSector() {
+    this.sectorSrv.getAllSector(this.page, this.size, this.status).subscribe({
+      next: (data) => {
+        this.sector = data.items;
+        console.log('Sector: ', this.sector);
+        this.totalItems = data.totalItems;
+      },
+      error: (err) => {
+        console.log(err);
+        console.log('Ahuhu');
+      },
+    });
   }
 }
