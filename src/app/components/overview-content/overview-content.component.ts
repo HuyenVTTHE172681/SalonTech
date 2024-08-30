@@ -22,6 +22,7 @@ export class OverviewContentComponent implements OnInit {
       '--text-color-secondary'
     );
     const surfaceBorder = documentStyle.getPropertyValue('--surface-border');
+
     this.data = {
       labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
       datasets: [
@@ -50,6 +51,7 @@ export class OverviewContentComponent implements OnInit {
         },
       ],
     };
+
     this.options = {
       maintainAspectRatio: false,
       aspectRatio: 0.6,
