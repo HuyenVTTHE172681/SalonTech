@@ -1,0 +1,150 @@
+<app-header></app-header>
+
+<div class="overview-service-page">
+  <!-- TITLE -->
+  <div class="service-title">
+    <a class="icon-back" routerLink="/home/overview-sector">
+      <i
+        class="pi pi-angle-left"
+        style="font-size: 1.5rem; margin-right: 8px"
+      ></i>
+      Dịch vụ
+    </a>
+
+    <a class="icon-center">Thông tin</a>
+    <a>Gán dữ liệu</a>
+
+    <a class="icon-close" routerLink="/home/overview-sector">
+      <i class="pi pi-times icon-close"></i>
+    </a>
+  </div>
+
+  <div class="overview-sector-wrapper">
+    <!-- FORM EDIT SERVICE -->
+    <form class="sector-form">
+      <div class="title-form">
+        <span class="font-bold block mb-2">Thông tin chung</span>
+      </div>
+      <div class="form-detail-content">
+        <div class="detail-content-input1">
+          <p style="margin-bottom: 5px; color: #9ea1a5">
+            Tên nhân viên <span>*</span>
+          </p>
+          <input
+            type="text"
+            formControlName="name"
+            class="input-field"
+            placeholder="Nhập tên lĩnh vực"
+          />
+          <br />
+        </div>
+
+        <div class="detail-content-input2">
+          <p style="margin-bottom: 5px; color: #9ea1a5">
+            Email dùng làm tài khoản đăng nhập <span>*</span>
+          </p>
+          <input
+            type="text"
+            formControlName="email"
+            class="input-field"
+            placeholder="Nhập mã lĩnh vực"
+          />
+          <br />
+        </div>
+
+        <div class="detail-content-input2">
+          <p style="margin-bottom: 5px; color: #9ea1a5">
+            Mật khẩu <span>*</span>
+          </p>
+          <input
+            type="text"
+            formControlName="password"
+            class="input-field"
+            placeholder="Nhập mã lĩnh vực"
+          />
+          <br />
+        </div>
+
+        <div class="detail-content-input2">
+          <p style="margin-bottom: 5px; color: #9ea1a5">
+            Số điện thoại <span>*</span>
+          </p>
+          <input
+            type="text"
+            formControlName="phone"
+            class="input-field"
+            placeholder="Nhập mã lĩnh vực"
+          />
+          <br />
+        </div>
+      </div>
+      <div class="form-detail-checkbox">
+        <span>Cài đặt trạng thái</span>
+        <div class="form-checkbox">
+          <div class="flex align-items-center">
+            <p-radioButton
+              name="status"
+              value="1"
+              formControlName="status"
+              inputId="ACTIVE"
+            />
+            <label for="ACTIVE" class="ml-2" style="margin-left: 10px"
+              >Hoạt động</label
+            >
+          </div>
+
+          <div class="flex align-items-center">
+            <p-radioButton
+              name="status"
+              value="0"
+              formControlName="status"
+              inputId="INACTIVE"
+            />
+            <label for="INACTIVE" class="ml-2" style="margin-left: 10px"
+              >Dừng hoạt động</label
+            >
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <div class="sector-avatar">
+      <div class="avatar">
+        <img src="" alt="avatar" />
+      </div>
+      <div class="avatar-action">
+        <a class="icon-edit" href="#">Sửa</a>
+        " | "
+        <a class="icon-delete" href="#">Xóa</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="overview-service-footer" #footer>
+    <!-- <p-button
+      label="Hủy"
+      severity="danger"
+      [style]="{ width: '100px', height: '30px' }"
+      (click)="onCancel()"
+    />
+    <p-button
+      label="Lưu"
+      [outlined]="true"
+      severity="secondary"
+      [style]="{ width: '100px', height: '30px' }"
+      [disabled]="!serviceForm.valid"
+      (click)="onSubmitFormEditService()"
+    /> -->
+    <p-button
+      label="Hủy"
+      severity="danger"
+      [style]="{ width: '100px', height: '30px' }"
+    />
+    <p-button
+      label="Lưu"
+      [outlined]="true"
+      severity="secondary"
+      [style]="{ width: '100px', height: '30px' }"
+    />
+  </div>
+</div>
