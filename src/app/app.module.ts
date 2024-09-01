@@ -33,9 +33,11 @@ import { RatingModule } from 'primeng/rating';
 import { MenubarModule } from 'primeng/menubar';
 import { ToastModule } from 'primeng/toast';
 import { MessagesModule } from 'primeng/messages';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { ChartModule } from 'primeng/chart';
+import { RippleModule } from 'primeng/ripple';
 
 // Custom Components
 import { HeaderComponent } from './components/header/header.component';
@@ -65,7 +67,7 @@ import { OverviewServiceEditComponent } from './components/overview-service-edit
 
 // Services and Interceptors
 import { AuthInterceptor } from './auth.interceptor';
-import { MessageService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { OverviewSectorContentComponent } from './components/overview-sector-content/overview-sector-content.component';
 import { OverviewSectorAddComponent } from './components/overview-sector-add/overview-sector-add.component';
 import { OverviewSectorEditComponent } from './components/overview-sector-edit/overview-sector-edit.component';
@@ -136,11 +138,14 @@ import { OverviewUserDetailComponent } from './components/overview-user-detail/o
     RadioButtonModule,
     OverlayPanelModule,
     ChartModule,
+    ConfirmDialogModule,
+    RippleModule,
   ],
   providers: [
     provideClientHydration(),
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     MessageService,
+    ConfirmationService,
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA], // Add CUSTOM_ELEMENTS_SCHEMA here

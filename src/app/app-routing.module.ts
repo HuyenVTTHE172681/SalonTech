@@ -99,7 +99,7 @@ const routes: Routes = [
     component: OverviewUserContentComponent,
   },
   {
-    path: 'home/overview-user/edit-user',
+    path: 'home/overview-user/edit-user/:id',
     component: OverviewUserDetailComponent,
   },
 ];

@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
-import { Sector } from '../model/sector';
 import { IResponeList } from '../model/common.model';
 import { User } from '../model/user';
 
@@ -26,54 +25,40 @@ export class UserService {
       .pipe(catchError(this.handleError));
   }
 
-  //   getAllSectorNoStatus(
-  //     page: number,
-  //     size: number
-  //   ): Observable<IResponeList<Sector>> {
-  //     // Construct the query parameters string
-  //     let queryParams = `?page=${page}&size=${size}`;
-
-  //     return this.http
-  //       .get<IResponeList<Sector>>(`${this.baseUrl}/sector${queryParams}`)
-  //       .pipe(catchError(this.handleError));
-  //   }
-
-  // Hàm xóa sector
-  //   deleteSector(id: string) {
-  //     return this.http
-  //       .delete(`${this.baseUrl}/sector/${id}`)
-  //       .pipe(catchError(this.handleError));
-  //   }
-
-  // Hàm xử lý với phương thức thêm sector có url là {{baseUrl}}/sector
-  //   addSector(sector: Sector): Observable<Sector> {
-  //     return this.http.post<Sector>(`${this.baseUrl}/sector`, sector).pipe(
-  //       tap((sector: Sector) =>
-  //         console.log(`Added sector with id=${sector._id}`)
-  //       ),
-  //       catchError(this.handleError)
-  //     );
-  //   }
+  // Hàm xóa user
+  deleteUser(id: string) {
+    return this.http
+      .delete(`${this.baseUrl}/user/${id}`)
+      .pipe(catchError(this.handleError));
+  }
 
   // Hàm edit
-  //   editSector(id: string) {
-  //     return this.http
-  //       .get(`${this.baseUrl}/sector/${id}`)
-  //       .pipe(catchError(this.handleError));
-  //   }
+  editUser(id: string) {
+    return this.http
+      .get(`${this.baseUrl}/user/${id}`)
+      .pipe(catchError(this.handleError));
+  }
 
-  //   getSectorById(id: string): Observable<Sector> {
-  //     return this.http.get<Sector>(`${this.baseUrl}/sector/${id}`).pipe(
-  //       tap((_) => console.log(`fetched sector id=${id}`)),
-  //       catchError(this.handleError)
-  //     );
-  //   }
+  // Get User by Id
+  getUserById(id: string): Observable<User> {
+    return this.http.get<User>(`${this.baseUrl}/user/${id}`).pipe(
+      tap((_) => console.log(`fetched user id=${id}`)),
+      catchError(this.handleError)
+    );
+  }
 
-  //   updateSector(id: string, sector: Sector): Observable<Sector> {
-  //     return this.http
-  //       .put<Sector>(`${this.baseUrl}/sector/${id}`, sector)
-  //       .pipe(catchError(this.handleError));
-  //   }
+  // Update user by id
+  // updateUser(id: string, user: User): Observable<User> {
+  //   return this.http
+  //     .put<User>(`${this.baseUrl}/user/${id}`, user)
+  //     .pipe(catchError(this.handleError));
+  // }
+  // Update user by id (sửa đổi URL để khớp với endpoint đúng)
+  updateUser(user: User): Observable<User> {
+    return this.http
+      .put<User>(`${this.baseUrl}/user/update-user`, user)
+      .pipe(catchError(this.handleError));
+  }
 
   // Hàm xử lý lỗi
   private handleError(error: HttpErrorResponse) {

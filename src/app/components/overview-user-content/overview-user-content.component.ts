@@ -26,7 +26,7 @@ export class OverviewUserContentComponent implements OnInit {
     { name: 'Tất cả', value: StatusUser.ALL },
     { name: 'Đang hoạt động', value: StatusUser.ACTIVE },
     { name: 'Dừng hoạt động', value: StatusUser.INACTIVE },
-    { name: 'Bị khóa', value: StatusUser.KEYWORD },
+    { name: 'Khóa', value: StatusUser.KEYWORD },
   ];
 
   selectedStatus: any = this.statusList[0];
@@ -62,7 +62,7 @@ export class OverviewUserContentComponent implements OnInit {
       case 0:
         return 'Dừng hoạt động';
       default:
-        return 'Bị khóa';
+        return 'Khóa';
     }
   }
 
