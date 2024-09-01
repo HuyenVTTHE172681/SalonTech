@@ -3,18 +3,22 @@
 <div class="overview-service-page">
   <!-- TITLE -->
   <div class="service-title">
-    <a class="icon-back" routerLink="/home/overview-sector">
+    <a class="icon-back" routerLink="/home/overview-user">
       <i
         class="pi pi-angle-left"
         style="font-size: 1.5rem; margin-right: 8px"
       ></i>
-      Dịch vụ
+      Khởi tạo tài khoản
     </a>
 
-    <a class="icon-center">Thông tin</a>
-    <a>Gán dữ liệu</a>
+    <!-- <a class="icon-center">Thông tin</a>
+    <a>Gán dữ liệu</a> -->
+    <div class="service-title-center">
+      <a class="icon-center active">Thông tin</a>
+      <a class="icon-center">Gán dữ liệu</a>
+    </div>
 
-    <a class="icon-close" routerLink="/home/overview-sector">
+    <a class="icon-close" routerLink="/home/overview-user">
       <i class="pi pi-times icon-close"></i>
     </a>
   </div>
@@ -114,37 +118,28 @@
       </div>
       <div class="avatar-action">
         <a class="icon-edit" href="#">Sửa</a>
-        " | "
+        <span style="color: #9ea1a5"> | </span>
         <a class="icon-delete" href="#">Xóa</a>
       </div>
     </div>
   </div>
 
   <div class="overview-service-footer" #footer>
+    <p-button
+      label="Hủy"
+      severity="danger"
+      [style]="{ width: '100px', height: '30px' }"
+    />
+    <p-button
+      label="Lưu"
+      [outlined]="true"
+      severity="secondary"
+      [style]="{ width: '100px', height: '30px' }"
+    />
     <!-- <p-button
-      label="Hủy"
-      severity="danger"
-      [style]="{ width: '100px', height: '30px' }"
-      (click)="onCancel()"
-    />
-    <p-button
-      label="Lưu"
-      [outlined]="true"
-      severity="secondary"
-      [style]="{ width: '100px', height: '30px' }"
-      [disabled]="!serviceForm.valid"
-      (click)="onSubmitFormEditService()"
+      label="Lưu & Thoát"
+      severity="success"
+      [style]="{ width: '180px', height: '30px' }"
     /> -->
-    <p-button
-      label="Hủy"
-      severity="danger"
-      [style]="{ width: '100px', height: '30px' }"
-    />
-    <p-button
-      label="Lưu"
-      [outlined]="true"
-      severity="secondary"
-      [style]="{ width: '100px', height: '30px' }"
-    />
   </div>
 </div>

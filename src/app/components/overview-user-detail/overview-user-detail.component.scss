@@ -20,13 +20,27 @@
       text-decoration: none;
     }
 
-    .icon-center {
+    .service-title-center {
       font-size: 14px;
       line-height: 24px;
       color: #000000;
       font-weight: 700;
       text-decoration: none;
-      border-bottom: #000000 2px solid;
+
+      .icon-center {
+        font-size: 14px;
+        line-height: 24px;
+        color: #000000;
+        font-weight: 700;
+        text-decoration: none;
+        // border-bottom: #000000 2px solid;
+
+        &.active {
+          margin: 25px;
+          padding: 10px;
+          border-bottom: #000000 3px solid;
+        }
+      }
     }
 
     .icon-close {
@@ -39,8 +53,9 @@
   }
 
   .overview-sector-wrapper {
-    height: 500px;
-    max-width: 690px;
+    max-height: 650px;
+    height: 640px;
+    max-width: 1225px;
     margin: 0 auto;
     background: #fff;
     box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.03);
@@ -52,8 +67,7 @@
     justify-content: space-between;
 
     .sector-form {
-      width: 630px; // Fixed width for the form
-      height: 236px; // Fixed height for the form
+      width: 688px; // Fixed width for the form
 
       .title-form {
         font-size: 15px;
@@ -102,7 +116,7 @@
       .form-detail-checkbox {
         display: grid;
         margin: 4px;
-        margin-top: 169px;
+        margin-top: 88px;
         margin-bottom: 30px;
 
         span {
@@ -119,13 +133,25 @@
     }
 
     .sector-avatar {
+      display: grid;
+      justify-items: center;
+      text-align: center;
+      width: 265px; // Fixed width for the image section
+      height: 309px;
+      margin-top: 55px;
+      margin-right: 67px;
+
       .avatar {
         width: 265px; // Fixed width for the image section
-        height: 309px; // Fixed height for the image section
+        height: 265px; // Fixed height for the image section
+        border: 1px dashed #cecece;
+        border-radius: 5px;
         img {
           width: 100%;
           height: 100%;
           object-fit: cover;
+          padding: 107px; 
+          // margin: 55px 43px 55px 43px;
         }
       }
 
@@ -133,7 +159,7 @@
         display: flex;
         justify-content: center;
         gap: 10px;
-        margin-top: 10px;
+        margin-top: 25px;
 
         .icon-edit,
         .icon-delete {
@@ -154,3 +180,5 @@
     margin-right: 138px;
   }
 }
+
+
