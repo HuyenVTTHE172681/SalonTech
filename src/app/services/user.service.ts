@@ -47,17 +47,18 @@ export class UserService {
     );
   }
 
-  // Update user by id
-  // updateUser(id: string, user: User): Observable<User> {
-  //   return this.http
-  //     .put<User>(`${this.baseUrl}/user/${id}`, user)
-  //     .pipe(catchError(this.handleError));
-  // }
-  // Update user by id (sửa đổi URL để khớp với endpoint đúng)
+  // Update user
   updateUser(user: User): Observable<User> {
     return this.http
       .put<User>(`${this.baseUrl}/user/update-user`, user)
       .pipe(catchError(this.handleError));
+  }
+
+  addUser(user: User): Observable<User> {
+    return this.http.post<User>(`${this.baseUrl}/user/register`, user).pipe(
+      tap((user: User) => console.log(`added user witth id=${user._id}`)),
+      catchError(this.handleError)
+    );
   }
 
   // Hàm xử lý lỗi
