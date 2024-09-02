@@ -73,6 +73,7 @@ import { OverviewSectorAddComponent } from './components/overview-sector-add/ove
 import { OverviewSectorEditComponent } from './components/overview-sector-edit/overview-sector-edit.component';
 import { OverviewUserContentComponent } from './components/overview-user-content/overview-user-content.component';
 import { OverviewUserDetailComponent } from './components/overview-user-detail/overview-user-detail.component';
+import { OverviewUserAddComponent } from './components/overview-user-add/overview-user-add.component';
 
 @NgModule({
   declarations: [
@@ -108,6 +109,7 @@ import { OverviewUserDetailComponent } from './components/overview-user-detail/o
     OverviewSectorEditComponent,
     OverviewUserContentComponent,
     OverviewUserDetailComponent,
+    OverviewUserAddComponent,
   ],
   imports: [
     BrowserModule,
