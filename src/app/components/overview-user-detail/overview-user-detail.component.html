@@ -158,7 +158,7 @@
       severity="danger"
       [style]="{ width: '100px', height: '30px' }"
       *ngIf="editMode"
-      (onClick)="onCancel()"
+      (click)="onDelete()"
     />
     <p-button
       label="Lưu"
@@ -174,6 +174,7 @@
       [style]="{ width: '180px', height: '30px' }"
       *ngIf="editMode"
       (click)="onSubmitFormEditUser()"
+      [routerLink]="['/home/overview-user']"
     />
   </div>
 </div>

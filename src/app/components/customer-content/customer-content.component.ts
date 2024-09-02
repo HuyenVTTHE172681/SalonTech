@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CustomerService } from '../../services/customer';
+import { CustomerService } from '../../services/customer.service';
 import { Customer } from '../../model/customer';
 
 enum StatusCustomer {

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthenService } from '../../services/authen.service';
 import { Router } from '@angular/router';
+import { Token } from '@angular/compiler';
 
 @Component({
   selector: 'app-login',
@@ -35,6 +36,7 @@ export class LoginComponent implements OnInit {
         },
         (err) => {
           console.log(err);
+          console.log(Token);
           alert('Đăng nhap khong hop le. Vui long thu lai.');
         }
       );

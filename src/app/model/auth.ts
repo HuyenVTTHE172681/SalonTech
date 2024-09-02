@@ -3,3 +3,17 @@ export interface User {
   password: string;
   userName: string;
 }
+
+export class Register {
+  name: string;
+  email: string;
+  userName: string;
+  password: string;
+  
+  constructor() {
+    this.name = "";
+    this.email = "";
+    this.userName = "";
+    this.password = "";
+  }
+}
