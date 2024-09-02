@@ -41,7 +41,6 @@ import { RippleModule } from 'primeng/ripple';
 
 // Custom Components
 import { HeaderComponent } from './components/header/header.component';
-import { OverviewComponent } from './components/overview/overview.component';
 import { OverviewContentComponent } from './components/overview-content/overview-content.component';
 import { BookingComponent } from './components/booking/booking.component';
 import { BookingContentComponent } from './components/booking-content/booking-content.component';
@@ -59,7 +58,6 @@ import { ForumComponent } from './components/forum/forum.component';
 import { ForumContentComponent } from './components/forum-content/forum-content.component';
 import { NotificationComponent } from './components/notification/notification.component';
 import { NotificationContentComponent } from './components/notification-content/notification-content.component';
-import { OverviewServiceComponent } from './components/overview-service/overview-service.component';
 import { OverviewServiceContentComponent } from './components/overview-service-content/overview-service-content.component';
 import { OverviewServiceAddComponent } from './components/overview-service-add/overview-service-add.component';
 import { ChildComponent } from './components/child/child.component';
@@ -74,6 +72,8 @@ import { OverviewSectorEditComponent } from './components/overview-sector-edit/o
 import { OverviewUserContentComponent } from './components/overview-user-content/overview-user-content.component';
 import { OverviewUserDetailComponent } from './components/overview-user-detail/overview-user-detail.component';
 import { OverviewUserAddComponent } from './components/overview-user-add/overview-user-add.component';
+import { OverviewBookingContentComponent } from './components/overview-booking-content/overview-booking-content.component';
+import { OverviewRevenueContentComponent } from './components/overview-revenue-content/overview-revenue-content.component';
 
 @NgModule({
   declarations: [
@@ -81,7 +81,6 @@ import { OverviewUserAddComponent } from './components/overview-user-add/overvie
     LoginComponent,
     RegisterComponent,
     HeaderComponent,
-    OverviewComponent,
     OverviewContentComponent,
     BookingComponent,
     BookingContentComponent,
@@ -99,7 +98,6 @@ import { OverviewUserAddComponent } from './components/overview-user-add/overvie
     ForumContentComponent,
     NotificationComponent,
     NotificationContentComponent,
-    OverviewServiceComponent,
     OverviewServiceContentComponent,
     OverviewServiceAddComponent,
     ChildComponent,
@@ -110,6 +108,8 @@ import { OverviewUserAddComponent } from './components/overview-user-add/overvie
     OverviewUserContentComponent,
     OverviewUserDetailComponent,
     OverviewUserAddComponent,
+    OverviewBookingContentComponent,
+    OverviewRevenueContentComponent,
   ],
   imports: [
     BrowserModule,
