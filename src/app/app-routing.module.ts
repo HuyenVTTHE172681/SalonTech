@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
-import { OverviewComponent } from './components/overview/overview.component';
 import { BookingComponent } from './components/booking/booking.component';
 import { CustomerComponent } from './components/customer/customer.component';
 import { SalonComponent } from './components/salon/salon.component';
@@ -11,7 +10,6 @@ import { VoucherComponent } from './components/voucher/voucher.component';
 import { RateComponent } from './components/rate/rate.component';
 import { ForumComponent } from './components/forum/forum.component';
 import { NotificationComponent } from './components/notification/notification.component';
-import { OverviewServiceComponent } from './components/overview-service/overview-service.component';
 import { OverviewServiceAddComponent } from './components/overview-service-add/overview-service-add.component';
 import { OverviewServiceEditComponent } from './components/overview-service-edit/overview-service-edit.component';
 import { OverviewSectorContentComponent } from './components/overview-sector-content/overview-sector-content.component';
@@ -20,6 +18,8 @@ import { OverviewSectorEditComponent } from './components/overview-sector-edit/o
 import { OverviewUserContentComponent } from './components/overview-user-content/overview-user-content.component';
 import { OverviewUserDetailComponent } from './components/overview-user-detail/overview-user-detail.component';
 import { OverviewUserAddComponent } from './components/overview-user-add/overview-user-add.component';
+import { OverviewContentComponent } from './components/overview-content/overview-content.component';
+import { OverviewServiceContentComponent } from './components/overview-service-content/overview-service-content.component';
 
 const routes: Routes = [
   {
@@ -37,7 +37,7 @@ const routes: Routes = [
   },
   {
     path: 'home',
-    component: OverviewComponent,
+    component: OverviewContentComponent,
   },
   {
     path: 'booking',
@@ -73,7 +73,7 @@ const routes: Routes = [
   },
   {
     path: 'home/overview-service',
-    component: OverviewServiceComponent,
+    component: OverviewServiceContentComponent,
   },
   {
     path: 'home/overview-service/add-service',
