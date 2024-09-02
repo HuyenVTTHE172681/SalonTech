@@ -80,7 +80,7 @@ export class OverviewUserDetailComponent implements OnInit {
       const updatedUser: User = this.userForm.getRawValue(); // Use getRawValue() to get values of disabled controls as well
 
       // Convert status from string to number
-      // updatedUser.status = Number(updatedUser.status);
+      updatedUser.status = Number(updatedUser.status);
 
       console.log('Update User data: ', updatedUser);
 
@@ -88,7 +88,11 @@ export class OverviewUserDetailComponent implements OnInit {
         (res) => {
           console.log('User updated successfully:', res);
 
+          // Confirm if API response reflects the correct updated status
+          console.log('Updated User Info from API Response:', res);
+
           console.log('Updated User Info:', updatedUser);
+
           this.toggleEditMode();
         },
         (err) => {
