@@ -44,17 +44,12 @@ import { HeaderComponent } from './components/header/header.component';
 import { OverviewContentComponent } from './components/overview-content/overview-content.component';
 import { BookingContentComponent } from './components/booking-content/booking-content.component';
 import { CustomerContentComponent } from './components/customer-content/customer-content.component';
-import { SalonComponent } from './components/salon/salon.component';
 import { SalonContentComponent } from './components/salon-content/salon-content.component';
-import { EmployeeComponent } from './components/employee/employee.component';
 import { EmployeeContentComponent } from './components/employee-content/employee-content.component';
-import { VoucherComponent } from './components/voucher/voucher.component';
 import { VoucherContentComponent } from './components/voucher-content/voucher-content.component';
-import { RateComponent } from './components/rate/rate.component';
 import { RateContentComponent } from './components/rate-content/rate-content.component';
 import { ForumComponent } from './components/forum/forum.component';
 import { ForumContentComponent } from './components/forum-content/forum-content.component';
-import { NotificationComponent } from './components/notification/notification.component';
 import { NotificationContentComponent } from './components/notification-content/notification-content.component';
 import { OverviewServiceContentComponent } from './components/overview-service-content/overview-service-content.component';
 import { OverviewServiceAddComponent } from './components/overview-service-add/overview-service-add.component';
@@ -81,17 +76,12 @@ import { OverviewRevenueContentComponent } from './components/overview-revenue-c
     OverviewContentComponent,
     BookingContentComponent,
     CustomerContentComponent,
-    SalonComponent,
     SalonContentComponent,
-    EmployeeComponent,
     EmployeeContentComponent,
-    VoucherComponent,
     VoucherContentComponent,
-    RateComponent,
     RateContentComponent,
     ForumComponent,
     ForumContentComponent,
-    NotificationComponent,
     NotificationContentComponent,
     OverviewServiceContentComponent,
     OverviewServiceAddComponent,

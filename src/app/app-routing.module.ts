@@ -2,12 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
-import { SalonComponent } from './components/salon/salon.component';
-import { EmployeeComponent } from './components/employee/employee.component';
-import { VoucherComponent } from './components/voucher/voucher.component';
-import { RateComponent } from './components/rate/rate.component';
 import { ForumComponent } from './components/forum/forum.component';
-import { NotificationComponent } from './components/notification/notification.component';
 import { OverviewServiceAddComponent } from './components/overview-service-add/overview-service-add.component';
 import { OverviewServiceEditComponent } from './components/overview-service-edit/overview-service-edit.component';
 import { OverviewSectorContentComponent } from './components/overview-sector-content/overview-sector-content.component';
@@ -20,6 +15,11 @@ import { OverviewContentComponent } from './components/overview-content/overview
 import { OverviewServiceContentComponent } from './components/overview-service-content/overview-service-content.component';
 import { BookingContentComponent } from './components/booking-content/booking-content.component';
 import { CustomerContentComponent } from './components/customer-content/customer-content.component';
+import { EmployeeContentComponent } from './components/employee-content/employee-content.component';
+import { SalonContentComponent } from './components/salon-content/salon-content.component';
+import { VoucherContentComponent } from './components/voucher-content/voucher-content.component';
+import { RateContentComponent } from './components/rate-content/rate-content.component';
+import { NotificationContentComponent } from './components/notification-content/notification-content.component';
 
 const routes: Routes = [
   {
@@ -49,19 +49,19 @@ const routes: Routes = [
   },
   {
     path: 'salon',
-    component: SalonComponent,
+    component: SalonContentComponent,
   },
   {
     path: 'employee',
-    component: EmployeeComponent,
+    component: EmployeeContentComponent,
   },
   {
     path: 'voucher',
-    component: VoucherComponent,
+    component: VoucherContentComponent,
   },
   {
     path: 'rate',
-    component: RateComponent,
+    component: RateContentComponent,
   },
   {
     path: 'forum',
@@ -69,7 +69,7 @@ const routes: Routes = [
   },
   {
     path: 'notification',
-    component: NotificationComponent,
+    component: NotificationContentComponent,
   },
   {
     path: 'home/overview-service',
@@ -106,7 +106,7 @@ const routes: Routes = [
   {
     path: 'home/overview-user/add-user',
     component: OverviewUserAddComponent,
-  }
+  },
 ];
 
 @NgModule({
