@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
-import { CustomerComponent } from './components/customer/customer.component';
 import { SalonComponent } from './components/salon/salon.component';
 import { EmployeeComponent } from './components/employee/employee.component';
 import { VoucherComponent } from './components/voucher/voucher.component';
@@ -20,6 +19,7 @@ import { OverviewUserAddComponent } from './components/overview-user-add/overvie
 import { OverviewContentComponent } from './components/overview-content/overview-content.component';
 import { OverviewServiceContentComponent } from './components/overview-service-content/overview-service-content.component';
 import { BookingContentComponent } from './components/booking-content/booking-content.component';
+import { CustomerContentComponent } from './components/customer-content/customer-content.component';
 
 const routes: Routes = [
   {
@@ -45,7 +45,7 @@ const routes: Routes = [
   },
   {
     path: 'customer',
-    component: CustomerComponent,
+    component: CustomerContentComponent,
   },
   {
     path: 'salon',
