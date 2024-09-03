@@ -1,1 +1,270 @@
-<p>overview-booking-content works!</p>
+<app-header></app-header>
+<div class="booking-wrapper">
+  <!-- TITLE -->
+  <div class="service-title">
+    <a class="icon-back" routerLink="/home"
+      ><i
+        class="pi pi-angle-left"
+        style="font-size: 1.5rem; margin-right: 8px"
+      ></i>
+      Báo cáo đơn booking</a
+    >
+
+    <a class="icon-close" routerLink="/home">
+      <i class="pi pi-times icon-close" style="font-size: 1.5rem"></i>
+    </a>
+  </div>
+
+  <!-- Action search/filter/add -->
+  <div class="booking-action">
+    <!-- ======= LEFT Export file excel ======= -->
+    <div class="export-file">
+      <span class="selected active">Đã chọn (00)</span>
+      <span> | </span>
+      <span class="excel">
+        <p-menubar
+          [model]="items"
+          [style]="{
+            fontSize: '12px',
+            border: 'none',
+            backgroundColor: 'white',
+            height: '30px'
+          }"
+        ></p-menubar>
+      </span>
+      <!-- <p-toast /> -->
+    </div>
+
+    <!-- =======  MIDDLE ======= -->
+    <div class="booking-action--middle">
+      <!-- BUTTON FILTER Date -->
+      <div class="card-date">
+        <p>Thời gian:</p>
+        <!-- <div class="card tabview">
+          <p-dropdown
+            [options]="statusList"
+            [(ngModel)]="selectedStatus"
+            optionLabel="name"
+            placeholder="Tất cả"
+            (onChange)="filterStatus($event)"
+            [style]="{
+              color: 'black',
+              border: 'none',
+              'font-size': '10px',
+              background: 'transparent'
+            }"
+          ></p-dropdown>
+        </div> -->
+      </div>
+
+      <span> | </span>
+      <!-- BUTTON FILTER Status -->
+      <div class="card-status">
+        <p>Trạng thái:</p>
+        <!-- <div class="card tabview">
+          <p-dropdown
+            [options]="statusList"
+            [(ngModel)]="selectedStatus"
+            optionLabel="name"
+            placeholder="Tất cả"
+            (onChange)="filterStatus($event)"
+            [style]="{
+              color: 'black',
+              border: 'none',
+              'font-size': '10px',
+              background: 'transparent'
+            }"
+          ></p-dropdown>
+        </div> -->
+      </div>
+
+      <span> | </span>
+      <!-- BUTTON FILTER BookingType -->
+      <div class="card-bookingType">
+        <p>Loại booking:</p>
+        <!-- <div class="card tabview">
+          <p-dropdown
+            [options]="statusList"
+            [(ngModel)]="selectedStatus"
+            optionLabel="name"
+            placeholder="Tất cả"
+            (onChange)="filterStatus($event)"
+            [style]="{
+              color: 'black',
+              border: 'none',
+              'font-size': '10px',
+              background: 'transparent'
+            }"
+          ></p-dropdown>
+        </div> -->
+      </div>
+    </div>
+
+    <!-- =======  RIGHT ======= -->
+    <div class="customer-action--right">
+      <!-- FILTER  -->
+      <div class="flex-auto">
+        <div class="title-line">
+          <span for="icondisplay" class="font-bold block mb-2">
+            Tìm kiếm theo tên
+          </span>
+        </div>
+        <div class="search">
+          <span class="p-input-icon-right">
+            <i
+              class="pi pi-search"
+              [style]="{
+                marginRight: '14px',
+                fontSize: '13px',
+                marginTop: '-5px'
+              }"
+            ></i>
+            <input
+              pInputText
+              placeholder="Nhập từ khóa..."
+              [style]="{
+                width: '200px',
+                height: '30px',
+                marginRight: '14px'
+              }"
+            />
+          </span>
+          <div class="p-toolbar-group-start">
+            <p-button
+              icon="pi pi-spin pi-spinner"
+              class="mr-2"
+              [style]="{
+                width: '35px',
+                height: '30px',
+                marginRight: '14px',
+                'background-color': '#3b3420',
+                'border-color': '#3b3420',
+              }"
+            />
+            <p-button
+              label="Lấy dữ liệu"
+              [style]="{
+                width: '100px',
+                height: '30px',
+                'font-size': '12px',
+                'flex-shrink': '0',
+                'background-color': '#3b3420',
+                'border-color': '#3b3420',
+              }"
+            ></p-button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Table -->
+  <div class="card">
+    <p-table
+      responsiveLayout="stack"
+      [breakpoint]="'960px'"
+      [tableStyle]="{ 'min-width': '50rem' }"
+    >
+      <ng-template pTemplate="header" let-columns>
+        <tr>
+          <th>
+            <p-checkbox
+              [(ngModel)]="checked"
+              [binary]="true"
+              inputId="binary"
+            />
+          </th>
+          <th>Mã salon</th>
+          <th>Tên Salon</th>
+          <th>Số điện thoại</th>
+          <th>Email</th>
+          <th>Địa chỉ</th>
+          <th>Trạng thái</th>
+          <th>Đánh giá trung bình</th>
+          <th
+            style="
+              border-left: 1px solid #e9e9e9;
+              box-shadow: -2px 0 10px -3px #e9e9e9;
+            "
+          >
+            Chức năng
+          </th>
+        </tr>
+      </ng-template>
+      <!-- <ng-template pTemplate="body" let-salon let-columns="columns">
+        <tr>
+          <td>
+            <p-checkbox
+              [(ngModel)]="checked"
+              [binary]="true"
+              inputId="binary"
+            />
+          </td>
+          <td><span class="p-column-title">Mã salon</span>{{ salon?._id }}</td>
+          <td>
+            <span class="p-column-title">Tên Salon</span>{{ salon?.name }}
+          </td>
+          <td>
+            <span class="p-column-title">Số điện thoại</span>{{ salon?.phone }}
+          </td>
+          <td><span class="p-column-title">Email</span>{{ salon?.email }}</td>
+          <td>
+            <span class="p-column-title">Địa chỉ</span>{{ salon?.address }}
+          </td>
+          <td>
+            <p-button
+              [label]="getStatus(salon?.status)"
+              [text]="true"
+              [severity]="getStyle(salon.status)"
+            />
+          </td>
+          <td>
+            <p-rating
+              [(ngModel)]="salon.rate_average"
+              [readonly]="true"
+              [cancel]="false"
+              class="custom-rating"
+            />
+          </td>
+          <td
+            style="
+              border-left: 1px solid #e9e9e9;
+              box-shadow: -2px 0 10px -3px #e9e9e9;
+            "
+          >
+            <p-button
+              label="Chi tiết"
+              routerLink="/detail/{{ salon?._id }}"
+              [style]="{
+                'font-size': '12px',
+                'background-color': '#3b3420',
+                'border-color': '#3b3420',
+                height: '30px',
+                width: '86px'
+              }"
+            ></p-button>
+          </td>
+        </tr>
+      </ng-template> -->
+    </p-table>
+  </div>
+
+  <!-- Paginator -->
+  <div class="paginator">
+    <div class="pahinator-left">
+      <!-- Tổng bản ghi: {{ salons ? salons.length : 0 }} -->
+      <!-- Tổng bản ghi: {{ totalItems }}
+    </div>
+    <div class="justify-content-end">
+      <p-paginator
+        (onPageChange)="onPageChange($event)"
+        [first]="(page - 1) * size"
+        [rows]="size"
+        [totalRecords]="totalItems"
+        [rowsPerPageOptions]="[2, 4, 6]"
+        [showFirstLastIcon]="false"
+      />
+    </div> -->
+    </div>
+  </div>
+</div>
