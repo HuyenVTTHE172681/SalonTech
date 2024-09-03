@@ -42,7 +42,6 @@ import { RippleModule } from 'primeng/ripple';
 // Custom Components
 import { HeaderComponent } from './components/header/header.component';
 import { OverviewContentComponent } from './components/overview-content/overview-content.component';
-import { BookingComponent } from './components/booking/booking.component';
 import { BookingContentComponent } from './components/booking-content/booking-content.component';
 import { CustomerComponent } from './components/customer/customer.component';
 import { CustomerContentComponent } from './components/customer-content/customer-content.component';
@@ -82,7 +81,6 @@ import { OverviewRevenueContentComponent } from './components/overview-revenue-c
     RegisterComponent,
     HeaderComponent,
     OverviewContentComponent,
-    BookingComponent,
     BookingContentComponent,
     CustomerComponent,
     CustomerContentComponent,
