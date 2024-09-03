@@ -32,7 +32,7 @@
     margin-top: 17px;
     margin-left: 16px;
     margin-right: 16px;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
 
     .customer-action--left {
       .title {
@@ -120,19 +120,25 @@
       height: 30px;
       font-size: 14px;
       font-weight: 700;
-      gap: 140px;
+      gap: 12px;
       margin-top: 23px;
 
       .card-date {
         border-bottom: #e5e7eb 1px solid;
+        display: flex;
+        align-items: center;
       }
 
       .card-status {
         border-bottom: #e5e7eb 1px solid;
+        display: flex;
+        align-items: center;
       }
 
       .card-bookingType {
         border-bottom: #e5e7eb 1px solid;
+        display: flex;
+        align-items: center;
       }
     }
   }

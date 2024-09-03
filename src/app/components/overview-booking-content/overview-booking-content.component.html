@@ -40,13 +40,12 @@
       <!-- BUTTON FILTER Date -->
       <div class="card-date">
         <p>Thời gian:</p>
-        <!-- <div class="card tabview">
+        <div class="card tabview">
           <p-dropdown
-            [options]="statusList"
-            [(ngModel)]="selectedStatus"
+            [options]="dateList"
+            [(ngModel)]="selectedDate"
             optionLabel="name"
             placeholder="Tất cả"
-            (onChange)="filterStatus($event)"
             [style]="{
               color: 'black',
               border: 'none',
@@ -54,20 +53,20 @@
               background: 'transparent'
             }"
           ></p-dropdown>
-        </div> -->
+        </div>
       </div>
 
       <span> | </span>
       <!-- BUTTON FILTER Status -->
       <div class="card-status">
-        <p>Trạng thái:</p>
-        <!-- <div class="card tabview">
+        <p>Loại booking:</p>
+        <div class="card tabview">
           <p-dropdown
-            [options]="statusList"
-            [(ngModel)]="selectedStatus"
+            [options]="bookingTypeList"
+            [(ngModel)]="selectedBookingType"
+            (onChange)="filterBookingType($event)"
             optionLabel="name"
             placeholder="Tất cả"
-            (onChange)="filterStatus($event)"
             [style]="{
               color: 'black',
               border: 'none',
@@ -75,20 +74,20 @@
               background: 'transparent'
             }"
           ></p-dropdown>
-        </div> -->
+        </div>
       </div>
 
       <span> | </span>
       <!-- BUTTON FILTER BookingType -->
       <div class="card-bookingType">
-        <p>Loại booking:</p>
-        <!-- <div class="card tabview">
+        <p>Trạng thái:</p>
+        <div class="card tabview">
           <p-dropdown
             [options]="statusList"
             [(ngModel)]="selectedStatus"
+            (onChange)="filterStatus($event)"
             optionLabel="name"
             placeholder="Tất cả"
-            (onChange)="filterStatus($event)"
             [style]="{
               color: 'black',
               border: 'none',
@@ -96,7 +95,7 @@
               background: 'transparent'
             }"
           ></p-dropdown>
-        </div> -->
+        </div>
       </div>
     </div>
 
@@ -161,6 +160,7 @@
   <!-- Table -->
   <div class="card">
     <p-table
+      [value]="filterBookingData"
       responsiveLayout="stack"
       [breakpoint]="'960px'"
       [tableStyle]="{ 'min-width': '50rem' }"
@@ -174,24 +174,15 @@
               inputId="binary"
             />
           </th>
-          <th>Mã salon</th>
+          <th>Mã booking</th>
           <th>Tên Salon</th>
-          <th>Số điện thoại</th>
-          <th>Email</th>
-          <th>Địa chỉ</th>
+          <th>Tên thợ</th>
+          <th>Ngày check in</th>
+          <th>Loại booking</th>
           <th>Trạng thái</th>
-          <th>Đánh giá trung bình</th>
-          <th
-            style="
-              border-left: 1px solid #e9e9e9;
-              box-shadow: -2px 0 10px -3px #e9e9e9;
-            "
-          >
-            Chức năng
-          </th>
         </tr>
       </ng-template>
-      <!-- <ng-template pTemplate="body" let-salon let-columns="columns">
+      <ng-template pTemplate="body" let-booking let-columns="columns">
         <tr>
           <td>
             <p-checkbox
@@ -200,52 +191,41 @@
               inputId="binary"
             />
           </td>
-          <td><span class="p-column-title">Mã salon</span>{{ salon?._id }}</td>
           <td>
-            <span class="p-column-title">Tên Salon</span>{{ salon?.name }}
+            <span class="p-column-title">Mã booking</span>{{ booking?._id }}
           </td>
           <td>
-            <span class="p-column-title">Số điện thoại</span>{{ salon?.phone }}
-          </td>
-          <td><span class="p-column-title">Email</span>{{ salon?.email }}</td>
-          <td>
-            <span class="p-column-title">Địa chỉ</span>{{ salon?.address }}
+            <span class="p-column-title">Tên Salon</span
+            >{{ booking?.salon?.name }}
           </td>
           <td>
+            <span class="p-column-title">Tên thợ</span
+            >{{ booking?.employee?.introduce }}
+          </td>
+          <td>
+            <span class="p-column-title">Ngày check in</span
+            >{{ formatDate(booking?.checkin_date) }}
+          </td>
+          <td>
+            <span class="p-column-title">Loại booking</span>
+            {{ booking?.booking_type }}
             <p-button
-              [label]="getStatus(salon?.status)"
+              [label]="getStatus(booking?.booking_type)"
               [text]="true"
-              [severity]="getStyle(salon.status)"
+              [severity]="getStyle(booking?.booking_type)"
             />
           </td>
           <td>
-            <p-rating
-              [(ngModel)]="salon.rate_average"
-              [readonly]="true"
-              [cancel]="false"
-              class="custom-rating"
-            />
-          </td>
-          <td
-            style="
-              border-left: 1px solid #e9e9e9;
-              box-shadow: -2px 0 10px -3px #e9e9e9;
-            "
-          >
+            <span class="p-column-title">Trạng thái</span>
+            {{ booking?.status }}
             <p-button
-              label="Chi tiết"
-              routerLink="/detail/{{ salon?._id }}"
-              [style]="{
-                'font-size': '12px',
-                'background-color': '#3b3420',
-                'border-color': '#3b3420',
-                height: '30px',
-                width: '86px'
-              }"
+              [label]="getBookingType(booking?.status)"
+              [text]="true"
+              [style]="{ color: 'black' }"
             ></p-button>
           </td>
         </tr>
-      </ng-template> -->
+      </ng-template>
     </p-table>
   </div>
 
