@@ -20,6 +20,8 @@ import { SalonContentComponent } from './components/salon-content/salon-content.
 import { VoucherContentComponent } from './components/voucher-content/voucher-content.component';
 import { RateContentComponent } from './components/rate-content/rate-content.component';
 import { NotificationContentComponent } from './components/notification-content/notification-content.component';
+import { OverviewBookingContentComponent } from './components/overview-booking-content/overview-booking-content.component';
+import { OverviewRevenueContentComponent } from './components/overview-revenue-content/overview-revenue-content.component';
 
 const routes: Routes = [
   {
@@ -107,6 +109,14 @@ const routes: Routes = [
     path: 'home/overview-user/add-user',
     component: OverviewUserAddComponent,
   },
+  {
+    path: 'home/overview-booking',
+    component: OverviewBookingContentComponent,
+  },
+  {
+    path: 'home/overview-revenue',
+    component: OverviewRevenueContentComponent,
+  }
 ];
 
 @NgModule({
