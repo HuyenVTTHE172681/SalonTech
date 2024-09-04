@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { Salon } from '../model/salon';
 
 @Injectable({
   providedIn: 'root',
@@ -20,9 +21,26 @@ export class SalonService {
       .pipe(catchError(this.handleError));
   }
 
+  // updateSalonStatus(id: number, salon: Salon): Observable<Salon> {
+  //   return this.http
+  //     .put<Salon>(`${this.baseUrl}/salon/${id}`, salon)
+  //     .pipe(catchError(this.handleError));
+  // }
+
   updateSalonStatus(id: number, status: number): Observable<any> {
     return this.http
       .put(`${this.baseUrl}/salon/${id}`, { status: status })
+      .pipe(
+        catchError((error) => {
+          console.error('Update Salon Status Error: ', error);
+          return throwError(() => error); // Return the error to be handled
+        })
+      );
+  }
+
+  addSalon(salon: Salon): Observable<Salon> {
+    return this.http
+      .post<Salon>(`${this.baseUrl}/salon`, salon)
       .pipe(catchError(this.handleError));
   }
 
