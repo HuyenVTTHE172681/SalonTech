@@ -232,19 +232,18 @@
   <!-- Paginator -->
   <div class="paginator">
     <div class="pahinator-left">
-      <!-- Tổng bản ghi: {{ salons ? salons.length : 0 }} -->
-      <!-- Tổng bản ghi: {{ totalItems }}
+      Tổng bản ghi: {{ bookingData ? bookingData.length : 0 }}
+      <!-- Tổng bản ghi: {{ totalItems }} -->
     </div>
     <div class="justify-content-end">
       <p-paginator
         (onPageChange)="onPageChange($event)"
-        [first]="(page - 1) * size"
-        [rows]="size"
+        [first]="(page - 1) * pageSize"
+        [rows]="pageSize"
         [totalRecords]="totalItems"
         [rowsPerPageOptions]="[2, 4, 6]"
         [showFirstLastIcon]="false"
       />
-    </div> -->
     </div>
   </div>
 </div>

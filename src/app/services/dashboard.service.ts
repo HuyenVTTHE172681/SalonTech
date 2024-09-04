@@ -33,6 +33,21 @@ export class DashboardService {
       .pipe(catchError(this.handleError));
   }
 
+  getRevenueDashboard(
+    fromDate: string,
+    toDate: string,
+    booking_type: number,
+    status: number,
+    page: number,
+    pageSize: number
+  ): Observable<any> {
+    return this.http
+      .get(
+        `${this.baseUrl}/dashboard/revenue?fromDate=${fromDate}&toDate=${toDate}&booking_type=${booking_type}&status=${status}&page=${page}&pageSize=${pageSize}`
+      )
+      .pipe(catchError(this.handleError));
+  }
+
   // Hàm xử lý lỗi
   private handleError(error: HttpErrorResponse) {
     console.error('An error occurred:', error.message);

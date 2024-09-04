@@ -27,6 +27,7 @@ export class OverviewBookingContentComponent implements OnInit {
   pageSize: number = 5;
   bookingData: any[] = []; // Ensure this is an array
   filterBookingData: any[] = [];
+  totalItems: number = 0;
 
   bookingTypeList = [
     { name: 'Tất cả', value: -1 },
@@ -119,6 +120,7 @@ export class OverviewBookingContentComponent implements OnInit {
       .subscribe((data) => {
         this.bookingData = data; // Ensure this is the correct structure
         console.log('Booking Data:', this.bookingData);
+        this.totalItems = data.totalItems;
         this.filterBookingWithStatusAndType();
       });
   }
@@ -138,7 +140,6 @@ export class OverviewBookingContentComponent implements OnInit {
     this.status = this.selectedStatus.value;
     this.filterBookingWithStatusAndType(); // Filter based on new status
   }
-
 
   filterBookingType(event: any) {
     this.page = 1;
@@ -162,5 +163,12 @@ export class OverviewBookingContentComponent implements OnInit {
     });
 
     console.log('Filtered Booking Data:', this.filterBookingData); // Debugging
+  }
+
+  // Handel paginator
+  onPageChange(event: any) {
+    this.page = event.page + 1;
+    this.pageSize = event.rows;
+    this.getBookingDashboard();
   }
 }
