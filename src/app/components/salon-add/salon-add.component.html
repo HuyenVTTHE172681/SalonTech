@@ -43,6 +43,13 @@
             class="input-field"
             placeholder="Nhập mã salon"
           />
+          <span
+            *ngIf="
+              !salonForm.get('code')?.valid && salonForm.get('code')?.touched
+            "
+            style="color: red"
+            >Trường này không được để trống</span
+          >
           <br />
         </div>
 
@@ -56,6 +63,13 @@
             class="input-field"
             placeholder="Nhập tên Salon"
           />
+          <span
+            *ngIf="
+              !salonForm.get('name')?.valid && salonForm.get('name')?.touched
+            "
+            style="color: red"
+            >Trường không được được trống</span
+          >
           <br />
         </div>
 
@@ -69,6 +83,14 @@
             class="input-field"
             placeholder="Nhập số điện thoại của salon"
           />
+          <span
+            *ngIf="
+              !salonForm.get('phone')?.valid && salonForm.get('phone')?.touched
+            "
+            style="color: red"
+          >
+            *Vui lòng nhập số điện thoại
+          </span>
           <br />
         </div>
 
@@ -80,6 +102,13 @@
             class="input-field"
             placeholder="Nhập email"
           />
+          <span
+            *ngIf="
+              !salonForm.get('email')?.valid && salonForm.get('email')?.touched
+            "
+            style="color: red"
+            >Trường này không được để trống</span
+          >
           <br />
         </div>
 
@@ -93,6 +122,13 @@
             class="input-field"
             placeholder="Nhập tỉnh/ thành phố"
           />
+          <span
+            *ngIf="
+              !salonForm.get('city')?.valid && salonForm.get('city')?.touched
+            "
+            style="color: red"
+            >Trường này không được để trống</span
+          >
           <br />
         </div>
 
@@ -145,6 +181,14 @@
             class="input-field"
             placeholder="Date from - date to"
           />
+          <span
+            *ngIf="
+              !salonForm.get('opening_from_date')?.valid &&
+              salonForm.get('opening_from_date')?.touched
+            "
+            style="color: red"
+            >Trường này không được để trống</span
+          >
           <br />
         </div>
 
@@ -158,6 +202,14 @@
             class="input-field"
             placeholder="Time from - time to"
           />
+          <span
+            *ngIf="
+              !salonForm.get('opening_to_date')?.valid &&
+              salonForm.get('opening_to_date')?.touched
+            "
+            style="color: red"
+            >Trường này không được để trống</span
+          >
           <br />
         </div>
 
@@ -223,7 +275,9 @@
           <a class="icon-delete" href="#">Xóa</a>
         </div>
       </div>
+
       <div class="ava-qr-picture">
+        Avatar
         <div class="ava-picture">
           <div class="avatar">
             <img src="" alt="avatar" />
@@ -234,11 +288,15 @@
             <a class="icon-delete" href="#">Xóa</a>
           </div>
         </div>
+
         <div class="qr-picture">
           <p>QR Code</p>
-          <img src="" alt="avatar" />
+          <div class="avatar">
+            <img src="" alt="avatar" />
+          </div>
         </div>
       </div>
+
     </div>
   </div>
 
