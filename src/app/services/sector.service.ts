@@ -76,6 +76,12 @@ export class SectorService {
       .pipe(catchError(this.handleError));
   }
 
+  getSectorTree(): Observable<Sector[]> {
+    return this.http
+      .get<Sector[]>(`${this.baseUrl}/sector/sector-tree`)
+      .pipe(catchError(this.handleError));
+  }
+
   // Hàm xử lý lỗi
   private handleError(error: HttpErrorResponse) {
     console.error('An error occurred:', error.message);
