@@ -27,6 +27,7 @@
             <p-tabPanel header="Tất cả"></p-tabPanel>
             <p-tabPanel header="Đang hoạt động"></p-tabPanel>
             <p-tabPanel header="Dừng hoạt động"></p-tabPanel>
+            <p-tabPanel header="Đang chờ duyệt"></p-tabPanel>
           </p-tabView>
         </div>
       </div>
@@ -183,17 +184,34 @@
               box-shadow: -2px 0 10px -3px #e9e9e9;
             "
           >
-            <p-button
-              label="Chi tiết"
-              routerLink="/detail/{{ salon?._id }}"
-              [style]="{
-                'font-size': '12px',
-                'background-color': '#3b3420',
-                'border-color': '#3b3420',
-                height: '30px',
-                width: '86px'
-              }"
-            ></p-button>
+            <!-- Conditionally show the "Duyệt" button if status is 2 -->
+            <ng-container *ngIf="salon?.status === 2; else otherActions">
+              <p-button
+                label="Duyệt"
+                [style]="{
+                  'font-size': '12px',
+                  'background-color': '#f97316',
+                  'border-color': '#f97316',
+                  height: '30px',
+                  width: '86px'
+                }"
+                (onClick)="approveSalon(salon)"
+              ></p-button>
+            </ng-container>
+            <!-- Other actions when status is not 2 -->
+            <ng-template #otherActions>
+              <p-button
+                label="Chi tiết"
+                routerLink="/detail/{{ salon?._id }}"
+                [style]="{
+                  'font-size': '12px',
+                  'background-color': '#3b3420',
+                  'border-color': '#3b3420',
+                  height: '30px',
+                  width: '86px'
+                }"
+              ></p-button>
+            </ng-template>
           </td>
         </tr>
       </ng-template>

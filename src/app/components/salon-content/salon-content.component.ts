@@ -6,6 +6,7 @@ enum StatusSalon {
   ALL = -1,
   ACTIVE = 1,
   INACTIVE = 0,
+  PENDING = 2,
 }
 @Component({
   selector: 'app-salon-content',
@@ -14,7 +15,7 @@ enum StatusSalon {
 })
 export class SalonContentComponent implements OnInit {
   page: number = 1;
-  size: number = 1; // display 1 item per page
+  size: number = 4; // display 1 item per page
   status: number = StatusSalon.ALL;
   salons: Salon[] = [];
   filteredSalons: Salon[] = [];
@@ -23,6 +24,7 @@ export class SalonContentComponent implements OnInit {
     { label: 'Tất cả', value: StatusSalon.ALL },
     { label: 'Đang hoạt động', value: StatusSalon.ACTIVE },
     { label: 'Dừng hoạt động', value: StatusSalon.INACTIVE },
+    { label: 'Đang chờ duyệt', value: StatusSalon.PENDING },
   ];
 
   constructor(private salonSrv: SalonService) {}
@@ -61,6 +63,8 @@ export class SalonContentComponent implements OnInit {
         return 'Đang hoạt động';
       case 0:
         return 'Dừng hoạt động';
+      case 2:
+        return 'Đang chờ duyệt';
       default:
         return 'Nothing';
     }
@@ -72,6 +76,8 @@ export class SalonContentComponent implements OnInit {
         return 'success';
       case 0:
         return 'danger';
+      case 2:
+        return 'warning';
       default:
         return 'warning';
     }
@@ -104,5 +110,25 @@ export class SalonContentComponent implements OnInit {
     this.size = event.rows;
     this.getAllSalon(); // Fetch the salons for the new page and size
     console.log(this.page);
+  }
+
+  approveSalon(salon: any) {
+    const confirmApproval = confirm('Bạn muốn duyệt salon vào hệ thống không?');
+
+    if (confirmApproval) {
+      salon.status = 1; // Set the status to approved (1)
+
+      this.salonSrv.updateSalonStatus(salon._id, salon.status).subscribe(
+        (response) => {
+          console.log('Salon approved successfully', response);
+          this.getAllSalon();
+        },
+        (error) => {
+          console.error('Error approving salon', error);
+        }
+      );
+    } else {
+      console.log('Approval canceled');
+    }
   }
 }

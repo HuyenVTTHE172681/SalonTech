@@ -20,6 +20,12 @@ export class SalonService {
       .pipe(catchError(this.handleError));
   }
 
+  updateSalonStatus(id: number, status: number): Observable<any> {
+    return this.http
+      .put(`${this.baseUrl}/salon/${id}`, { status: status })
+      .pipe(catchError(this.handleError));
+  }
+
   // Hàm xử lý lỗi
   private handleError(error: HttpErrorResponse) {
     console.error('An error occurred:', error.message);
