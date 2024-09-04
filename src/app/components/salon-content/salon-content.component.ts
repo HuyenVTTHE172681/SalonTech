@@ -117,11 +117,17 @@ export class SalonContentComponent implements OnInit {
 
     if (confirmApproval) {
       salon.status = 1; // Set the status to approved (1)
+      console.log(
+        'Updating salon with ID:',
+        salon._id,
+        'to status:',
+        salon.status
+      ); // Debugging
 
       this.salonSrv.updateSalonStatus(salon._id, salon.status).subscribe(
         (response) => {
           console.log('Salon approved successfully', response);
-          this.getAllSalon();
+          this.getAllSalon(); // Refresh list
         },
         (error) => {
           console.error('Error approving salon', error);
