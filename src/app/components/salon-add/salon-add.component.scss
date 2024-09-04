@@ -176,18 +176,21 @@
 
       .ava-qr-picture {
         display: flex;
+        gap: 10px;
+        width: 400px;
+        height: 191px;
 
         .ava-picture {
-          width: 119px; // Fixed width for the image section
-          height: 119px; // Fixed height for the image section
+          display: grid;
+          width: 195px; // Fixed width for the image section
+          height: 191px; // Fixed height for the image section
           border: 1px dashed #cecece;
           border-radius: 5px;
           img {
-            width: 100%;
-            height: 100%;
+            width: 200px; // Fixed width for the image section
+            height: 191px;
             object-fit: cover;
-            padding: 107px;
-            // margin: 55px 43px 55px 43px;
+            padding: 74px;
           }
         }
 
