@@ -23,6 +23,7 @@ import { NotificationContentComponent } from './components/notification-content/
 import { OverviewBookingContentComponent } from './components/overview-booking-content/overview-booking-content.component';
 import { OverviewRevenueContentComponent } from './components/overview-revenue-content/overview-revenue-content.component';
 import { SalonAddComponent } from './components/salon-add/salon-add.component';
+import { SalonAddSectorComponent } from './components/salon-add-sector/salon-add-sector.component';
 
 const routes: Routes = [
   {
@@ -121,6 +122,10 @@ const routes: Routes = [
   {
     path: 'salon/add-salon',
     component: SalonAddComponent,
+  },
+  {
+    path: 'salon/add-salon/sector',
+    component: SalonAddSectorComponent,
   },
 ];
 
