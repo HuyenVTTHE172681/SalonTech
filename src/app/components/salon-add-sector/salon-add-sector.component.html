@@ -1,0 +1,103 @@
+<app-header></app-header>
+
+<div class="overview-service-page">
+  <!-- TITLE -->
+  <div class="service-title">
+    <a class="icon-back" routerLink="/salon">
+      <i
+        class="pi pi-angle-left"
+        style="font-size: 1.5rem; margin-right: 8px"
+      ></i>
+      Thêm mới salon
+    </a>
+
+    <!-- <a class="icon-center">Thông tin</a>
+    <a>Gán dữ liệu</a> -->
+    <div class="service-title-center">
+      <a class="icon-center active">Thông tin</a>
+      <a class="icon-center" routerLink="/salon/add-salon/sector"
+        >Gán dữ liệu</a
+      >
+      <a class="icon-center">Giới thiệu</a>
+      <a class="icon-center">Quản lý thợ</a>
+    </div>
+
+    <a class="icon-close" routerLink="/salon">
+      <i class="pi pi-times icon-close"></i>
+    </a>
+  </div>
+
+  <div class="overview-sector-wrapper">
+    <!-- FORM EDIT SERVICE -->
+    <form class="sector-form">
+      <div class="title-form">
+        <span class="font-bold block mb-2">Gán dữ liệu</span>
+      </div>
+
+      <div class="form-detail-content">
+        <div class="detail-content-input1">
+          <p style="margin-bottom: 5px; color: #9ea1a5">
+            Gán dữ liệu 1 <span>*</span>
+            <i
+              class="pi pi-pen-to-square"
+              style="font-size: 1rem; margin-left: 15px"
+            ></i>
+          </p>
+          <div class="input-button" style="display: flex; align-items: center">
+            <input
+              type="text"
+              formControlName="code"
+              class="input-field"
+              placeholder="Dịch vụ"
+              [style]="{ width: '549px', height: '40px' }"
+            />
+            <p-button
+              label="Chi tiết"
+              [outlined]="true"
+              severity="contrast"
+              [style]="{ marginLeft: '10px', height: '40px' }"
+            />
+          </div>
+          <br />
+        </div>
+      </div>
+    </form>
+
+    <div class="sector-checkbox-wrapper">
+      <div class="sector-checkbox">
+        <div *ngFor="let sector of sectors">
+          <div class="sector-checkbox-item">
+            <input type="checkbox" [checked]="sector.checked" />
+            {{ sector.title }}
+          </div>
+          <!-- Check if there are any children and display them with indentation -->
+          <div
+            *ngIf="sector.children && sector.children.length > 0"
+            style="padding-left: 20px"
+          >
+            <ng-container *ngFor="let child of sector.children">
+              <div class="sector-checkbox-item">
+                <input type="checkbox" [checked]="child.checked" />
+                {{ child.title || "No Title Available" }}
+              </div>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="overview-service-footer" #footer>
+    <p-button
+      label="Thoát"
+      severity="danger"
+      [style]="{ width: '100px', height: '30px' }"
+    />
+    <p-button
+      label="Lưu"
+      [outlined]="true"
+      severity="secondary"
+      [style]="{ width: '100px', height: '30px' }"
+    />
+  </div>
+</div>
