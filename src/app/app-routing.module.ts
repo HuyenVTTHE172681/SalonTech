@@ -22,6 +22,7 @@ import { RateContentComponent } from './components/rate-content/rate-content.com
 import { NotificationContentComponent } from './components/notification-content/notification-content.component';
 import { OverviewBookingContentComponent } from './components/overview-booking-content/overview-booking-content.component';
 import { OverviewRevenueContentComponent } from './components/overview-revenue-content/overview-revenue-content.component';
+import { SalonAddComponent } from './components/salon-add/salon-add.component';
 
 const routes: Routes = [
   {
@@ -116,7 +117,11 @@ const routes: Routes = [
   {
     path: 'home/overview-revenue',
     component: OverviewRevenueContentComponent,
-  }
+  },
+  {
+    path: 'salon/add-salon',
+    component: SalonAddComponent,
+  },
 ];
 
 @NgModule({
