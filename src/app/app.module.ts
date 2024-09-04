@@ -66,6 +66,7 @@ import { OverviewUserDetailComponent } from './components/overview-user-detail/o
 import { OverviewUserAddComponent } from './components/overview-user-add/overview-user-add.component';
 import { OverviewBookingContentComponent } from './components/overview-booking-content/overview-booking-content.component';
 import { OverviewRevenueContentComponent } from './components/overview-revenue-content/overview-revenue-content.component';
+import { SalonAddComponent } from './components/salon-add/salon-add.component';
 
 @NgModule({
   declarations: [
@@ -94,6 +95,7 @@ import { OverviewRevenueContentComponent } from './components/overview-revenue-c
     OverviewUserAddComponent,
     OverviewBookingContentComponent,
     OverviewRevenueContentComponent,
+    SalonAddComponent,
   ],
   imports: [
     BrowserModule,
