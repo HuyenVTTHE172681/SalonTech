@@ -38,9 +38,8 @@ export class SalonTabsComponent {
 
   saveData() {
     // Lấy dữ liệu từ component con
-    // this.salonTabs.information = this.SalonAddInformationComponent.getData();
-    this.salonTabs.assignData =
-      this.SalonAddAssignDataComponent.getAllSectorTree();
+    this.salonTabs.information = this.SalonAddInformationComponent.getData();
+    this.salonTabs.assignData = this.SalonAddAssignDataComponent.getData();
     // this.salonTabs.gioiThieu = this.gioiThieuComponent.getData();
     // this.salonTabs.quanLyTho = this.quanLyThoComponent.getData();
   }

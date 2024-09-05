@@ -1,1 +1,290 @@
-<p>salon-add-information works!</p>
+<div class="overview-service-page">
+  <div class="overview-sector-wrapper">
+    <!-- FORM EDIT SERVICE -->
+    <form [formGroup]="salonForm" class="sector-form">
+      <div class="title-form">
+        <span class="font-bold block mb-2">Thông tin chung</span>
+      </div>
+
+      <div class="form-detail-content">
+        <div class="detail-content-input1">
+          <p style="margin-bottom: 5px; color: #9ea1a5">
+            Mã Salon<span>*</span>
+          </p>
+          <input
+            type="text"
+            formControlName="code"
+            class="input-field"
+            placeholder="Nhập mã salon"
+          />
+          <span
+            *ngIf="
+              !salonForm.get('code')?.valid && salonForm.get('code')?.touched
+            "
+            style="color: red"
+            >Trường này không được để trống</span
+          >
+          <br />
+        </div>
+
+        <div class="detail-content-input2">
+          <p style="margin-bottom: 5px; color: #9ea1a5">
+            Tên Salon <span>*</span>
+          </p>
+          <input
+            type="text"
+            formControlName="name"
+            class="input-field"
+            placeholder="Nhập tên Salon"
+          />
+          <span
+            *ngIf="
+              !salonForm.get('name')?.valid && salonForm.get('name')?.touched
+            "
+            style="color: red"
+            >Trường không được được trống</span
+          >
+          <br />
+        </div>
+
+        <div class="detail-content-input2">
+          <p style="margin-bottom: 5px; color: #9ea1a5">
+            Điện thoại <span>*</span>
+          </p>
+          <input
+            type="text"
+            formControlName="phone"
+            class="input-field"
+            placeholder="Nhập số điện thoại của salon"
+          />
+          <span
+            *ngIf="
+              !salonForm.get('phone')?.valid && salonForm.get('phone')?.touched
+            "
+            style="color: red"
+          >
+            *Vui lòng nhập số điện thoại
+          </span>
+          <br />
+        </div>
+
+        <div class="detail-content-input2">
+          <p style="margin-bottom: 5px; color: #9ea1a5">Email <span>*</span></p>
+          <input
+            type="text"
+            formControlName="email"
+            class="input-field"
+            placeholder="Nhập email"
+          />
+          <span
+            *ngIf="
+              !salonForm.get('email')?.valid && salonForm.get('email')?.touched
+            "
+            style="color: red"
+            >Trường này không được để trống</span
+          >
+          <br />
+        </div>
+
+        <div class="detail-content-input2">
+          <p style="margin-bottom: 5px; color: #9ea1a5">
+            Tỉnh/ Thành phố <span>*</span>
+          </p>
+          <input
+            type="text"
+            formControlName="city"
+            class="input-field"
+            placeholder="Nhập tỉnh/ thành phố"
+          />
+          <span
+            *ngIf="
+              !salonForm.get('city')?.valid && salonForm.get('city')?.touched
+            "
+            style="color: red"
+            >Trường này không được để trống</span
+          >
+          <br />
+        </div>
+
+        <div class="detail-content-input2">
+          <p style="margin-bottom: 5px; color: #9ea1a5">
+            Quận/ Huyện <span>*</span>
+          </p>
+          <input
+            type="text"
+            formControlName="district"
+            class="input-field"
+            placeholder="Nhập quận huyện"
+          />
+          <br />
+        </div>
+
+        <div class="detail-content-input2">
+          <p style="margin-bottom: 5px; color: #9ea1a5">
+            Phường/ Xã <span>*</span>
+          </p>
+          <input
+            type="text"
+            formControlName="commune"
+            class="input-field"
+            placeholder="Nhập phường xã"
+          />
+          <br />
+        </div>
+
+        <div class="detail-content-input2">
+          <p style="margin-bottom: 5px; color: #9ea1a5">
+            Địa chỉ chi tiết <span>*</span>
+          </p>
+          <input
+            type="text"
+            formControlName="short_description"
+            class="input-field"
+            placeholder="Nhập địa chỉ chi tiết"
+          />
+          <br />
+        </div>
+
+        <div class="detail-content-input2">
+          <p style="margin-bottom: 5px; color: #9ea1a5">
+            Opening <span>*</span>
+          </p>
+          <input
+            type="date"
+            formControlName="opening_from_date"
+            class="input-field"
+            placeholder="Date from - date to"
+          />
+          <span
+            *ngIf="
+              !salonForm.get('opening_from_date')?.valid &&
+              salonForm.get('opening_from_date')?.touched
+            "
+            style="color: red"
+            >Trường này không được để trống</span
+          >
+          <br />
+        </div>
+
+        <div class="detail-content-input2">
+          <p style="margin-bottom: 5px; color: #9ea1a5">
+            Opening <span>*</span>
+          </p>
+          <input
+            type="date"
+            formControlName="opening_to_date"
+            class="input-field"
+            placeholder="Time from - time to"
+          />
+          <span
+            *ngIf="
+              !salonForm.get('opening_to_date')?.valid &&
+              salonForm.get('opening_to_date')?.touched
+            "
+            style="color: red"
+            >Trường này không được để trống</span
+          >
+          <br />
+        </div>
+
+        <div class="detail-content-input2">
+          <p style="margin-bottom: 5px; color: #9ea1a5">
+            Đánh giá <span>*</span>
+          </p>
+          <p-rating formControlName="rate_average" [cancel]="false" />
+          <br />
+        </div>
+      </div>
+      <div class="form-detail-checkbox">
+        <span>Cài đặt trạng thái</span>
+        <div class="form-checkbox">
+          <div class="flex align-items-center">
+            <p-radioButton
+              name="status"
+              value="1"
+              formControlName="status"
+              inputId="ACTIVE"
+            />
+            <label for="ACTIVE" class="ml-2" style="margin-left: 10px"
+              >Hoạt động</label
+            >
+          </div>
+
+          <div class="flex align-items-center">
+            <p-radioButton
+              name="status"
+              value="0"
+              formControlName="status"
+              inputId="INACTIVE"
+            />
+            <label for="INACTIVE" class="ml-2" style="margin-left: 10px"
+              >Dừng hoạt động</label
+            >
+          </div>
+
+          <div class="flex align-items-center">
+            <p-radioButton
+              name="status"
+              value="2"
+              formControlName="status"
+              inputId="KEYWORD"
+            />
+            <label for="KEYWORD" class="ml-2" style="margin-left: 10px"
+              >Khóa</label
+            >
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <div class="sector-avatar">
+      <div class="cover-picture">
+        Ảnh bìa
+        <div class="avatar">
+          <img src="" alt="avatar" />
+        </div>
+        <div class="avatar-action">
+          <a class="icon-edit" href="#">Sửa</a>
+          <span style="color: #9ea1a5"> | </span>
+          <a class="icon-delete" href="#">Xóa</a>
+        </div>
+      </div>
+
+      <div class="ava-qr-picture">
+        <div class="ava-picture">
+          <!-- Avatar -->
+          <div class="avatar">
+            <img src="" alt="avatar" />
+          </div>
+          <div class="avatar-action">
+            <a class="icon-edit" href="#">Sửa</a>
+            <span style="color: #9ea1a5"> | </span>
+            <a class="icon-delete" href="#">Xóa</a>
+          </div>
+        </div>
+
+        <div class="ava-picture">
+          <!-- Avatar -->
+          <div class="avatar">
+            <img src="" alt="avatar" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- <div class="overview-service-footer" #footer>
+    <p-button
+      label="Thoát"
+      severity="danger"
+      [style]="{ width: '100px', height: '30px' }"
+    />
+    <p-button
+      label="Lưu"
+      [outlined]="true"
+      severity="secondary"
+      [style]="{ width: '100px', height: '30px' }"
+      (click)="onSubmitFormAddSalon()"
+    />
+  </div> -->
+</div>
