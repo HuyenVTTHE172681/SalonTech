@@ -37,8 +37,7 @@
       margin-bottom: 4px;
     }
 
-    .detail-content-input1,
-    .detail-content-input2 {
+    .detail-content-input1 {
       display: grid;
       align-items: center;
 
@@ -94,6 +93,7 @@
         font-size: 15px;
         font-weight: 500;
         border-bottom: #cecece 1px solid;
+        margin-bottom: 8px;
       }
     }
   }
