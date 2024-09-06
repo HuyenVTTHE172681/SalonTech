@@ -21,21 +21,14 @@ export class SalonService {
       .pipe(catchError(this.handleError));
   }
 
-  // updateSalonStatus(id: number, salon: Salon): Observable<Salon> {
-  //   return this.http
-  //     .put<Salon>(`${this.baseUrl}/salon/${id}`, salon)
-  //     .pipe(catchError(this.handleError));
-  // }
-
-  updateSalonStatus(id: number, status: number): Observable<any> {
+  updateSalonStatus(id: string, status: number): Observable<Salon> {
     return this.http
-      .put(`${this.baseUrl}/salon/${id}`, { status: status })
-      .pipe(
-        catchError((error) => {
-          console.error('Update Salon Status Error: ', error);
-          return throwError(() => error); // Return the error to be handled
-        })
-      );
+      .put<Salon>(`${this.baseUrl}/salon/${id}`, { status }) // Send status as an object
+      .pipe(catchError(this.handleError));
+  }
+
+  updateSalon(id: string, salonData: Salon): Observable<Salon> {
+    return this.http.put<Salon>(`${this.baseUrl}/salon/${id}`, salonData);
   }
 
   addSalon(salon: Salon): Observable<Salon> {
@@ -44,9 +37,38 @@ export class SalonService {
       .pipe(catchError(this.handleError));
   }
 
+  getSalonById(id: string): Observable<Salon> {
+    return this.http
+      .get<Salon>(`${this.baseUrl}/salon/${id}`)
+      .pipe(catchError(this.handleError));
+  }
+
+  getSalonDetail(id: string): Observable<Salon> {
+    return this.http.get<Salon>(`${this.baseUrl}/salon/${id}`);
+  }
+
+  deleteSalon(id: string) {
+    return this.http
+      .delete(`${this.baseUrl}/salon/${id}`)
+      .pipe(catchError(this.handleError));
+  }
+
   // Hàm xử lý lỗi
   private handleError(error: HttpErrorResponse) {
-    console.error('An error occurred:', error.message);
-    return throwError('Something went wrong; please try again later.');
+    // Log the error message in detail
+    if (error.error instanceof ErrorEvent) {
+      // Client-side or network error
+      console.error('An error occurred:', error.error.message);
+    } else {
+      // Backend returned an unsuccessful response code
+      console.error(
+        `Backend returned code ${error.status}, ` +
+          `body was: ${JSON.stringify(error.error)}`
+      );
+    }
+    // Return an observable with a user-facing error message
+    return throwError(
+      () => new Error('Something went wrong; please try again later.')
+    );
   }
 }
