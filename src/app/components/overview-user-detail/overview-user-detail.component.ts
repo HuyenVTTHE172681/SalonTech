@@ -84,7 +84,7 @@ export class OverviewUserDetailComponent implements OnInit {
 
       console.log('Update User data: ', updatedUser);
 
-      this.userSrv.updateUser(updatedUser).subscribe(
+      this.userSrv.updategitUser(updatedUser).subscribe(
         (res) => {
           console.log('User updated successfully:', res);
 

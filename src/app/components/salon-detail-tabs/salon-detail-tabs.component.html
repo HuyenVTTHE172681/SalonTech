@@ -1,0 +1,80 @@
+<!-- salon-tabs.component.html -->
+<app-header></app-header>
+
+<div class="salon-tabs-wrapper">
+  <div class="service-title">
+    <a class="icon-back" routerLink="/salon">
+      <i
+        class="pi pi-angle-left"
+        style="font-size: 1.5rem; margin-right: 8px"
+      ></i>
+      Chi tiết salon
+    </a>
+
+    <div class="service-title-center">
+      <a
+        class="icon-center"
+        [class.active]="currentTab === 'information'"
+        (click)="switchTab('information')"
+        >Thông tin</a
+      >
+      <a
+        class="icon-center"
+        [class.active]="currentTab === 'assignData'"
+        (click)="switchTab('assignData')"
+        >Gán dữ liệu</a
+      >
+      <a
+        class="icon-center"
+        [class.active]="currentTab === 'introduction'"
+        (click)="switchTab('introduction')"
+        >Giới thiệu</a
+      >
+      <a
+        class="icon-center"
+        [class.active]="currentTab === 'manageWorker'"
+        (click)="switchTab('manageWorker')"
+        >Quản lý thợ</a
+      >
+    </div>
+
+    <a class="icon-close" routerLink="/salon">
+      <i class="pi pi-times icon-close"></i>
+    </a>
+  </div>
+
+  <!-- Display child component based on current tab -->
+  <!-- <div [hidden]="currentTab !== 'information'">
+    <app-salon-detail-information
+      [salonData]="salonData"
+    ></app-salon-detail-information>
+  </div> -->
+
+  <div *ngIf="currentTab === 'information'">
+    <app-salon-detail-information
+      [salonData]="salonData"
+    ></app-salon-detail-information>
+  </div>
+
+  <div [hidden]="currentTab !== 'assignData'">
+    <app-salon-detail-assign-data
+      [salonData]="salonData"
+    ></app-salon-detail-assign-data>
+  </div>
+
+  <div [hidden]="currentTab !== 'introduction'">
+    <app-salon-detail-introduction
+      [salonData]="salonData"
+    ></app-salon-detail-introduction>
+  </div>
+
+  <div [hidden]="currentTab !== 'manageWorker'">
+    <app-salon-detail-manage-worker
+      [salonData]="salonData"
+    ></app-salon-detail-manage-worker>
+  </div>
+
+  <!-- Save Data Button -->
+  <p-button (click)="saveSalon()" label="Lưu lại" />
+  <p-button (click)="onDeleteSalon()" label="Xóa" />
+</div>
