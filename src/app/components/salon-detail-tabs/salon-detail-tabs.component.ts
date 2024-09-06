@@ -63,15 +63,37 @@ export class SalonDetailTabsComponent {
     });
   }
 
+  // saveSalon(): void {
+  //   this.salonSrv
+  //     .updateSalon(this.salonId, {
+  //       ...this.SalonDetailInformationComponent.salonForm.value,
+  //       ...this.SalonDetailAssignDataComponent.salonForm.value,
+  //       ...this.SalonDetailIntroductionComponent.salonForm.value,
+  //       ...this.SalonDetailManageWorkerComponent.salonForm.value,
+  //     })
+  //     .subscribe({
+  //       next: (res) => {
+  //         this.getSalonDetail();
+  //         console.log('Update: ', this.salonData);
+  //         console.log('Update successfully');
+  //         // this.router.navigate(['/salon']);
+  //       },
+  //     });
+  // }
+
   saveSalon(): void {
-    this.salonSrv.updateSalon(this.salonId, this.salonData).subscribe({
-      next: (res) => {
-        this.getSalonDetail();
-        console.log('Update: ', this.salonData);
-        console.log('Update successfully');
-        // this.router.navigate(['/salon']);
-      },
-    });
+    this.salonSrv
+      .updateSalon(this.salonId, {
+        ...this.SalonDetailInformationComponent.salonForm.value,
+      })
+      .subscribe({
+        next: (res) => {
+          this.getSalonDetail();
+          console.log('Update: ', this.salonData);
+          console.log('Update successfully');
+          // this.router.navigate(['/salon']);
+        },
+      });
   }
 
   onDeleteSalon(): void {
