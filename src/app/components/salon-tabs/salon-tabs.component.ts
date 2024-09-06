@@ -1,15 +1,20 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, AfterViewInit } from '@angular/core';
 import { SalonAddInformationComponent } from '../salon-add-information/salon-add-information.component';
 import { SalonAddAssignDataComponent } from '../salon-add-assign-data/salon-add-assign-data.component';
 import { SalonAddIntroductionComponent } from '../salon-add-introduction/salon-add-introduction.component';
 import { SalonAddManageWorkerComponent } from '../salon-add-manage-worker/salon-add-manage-worker.component';
+import { SalonService } from '../../services/salon.service';
+import { Salon } from '../../model/salon';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-salon-tabs',
   templateUrl: './salon-tabs.component.html',
-  styleUrl: './salon-tabs.component.scss',
+  styleUrls: ['./salon-tabs.component.scss'], // Corrected 'styleUrl' to 'styleUrls'
 })
 export class SalonTabsComponent {
+  currentTab: string = 'information'; // Default tab
+  salonData: Salon | null = null;
   salonTabs: any = {
     information: {},
     assignData: {},
@@ -17,9 +22,8 @@ export class SalonTabsComponent {
     manageWorker: {},
   };
 
-  currentTab: string = 'information'; // Tab mặc định
+  constructor(private salonSrv: SalonService, private router: Router) {}
 
-  // Sử dụng ViewChild để lấy dữ liệu từ component con
   @ViewChild(SalonAddInformationComponent)
   SalonAddInformationComponent!: SalonAddInformationComponent;
 
@@ -32,15 +36,25 @@ export class SalonTabsComponent {
   @ViewChild(SalonAddManageWorkerComponent)
   SalonAddManageWorkerComponent!: SalonAddManageWorkerComponent;
 
+  ngAfterViewInit(): void {
+    // After the view has been initialized
+    console.log('Child components initialized.');
+  }
+
   switchTab(tab: string) {
     this.currentTab = tab;
   }
 
   saveData() {
-    // Lấy dữ liệu từ component con
-    this.salonTabs.information = this.SalonAddInformationComponent.getData();
-    this.salonTabs.assignData = this.SalonAddAssignDataComponent.getData();
-    // this.salonTabs.gioiThieu = this.gioiThieuComponent.getData();
-    // this.salonTabs.quanLyTho = this.quanLyThoComponent.getData();
+    // Add salon data
+    this.salonSrv.addSalon(this.salonData).subscribe({
+      next: (res) => {
+        console.log('Thêm thành công', res);
+        this.router.navigate(['/salon']);
+      },
+      error: (err) => {
+        console.error('Lỗi khi thêm salon:', err);
+      },
+    });
   }
 }

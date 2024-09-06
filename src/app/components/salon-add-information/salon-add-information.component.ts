@@ -1,62 +1,38 @@
-import { Component, OnInit } from '@angular/core';
-import { SalonService } from '../../services/salon.service';
-import { FormBuilder, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Component, Input, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Salon } from '../../model/salon';
 
 @Component({
   selector: 'app-salon-add-information',
   templateUrl: './salon-add-information.component.html',
-  styleUrl: './salon-add-information.component.scss',
+  styleUrls: ['./salon-add-information.component.scss'],
 })
-export class SalonAddInformationComponent implements OnInit {
-  salonForm: any; // Changed type to FormGroup
+export class SalonAddInformationComponent {
+  @Input() salonData!: Salon;
 
-  constructor(
-    private salonSrv: SalonService,
-    private formBuilder: FormBuilder,
-    private router: Router
-  ) {}
+  salonForm!: FormGroup;
 
-  ngOnInit(): void {
-    this.salonForm = this.formBuilder.group({
-      code: [null, Validators.required],
-      name: ['', Validators.required],
-      phone: [null, Validators.required],
-      email: ['', [Validators.required, Validators.email]], // Corrected Validators
-      city: ['', Validators.required],
-      district: ['', Validators.required],
-      commune: ['', Validators.required],
-      short_description: ['', Validators.required],
-      opening_from_date: [null, Validators.required],
-      opening_to_date: [null, Validators.required],
-      rate_average: [null, Validators.required],
-      status: [null, Validators.required],
-    });
-  }
+  constructor(private fb: FormBuilder) {}
 
-  onSubmitFormAddSalon() {
-    if (this.salonForm.valid) {
-      const formValue = {
-        ...this.salonForm.value,
-        status: Number(this.salonForm.value.status),
-      };
-
-      this.salonSrv.addSalon(formValue).subscribe(
-        (res) => {
-          alert('Thêm thành công'); // Corrected Vietnamese accent
-          this.router.navigate(['/salon']);
-        },
-        (err) => {
-          console.error('Error adding salon:', err); // Improved error handling
-          alert('Lỗi khi thêm salon: ' + err.message); // Display error message
-        }
-      );
-    } else {
-      alert('Vui lòng điền đầy đủ thông tin và đúng định dạng!');
+  ngOnChanges(): void {
+    if (this.salonData) {
+      this.initForm();
     }
   }
 
-  getData() {
-    return this.salonForm;
+  initForm(): void {
+    this.salonForm = this.fb.group({
+      code: [this.salonData.code],
+      name: [this.salonData.name],
+      phone: [this.salonData.phone],
+      email: [this.salonData.email],
+      city: [this.salonData.city],
+      district: [this.salonData.district],
+      commune: [this.salonData.commune],
+      opening_from_date: [this.salonData.opening_from_date],
+      opening_to_date: [this.salonData.opening_to_date],
+      rate_average: [this.salonData.rate_average],
+      status: [this.salonData.status],
+    });
   }
 }

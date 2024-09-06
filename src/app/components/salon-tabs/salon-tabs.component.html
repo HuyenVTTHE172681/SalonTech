@@ -1,41 +1,18 @@
+<!-- salon-tabs.component.html -->
 <app-header></app-header>
 
 <div class="salon-tabs-wrapper">
-  <!-- salon-tabs.component.html -->
   <div class="service-title">
     <a class="icon-back" routerLink="/salon">
-      <i
-        class="pi pi-angle-left"
-        style="font-size: 1.5rem; margin-right: 8px"
-      ></i>
+      <i class="pi pi-angle-left" style="font-size: 1.5rem; margin-right: 8px"></i>
       Thêm mới salon
     </a>
 
     <div class="service-title-center">
-      <a
-        class="icon-center"
-        [class.active]="currentTab === 'information'"
-        (click)="switchTab('information')"
-        >Thông tin</a
-      >
-      <a
-        class="icon-center"
-        [class.active]="currentTab === 'assignData'"
-        (click)="switchTab('assignData')"
-        >Gán dữ liệu</a
-      >
-      <a
-        class="icon-center"
-        [class.active]="currentTab === 'introduction'"
-        (click)="switchTab('introduction')"
-        >Giới thiệu</a
-      >
-      <a
-        class="icon-center"
-        [class.active]="currentTab === 'manageWorker'"
-        (click)="switchTab('manageWorker')"
-        >Quản lý thợ</a
-      >
+      <a class="icon-center" [class.active]="currentTab === 'information'" (click)="switchTab('information')">Thông tin</a>
+      <a class="icon-center" [class.active]="currentTab === 'assignData'" (click)="switchTab('assignData')">Gán dữ liệu</a>
+      <a class="icon-center" [class.active]="currentTab === 'introduction'" (click)="switchTab('introduction')">Giới thiệu</a>
+      <a class="icon-center" [class.active]="currentTab === 'manageWorker'" (click)="switchTab('manageWorker')">Quản lý thợ</a>
     </div>
 
     <a class="icon-close" routerLink="/salon">
@@ -43,42 +20,20 @@
     </a>
   </div>
 
-  <!-- Hiển thị component con dựa vào tab hiện tại -->
+  <!-- Display child component based on current tab -->
   <div *ngIf="currentTab === 'information'">
-    <app-salon-add-information
-      [data]="salonTabs.information"
-    ></app-salon-add-information>
+    <app-salon-add-information [data]="salonTabs.information"></app-salon-add-information>
   </div>
   <div *ngIf="currentTab === 'assignData'">
-    <app-salon-add-assign-data
-      [data]="salonTabs.assignData"
-    ></app-salon-add-assign-data>
+    <app-salon-add-assign-data [data]="salonTabs.assignData"></app-salon-add-assign-data>
   </div>
   <div *ngIf="currentTab === 'introduction'">
-    <app-salon-add-introduction
-      [data]="salonTabs.introduction"
-    ></app-salon-add-introduction>
+    <app-salon-add-introduction [data]="salonTabs.introduction"></app-salon-add-introduction>
   </div>
   <div *ngIf="currentTab === 'manageWorker'">
-    <app-salon-add-manage-worker
-      [data]="salonTabs.manageWorker"
-    ></app-salon-add-manage-worker>
+    <app-salon-add-manage-worker [data]="salonTabs.manageWorker"></app-salon-add-manage-worker>
   </div>
 
-  <!-- Nút lưu dữ liệu -->
+  <!-- Save Data Button -->
   <button (click)="saveData()">Lưu</button>
-
-  <div class="overview-service-footer" #footer>
-    <p-button
-      label="Thoát"
-      severity="danger"
-      [style]="{ width: '100px', height: '30px' }"
-    />
-    <p-button
-      label="Lưu"
-      [outlined]="true"
-      severity="secondary"
-      [style]="{ width: '100px', height: '30px' }"
-    />
-  </div>
 </div>

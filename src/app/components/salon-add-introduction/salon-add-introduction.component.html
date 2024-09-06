@@ -1,1 +1,30 @@
-<p>salon-add-introduction works!</p>
+<div class="overview-service-page">
+  <div class="overview-sector-wrapper">
+    <!-- FORM EDIT SERVICE -->
+    <div class="title-form">
+      <span class="font-bold block mb-2">Thông tin chung</span>
+    </div>
+
+    <form [formGroup]="salonForm">
+      <p-editor
+        formControlName="short_description"
+        [style]="{ height: '320px' }"
+      />
+    </form>
+  </div>
+
+  <!-- <div class="overview-service-footer" #footer>
+    <p-button
+      label="Thoát"
+      severity="danger"
+      [style]="{ width: '100px', height: '30px' }"
+    />
+    <p-button
+      label="Lưu"
+      [outlined]="true"
+      severity="secondary"
+      [style]="{ width: '100px', height: '30px' }"
+      (click)="onSubmitFormAddIntroductionSalon()"
+    />
+  </div> -->
+</div>
