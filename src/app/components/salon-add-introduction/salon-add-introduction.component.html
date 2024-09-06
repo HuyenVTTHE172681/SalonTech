@@ -9,22 +9,9 @@
       <p-editor
         formControlName="short_description"
         [style]="{ height: '320px' }"
-      />
+      ></p-editor>
     </form>
-  </div>
 
-  <!-- <div class="overview-service-footer" #footer>
-    <p-button
-      label="Thoát"
-      severity="danger"
-      [style]="{ width: '100px', height: '30px' }"
-    />
-    <p-button
-      label="Lưu"
-      [outlined]="true"
-      severity="secondary"
-      [style]="{ width: '100px', height: '30px' }"
-      (click)="onSubmitFormAddIntroductionSalon()"
-    />
-  </div> -->
+    <button (click)="onSubmitForm()">Lưu</button>
+  </div>
 </div>

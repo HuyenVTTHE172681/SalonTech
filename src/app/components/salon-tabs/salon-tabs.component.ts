@@ -14,7 +14,7 @@ import { Router } from '@angular/router';
 })
 export class SalonTabsComponent {
   currentTab: string = 'information'; // Default tab
-  salonData: Salon | null = null;
+  salonData: Salon = new Salon();
   salonTabs: any = {
     information: {},
     assignData: {},
@@ -45,15 +45,18 @@ export class SalonTabsComponent {
     this.currentTab = tab;
   }
 
-  saveData() {
+  handleFormSubmission(data: Salon) {
+    console.log('Received data from child:', data); // Debugging log
+    this.salonData = data;
+
     // Add salon data
     this.salonSrv.addSalon(this.salonData).subscribe({
       next: (res) => {
-        console.log('Thêm thành công', res);
-        this.router.navigate(['/salon']);
+        console.log('Thêm thành công:', res);
+        this.router.navigate(['/salon']); // Redirect after adding salon
       },
       error: (err) => {
-        console.error('Lỗi khi thêm salon:', err);
+        console.error('Error adding salon:', err);
       },
     });
   }

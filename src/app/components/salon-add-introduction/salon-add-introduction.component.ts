@@ -1,7 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { SalonService } from '../../services/salon.service';
-import { Router } from '@angular/router';
 import { Salon } from '../../model/salon';
 
 @Component({
@@ -9,22 +7,35 @@ import { Salon } from '../../model/salon';
   templateUrl: './salon-add-introduction.component.html',
   styleUrls: ['./salon-add-introduction.component.scss'],
 })
-export class SalonAddIntroductionComponent {
+export class SalonAddIntroductionComponent implements OnInit {
   salonForm!: FormGroup;
 
   @Input() salonData!: Salon;
+  @Output() formSubmitted = new EventEmitter<Salon>();
 
   constructor(private formBuilder: FormBuilder) {}
 
-  ngOnChanges(): void {
-    if (this.salonData) {
-      this.initializeForm();
+  ngOnInit(): void {
+    if (!this.salonData) {
+      this.salonData = new Salon();
     }
+    this.initializeForm();
   }
 
   initializeForm(): void {
+    // Use safe navigation operator to prevent undefined errors
     this.salonForm = this.formBuilder.group({
-      short_description: [this.salonData.short_description],
+      short_description: [
+        this.salonData?.short_description || '',
+        Validators.required,
+      ],
     });
+  }
+  onSubmitForm() {
+    if (this.salonForm.valid) {
+      this.formSubmitted.emit(this.salonForm.value); // Emit the form data to parent
+    } else {
+      console.error('Form is invalid');
+    }
   }
 }
