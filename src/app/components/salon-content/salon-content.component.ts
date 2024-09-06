@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { SalonService } from '../../services/salon.service';
 import { Salon } from '../../model/salon';
+import { Sector } from '../../model/sector';
+import { FormGroup } from '@angular/forms';
 
 enum StatusSalon {
   ALL = -1,
@@ -124,6 +126,7 @@ export class SalonContentComponent implements OnInit {
         salon.status
       ); // Debugging
 
+      console.log('Approving salon...', salon);
       this.salonSrv.updateSalonStatus(salon._id, salon.status).subscribe(
         (response) => {
           console.log('Salon approved successfully', response);

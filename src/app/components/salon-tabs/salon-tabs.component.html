@@ -51,17 +51,20 @@
       (formSubmitted)="handleFormSubmission($event)"
     ></app-salon-add-information>
   </div>
+
   <div [hidden]="currentTab !== 'assignData'">
     <app-salon-add-assign-data
       [data]="salonTabs.assignData"
     ></app-salon-add-assign-data>
   </div>
+
   <div [hidden]="currentTab !== 'introduction'">
     <app-salon-add-introduction
       [salonData]="salonData"
       (formSubmitted)="handleFormSubmission($event)"
     ></app-salon-add-introduction>
   </div>
+
   <div [hidden]="currentTab !== 'manageWorker'">
     <app-salon-add-manage-worker
       [data]="salonTabs.manageWorker"
@@ -69,4 +72,5 @@
   </div>
 
   <!-- Save Data Button -->
+  <!-- <button (click)="saveData()">Lưu</button> -->
 </div>

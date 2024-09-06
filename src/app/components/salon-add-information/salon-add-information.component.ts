@@ -43,7 +43,12 @@ export class SalonAddInformationComponent implements OnInit {
 
   onSubmitForm() {
     if (this.salonForm.valid) {
-      this.formSubmitted.emit(this.salonForm.value); // Emit the form data to parent
+      // Ensure the status is converted to a number
+      const formData = {
+        ...this.salonForm.value,
+        status: Number(this.salonForm.value.status),
+      };
+      this.formSubmitted.emit(formData); // Emit the form data to parent
     } else {
       console.error('Form is invalid');
     }

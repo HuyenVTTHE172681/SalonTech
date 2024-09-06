@@ -31,9 +31,13 @@ export class SalonAddIntroductionComponent implements OnInit {
       ],
     });
   }
+
   onSubmitForm() {
     if (this.salonForm.valid) {
-      this.formSubmitted.emit(this.salonForm.value); // Emit the form data to parent
+      // this.formSubmitted.emit(this.salonForm.value); // Emit the form data to parent
+      this.salonData.short_description =
+        this.salonForm.get('short_description')?.value;
+      this.formSubmitted.emit(this.salonData);
     } else {
       console.error('Form is invalid');
     }
