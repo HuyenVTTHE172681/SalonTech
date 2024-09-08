@@ -22,8 +22,8 @@ import { RateContentComponent } from './components/rate-content/rate-content.com
 import { NotificationContentComponent } from './components/notification-content/notification-content.component';
 import { OverviewBookingContentComponent } from './components/overview-booking-content/overview-booking-content.component';
 import { OverviewRevenueContentComponent } from './components/overview-revenue-content/overview-revenue-content.component';
-import { SalonAddComponent } from './components/salon-add/salon-add.component';
-import { SalonAddSectorComponent } from './components/salon-add-sector/salon-add-sector.component';
+import { SalonTabsComponent } from './components/salon-tabs/salon-tabs.component';
+import { SalonDetailTabsComponent } from './components/salon-detail-tabs/salon-detail-tabs.component';
 
 const routes: Routes = [
   {
@@ -121,11 +121,11 @@ const routes: Routes = [
   },
   {
     path: 'salon/add-salon',
-    component: SalonAddComponent,
+    component: SalonTabsComponent,
   },
   {
-    path: 'salon/add-salon/sector',
-    component: SalonAddSectorComponent,
+    path: 'salon/salon-detail/:id', // salon/salon-detail/:id
+    component: SalonDetailTabsComponent,
   },
 ];
 
