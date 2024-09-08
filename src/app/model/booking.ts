@@ -3,7 +3,6 @@ import { Employee } from './employee';
 import { Salon } from './salon';
 import { Service } from './service';
 
-
 export interface Booking {
   _id: string;
   code: string;
