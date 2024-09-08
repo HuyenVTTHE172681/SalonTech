@@ -38,6 +38,7 @@ import { RadioButtonModule } from 'primeng/radiobutton';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { ChartModule } from 'primeng/chart';
 import { RippleModule } from 'primeng/ripple';
+import { EditorModule } from 'primeng/editor';
 
 // Custom Components
 import { HeaderComponent } from './components/header/header.component';
@@ -66,8 +67,16 @@ import { OverviewUserDetailComponent } from './components/overview-user-detail/o
 import { OverviewUserAddComponent } from './components/overview-user-add/overview-user-add.component';
 import { OverviewBookingContentComponent } from './components/overview-booking-content/overview-booking-content.component';
 import { OverviewRevenueContentComponent } from './components/overview-revenue-content/overview-revenue-content.component';
-import { SalonAddComponent } from './components/salon-add/salon-add.component';
-import { SalonAddSectorComponent } from './components/salon-add-sector/salon-add-sector.component';
+import { SalonTabsComponent } from './components/salon-tabs/salon-tabs.component';
+import { SalonAddInformationComponent } from './components/salon-add-information/salon-add-information.component';
+import { SalonAddAssignDataComponent } from './components/salon-add-assign-data/salon-add-assign-data.component';
+import { SalonAddIntroductionComponent } from './components/salon-add-introduction/salon-add-introduction.component';
+import { SalonAddManageWorkerComponent } from './components/salon-add-manage-worker/salon-add-manage-worker.component';
+import { SalonDetailTabsComponent } from './components/salon-detail-tabs/salon-detail-tabs.component';
+import { SalonDetailInformationComponent } from './components/salon-detail-information/salon-detail-information.component';
+import { SalonDetailAssignDataComponent } from './components/salon-detail-assign-data/salon-detail-assign-data.component';
+import { SalonDetailIntroductionComponent } from './components/salon-detail-introduction/salon-detail-introduction.component';
+import { SalonDetailManageWorkerComponent } from './components/salon-detail-manage-worker/salon-detail-manage-worker.component';
 
 @NgModule({
   declarations: [
@@ -96,8 +105,16 @@ import { SalonAddSectorComponent } from './components/salon-add-sector/salon-add
     OverviewUserAddComponent,
     OverviewBookingContentComponent,
     OverviewRevenueContentComponent,
-    SalonAddComponent,
-    SalonAddSectorComponent,
+    SalonTabsComponent,
+    SalonAddInformationComponent,
+    SalonAddAssignDataComponent,
+    SalonAddIntroductionComponent,
+    SalonAddManageWorkerComponent,
+    SalonDetailTabsComponent,
+    SalonDetailInformationComponent,
+    SalonDetailAssignDataComponent,
+    SalonDetailIntroductionComponent,
+    SalonDetailManageWorkerComponent,
   ],
   imports: [
     BrowserModule,
@@ -130,6 +147,7 @@ import { SalonAddSectorComponent } from './components/salon-add-sector/salon-add
     ChartModule,
     ConfirmDialogModule,
     RippleModule,
+    EditorModule,
   ],
   providers: [
     provideClientHydration(),
