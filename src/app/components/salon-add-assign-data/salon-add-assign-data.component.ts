@@ -20,13 +20,12 @@ export class SalonAddAssignDataComponent implements OnInit {
       next: (data) => {
         this.sectors = data;
       },
+
       error: (err) => {
         console.log(err);
       },
     });
   }
 
-  getData() {
-    return this.sectors;
-  }
+
 }

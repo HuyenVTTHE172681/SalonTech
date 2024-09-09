@@ -48,7 +48,6 @@
     <!-- <app-salon-add-information [data]="salonTabs.information"></app-salon-add-information> -->
     <app-salon-add-information
       [salonData]="salonData"
-      (formSubmitted)="handleFormSubmission($event)"
     ></app-salon-add-information>
   </div>
 
@@ -61,7 +60,6 @@
   <div [hidden]="currentTab !== 'introduction'">
     <app-salon-add-introduction
       [salonData]="salonData"
-      (formSubmitted)="handleFormSubmission($event)"
     ></app-salon-add-introduction>
   </div>
 
@@ -72,5 +70,13 @@
   </div>
 
   <!-- Save Data Button -->
-  <!-- <button (click)="saveData()">Lưu</button> -->
+  <!-- <button (click)="addSalon()">Lưu</button> -->
+
+  <div class="overview-service-footer" #footer>
+    <p-button
+      label="Lưu"
+      severity="danger"
+      [style]="{ width: '100px', height: '30px' }"
+     (click)="addSalon()"
+    />
 </div>

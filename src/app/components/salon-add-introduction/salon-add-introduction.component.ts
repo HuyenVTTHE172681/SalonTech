@@ -11,7 +11,6 @@ export class SalonAddIntroductionComponent implements OnInit {
   salonForm!: FormGroup;
 
   @Input() salonData!: Salon;
-  @Output() formSubmitted = new EventEmitter<Salon>();
 
   constructor(private formBuilder: FormBuilder) {}
 
@@ -30,16 +29,5 @@ export class SalonAddIntroductionComponent implements OnInit {
         Validators.required,
       ],
     });
-  }
-
-  onSubmitForm() {
-    if (this.salonForm.valid) {
-      // this.formSubmitted.emit(this.salonForm.value); // Emit the form data to parent
-      this.salonData.short_description =
-        this.salonForm.get('short_description')?.value;
-      this.formSubmitted.emit(this.salonData);
-    } else {
-      console.error('Form is invalid');
-    }
   }
 }

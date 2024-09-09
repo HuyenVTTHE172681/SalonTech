@@ -1,1 +1,66 @@
-<p>salon-add-manage-worker works!</p>
+<div class="overview-sector-wrapper">
+  <!-- FORM EDIT SERVICE -->
+  <div class="sector-form">
+    <div class="title-form">
+      <span class="font-bold block mb-2">Danh sách thợ</span>
+    </div>
+
+    <div class="form-detail-content">
+      <div class="form-detail-content-list">
+        <div class="detail-content-input1" *ngFor="let employee of employees">
+          {{ employee?.user?.name }}
+          <p-button
+            label="Chi tiết"
+            [outlined]="true"
+            severity="contrast"
+            [style]="{ marginLeft: '10px', height: '40px' }"
+          />
+        </div>
+      </div>
+
+      <div class="form-detail-content-search">
+        <!-- FILTER  -->
+        <div class="search">
+          <span class="p-input-icon-right">
+            <i
+              class="pi pi-search"
+              [style]="{
+                marginRight: '14px',
+                fontSize: '13px',
+                marginTop: '-5px'
+              }"
+            ></i>
+            <input
+              pInputText
+              placeholder="Nhập từ khóa..."
+              [style]="{
+                width: '300px',
+                height: '40px',
+                marginLeft: '14px'
+              }"
+            />
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="employee-checkbox-wrapper">
+    <div class="employee-checkbox">
+      <div class="employee-code">
+        <div class="employee-code-title">
+          Mã thợ: <span></span>
+        </div>
+      </div>
+      <div class="employee-phone">
+        Số điện thoại: <span></span>
+      </div>
+      <div class="employee-email">
+        Email: <span></span>
+      </div>
+      <div class="employee-address">
+        Địa chỉ: <span></span>
+      </div>
+    </div>
+  </div>
+</div>

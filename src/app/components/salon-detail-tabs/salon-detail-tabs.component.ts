@@ -63,36 +63,27 @@ export class SalonDetailTabsComponent {
     });
   }
 
-  // saveSalon(): void {
-  //   this.salonSrv
-  //     .updateSalon(this.salonId, {
-  //       ...this.SalonDetailInformationComponent.salonForm.value,
-  //       ...this.SalonDetailAssignDataComponent.salonForm.value,
-  //       ...this.SalonDetailIntroductionComponent.salonForm.value,
-  //       ...this.SalonDetailManageWorkerComponent.salonForm.value,
-  //     })
-  //     .subscribe({
-  //       next: (res) => {
-  //         this.getSalonDetail();
-  //         console.log('Update: ', this.salonData);
-  //         console.log('Update successfully');
-  //         // this.router.navigate(['/salon']);
-  //       },
-  //     });
-  // }
 
   saveSalon(): void {
+    const informationFormValue =
+      this.SalonDetailInformationComponent.salonForm.value;
+
+    // Convert the status fields to numbers
+    if (informationFormValue.status) {
+      informationFormValue.status = Number(informationFormValue.status);
+    }
+
     this.salonSrv
       .updateSalon(this.salonId, {
-        ...this.SalonDetailInformationComponent.salonForm.value,
+        ...informationFormValue,
         ...this.SalonDetailIntroductionComponent.salonForm.value,
       })
       .subscribe({
         next: (res) => {
           this.getSalonDetail();
           console.log('Update: ', this.salonData);
-          console.log('Update successfully');
-          // this.router.navigate(['/salon']);
+          alert('Update successfully');
+          this.router.navigate(['/salon']);
         },
       });
   }

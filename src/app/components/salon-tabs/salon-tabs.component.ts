@@ -45,42 +45,25 @@ export class SalonTabsComponent {
     this.currentTab = tab;
   }
 
-  // handleFormSubmission(data: Salon) {
-  //   console.log('Received data from child:', data); // Debugging log
-  //   this.salonData = { ...this.salonData, ...data };
+  addSalon(): void {
+    const informationFormValue =
+      this.SalonAddInformationComponent.salonForm.value;
 
-  //   // Add salon data
-  //   this.salonSrv.addSalon(this.salonData).subscribe({
-  //     // Convert status to number
+    // Convert the status fields to numbers
+    if (informationFormValue.status) {
+      informationFormValue.status = Number(informationFormValue.status);
+    }
 
-  //     next: (res) => {
-  //       console.log('Thêm thành công:', res);
-  //       this.router.navigate(['/salon']); // Redirect after adding salon
-  //     },
-  //     error: (err) => {
-  //       console.error('Error adding salon:', err);
-  //     },
-  //   });
-  // }
-
-  handleFormSubmission(data: Salon) {
-    console.log('Received data from child:', data); // Debugging log
-
-    // Convert status to number if it's not already
-    const salonDataWithNumberStatus = { ...data, status: Number(data.status) };
-
-    // Merge data from child component into parent component's salonData object
-    this.salonData = { ...this.salonData, ...salonDataWithNumberStatus };
-
-    // Add salon data
-    this.salonSrv.addSalon(this.salonData).subscribe({
-      next: (res) => {
-        console.log('Thêm thành công:', res);
-        this.router.navigate(['/salon']); // Redirect after adding salon
-      },
-      error: (err) => {
-        console.error('Error adding salon:', err);
-      },
-    });
+    this.salonSrv
+      .addSalon({
+        ...informationFormValue,
+        ...this.SalonAddIntroductionComponent.salonForm.value,
+      })
+      .subscribe({
+        next: (res) => {
+          console.log('Add successfully');
+          this.router.navigate(['/salon']);
+        },
+      });
   }
 }

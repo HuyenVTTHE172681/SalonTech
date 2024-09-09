@@ -91,19 +91,20 @@
         align-items: center;
         padding: 10px;
         font-size: 15px;
-        font-weight: 500;
+        font-weight: 700;
+        border-bottom: #cecece 1px solid;
+        margin-bottom: 8px;
+      }
+
+      .sector-checkbox-item-children {
+        display: flex;
+        align-items: center;
+        padding: 10px;
+        font-size: 14px;
+        font-weight: 600;
         border-bottom: #cecece 1px solid;
         margin-bottom: 8px;
       }
     }
-  }
-
-  .overview-service-footer {
-    display: flex;
-    justify-content: right;
-    gap: 10px;
-    margin-top: 114px;
-    margin-bottom: 30px;
-    margin-right: 138px;
   }
 }
