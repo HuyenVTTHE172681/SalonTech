@@ -14,6 +14,7 @@
             [outlined]="true"
             severity="contrast"
             [style]="{ marginLeft: '10px', height: '40px' }"
+            (click)="showEmployeeById(employee?._id)"
           />
         </div>
       </div>
@@ -45,21 +46,67 @@
     </div>
   </div>
 
+  <!-- Employee detail -->
   <div class="employee-checkbox-wrapper">
     <div class="employee-checkbox">
       <div class="employee-code">
         <div class="employee-code-title">
-          Mã thợ: <span></span>
+          Mã thợ:
+          <span *ngIf="selectedEmployee"> {{ selectedEmployee?.code }} </span>
         </div>
       </div>
       <div class="employee-phone">
-        Số điện thoại: <span></span>
+        <div class="employee-phone-title">
+          Số điện thoại:
+          <span *ngIf="selectedEmployee">
+            {{ selectedEmployee?.user?.phone }}
+          </span>
+        </div>
       </div>
       <div class="employee-email">
-        Email: <span></span>
+        <div class="employee-email-title">
+          Email:
+          <span *ngIf="selectedEmployee">
+            {{ selectedEmployee?.user?.email }}
+          </span>
+        </div>
       </div>
       <div class="employee-address">
-        Địa chỉ: <span></span>
+        <div class="employee-address-title">
+          Địa chỉ:
+          <span *ngIf="selectedEmployee">
+            {{ selectedEmployee?.user?.address }}
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-detail-checkbox">
+      <span>Cài đặt trạng thái hiển thị</span>
+      <div class="form-checkbox">
+        <div class="flex align-items-center">
+          <p-radioButton
+            name="status"
+            value="1"
+            formControlName="status"
+            inputId="ACTIVE"
+          />
+          <label for="ACTIVE" class="ml-2" style="margin-left: 10px"
+            >Hiển thị</label
+          >
+        </div>
+
+        <div class="flex align-items-center">
+          <p-radioButton
+            name="status"
+            value="0"
+            formControlName="status"
+            inputId="INACTIVE"
+          />
+          <label for="INACTIVE" class="ml-2" style="margin-left: 10px"
+            >Không hiển thị</label
+          >
+        </div>
       </div>
     </div>
   </div>

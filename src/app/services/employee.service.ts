@@ -20,6 +20,12 @@ export class EmployeeService {
       .pipe(catchError(this.handleError));
   }
 
+  getEmployeeById(id: string): Observable<any> {
+    return this.http
+      .get(`${this.baseUrl}/employee/${id}`)
+      .pipe(catchError(this.handleError));
+  }
+
   // Hàm xử lý lỗi
   private handleError(error: HttpErrorResponse) {
     console.error('An error occurred:', error.message);

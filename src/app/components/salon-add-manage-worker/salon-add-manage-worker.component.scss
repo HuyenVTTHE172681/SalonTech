@@ -93,6 +93,7 @@
     height: 450px;
     border: #cecece 1px solid;
     border-radius: 5px;
+    display: grid;
 
     .employee-checkbox {
       margin-top: 14px;
@@ -105,29 +106,98 @@
         margin-bottom: 5px;
         border-bottom: #cecece 1px solid;
 
-        .employee-cdoe-title {
+        .employee-code-title {
           margin-bottom: 5px;
+
+          span {
+            color: #2c6dda;
+            font-weight: 600;
+            margin-left: 20px;
+          }
         }
       }
 
-      .employee-checkbox-item {
-        display: flex;
-        align-items: center;
-        padding: 10px;
-        font-size: 15px;
-        font-weight: 700;
+      .employee-phone {
+        margin-bottom: 5px;
         border-bottom: #cecece 1px solid;
-        margin-bottom: 8px;
+
+        .employee-phone-title {
+          margin-bottom: 5px;
+
+          span {
+            color: #182537;
+            font-weight: 600;
+            margin-left: 20px;
+          }
+        }
       }
 
-      .employee-checkbox-item-children {
-        display: flex;
-        align-items: center;
-        padding: 10px;
-        font-size: 14px;
-        font-weight: 600;
+      .employee-email {
+        margin-bottom: 5px;
         border-bottom: #cecece 1px solid;
-        margin-bottom: 8px;
+
+        .employee-email-title {
+          margin-bottom: 5px;
+
+          span {
+            color: #182537;
+            font-weight: 600;
+            margin-left: 20px;
+          }
+        }
+      }
+
+      .employee-address {
+        margin-bottom: 5px;
+        border-bottom: #cecece 1px solid;
+
+        .employee-address-title {
+          margin-bottom: 5px;
+
+          span {
+            color: #182537;
+            font-weight: 600;
+            margin-left: 20px;
+          }
+        }
+      }
+    }
+
+    .employee-checkbox-item {
+      display: flex;
+      align-items: center;
+      padding: 10px;
+      font-size: 15px;
+      font-weight: 700;
+      border-bottom: #cecece 1px solid;
+      margin-bottom: 8px;
+    }
+
+    .employee-checkbox-item-children {
+      display: flex;
+      align-items: center;
+      padding: 10px;
+      font-size: 14px;
+      font-weight: 600;
+      border-bottom: #cecece 1px solid;
+      margin-bottom: 8px;
+    }
+
+    .form-detail-checkbox {
+      display: grid;
+      margin: 4px;
+      margin-top: 70px;
+      margin-bottom: 30px;
+
+      span {
+        margin-bottom: 5px;
+        color: #9ea1a5;
+      }
+
+      .form-checkbox {
+        display: flex;
+        margin-top: 5px;
+        gap: 30px;
       }
     }
   }

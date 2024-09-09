@@ -12,6 +12,7 @@ export class SalonAddManageWorkerComponent implements OnInit {
   size: number = 1; // display 1 item per page
   status: number = 1;
   employees: any[] = [];
+  selectedEmployee: any = null;
 
   constructor(private employeeSrv: EmployeeService) {}
 
@@ -24,6 +25,7 @@ export class SalonAddManageWorkerComponent implements OnInit {
       .getAllEmployee(this.page, this.size, this.status)
       .subscribe({
         next: (data) => {
+          console.log('Employee: ', data);
           this.employees = data.items;
         },
         error: (err) => {
@@ -32,6 +34,15 @@ export class SalonAddManageWorkerComponent implements OnInit {
       });
   }
 
-
-
+  showEmployeeById(employeeId: string) {
+    this.employeeSrv.getEmployeeById(employeeId).subscribe({
+      next: (data) => {
+        console.log('Employee: ', data);
+        this.selectedEmployee = data;
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
+  }
 }
