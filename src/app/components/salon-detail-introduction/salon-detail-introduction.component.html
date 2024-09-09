@@ -1,1 +1,15 @@
-<p>salon-detail-introduction works!</p>
+<div class="overview-service-page">
+  <div class="overview-sector-wrapper">
+    <!-- FORM EDIT SERVICE -->
+    <div class="title-form">
+      <span class="font-bold block mb-2">Thông tin chung</span>
+    </div>
+
+    <form [formGroup]="salonForm">
+      <p-editor
+        formControlName="short_description"
+        [style]="{ height: '320px' }"
+      ></p-editor>
+    </form>
+  </div>
+</div>

@@ -75,6 +75,22 @@
   </div>
 
   <!-- Save Data Button -->
-  <p-button (click)="saveSalon()" label="Lưu lại" />
-  <p-button (click)="onDeleteSalon()" label="Xóa" />
+  <!-- <p-button (click)="saveSalon()" label="Lưu lại" />
+  <p-button (click)="onDeleteSalon()" label="Xóa" /> -->
+
+  <div class="overview-service-footer" #footer>
+    <p-button
+      label="Lưu lại"
+      severity="danger"
+      [style]="{ width: '100px', height: '30px' }"
+      (click)="saveSalon()"
+    />
+    <p-button
+      label="Xóa"
+      [outlined]="true"
+      severity="secondary"
+      [style]="{ width: '100px', height: '30px' }"
+      (click)="onDeleteSalon()"
+    />
+  </div>
 </div>

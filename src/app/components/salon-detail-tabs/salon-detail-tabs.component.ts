@@ -85,6 +85,7 @@ export class SalonDetailTabsComponent {
     this.salonSrv
       .updateSalon(this.salonId, {
         ...this.SalonDetailInformationComponent.salonForm.value,
+        ...this.SalonDetailIntroductionComponent.salonForm.value,
       })
       .subscribe({
         next: (res) => {
