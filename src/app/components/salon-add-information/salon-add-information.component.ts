@@ -9,7 +9,7 @@ import { Salon } from '../../model/salon';
 })
 export class SalonAddInformationComponent implements OnInit {
   @Input() salonData!: Salon;
-  @Output() formSubmitted = new EventEmitter<Salon>(); // Output to emit form data to parent
+  // @Output() formSubmitted = new EventEmitter<Salon>(); // Output to emit form data to parent
 
   salonForm!: FormGroup;
 

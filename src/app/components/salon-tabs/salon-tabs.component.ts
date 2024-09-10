@@ -21,6 +21,7 @@ export class SalonTabsComponent {
     introduction: {},
     manageWorker: {},
   };
+  selectedServiceIds: string[] = [];
 
   constructor(private salonSrv: SalonService, private router: Router) {}
 
@@ -45,25 +46,60 @@ export class SalonTabsComponent {
     this.currentTab = tab;
   }
 
+  // addSalon(): void {
+  //   const informationFormValue =
+  //     this.SalonAddInformationComponent.salonForm.value;
+
+  //   if (informationFormValue.status) {
+  //     informationFormValue.status = Number(informationFormValue.status);
+  //   }
+
+  //   this.salonSrv
+  //     .addSalon({
+  //       ...informationFormValue,
+  //       ...this.SalonAddIntroductionComponent.salonForm.value,
+  //     })
+  //     .subscribe({
+  //       next: (res) => {
+  //         console.log('Add successfully');
+  //         this.router.navigate(['/salon']);
+  //       },
+  //     });
+  // }
+
   addSalon(): void {
     const informationFormValue =
       this.SalonAddInformationComponent.salonForm.value;
 
-    // Convert the status fields to numbers
     if (informationFormValue.status) {
       informationFormValue.status = Number(informationFormValue.status);
     }
 
-    this.salonSrv
-      .addSalon({
-        ...informationFormValue,
-        ...this.SalonAddIntroductionComponent.salonForm.value,
-      })
-      .subscribe({
-        next: (res) => {
-          console.log('Add successfully');
-          this.router.navigate(['/salon']);
-        },
-      });
+    // const assignData = this.SalonAddAssignDataComponent.salonForm.value;
+    // if(assignData.) {
+
+    // }
+
+    const salonData = {
+      ...informationFormValue,
+      ...this.SalonAddIntroductionComponent.salonForm.value,
+      serviceIds: this.selectedServiceIds, // Include selected services
+    };
+
+    this.salonSrv.addSalon(salonData).subscribe({
+      next: (res) => {
+        console.log('Add successfully');
+        console.log(salonData);
+        this.router.navigate(['/salon']);
+      },
+      error: (err) => {
+        console.error('Error adding salon:', err);
+      },
+    });
+  }
+
+  handleUpdateSalonServices(serviceIds: string[]) {
+    console.log('Selected services:', serviceIds);
+    this.selectedServiceIds = serviceIds; // Update selected services
   }
 }
