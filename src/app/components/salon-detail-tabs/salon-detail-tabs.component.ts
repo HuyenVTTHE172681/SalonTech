@@ -62,7 +62,10 @@ export class SalonDetailTabsComponent {
       },
     });
   }
-
+  onUpdateSalonServices(selectedServices: string[]): void {
+    // Xử lý danh sách dịch vụ đã chọn và cập nhật salon nếu cần
+    console.log('Updated Services:', selectedServices);
+  }
 
   saveSalon(): void {
     const informationFormValue =

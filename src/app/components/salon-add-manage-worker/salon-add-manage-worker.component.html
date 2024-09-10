@@ -6,7 +6,10 @@
     </div>
 
     <div class="form-detail-content">
-      <div class="form-detail-content-list">
+      <div
+        class="form-detail-content-list"
+        style="max-height: 414px; overflow-y: auto"
+      >
         <div class="detail-content-input1" *ngFor="let employee of employees">
           {{ employee?.user?.name }}
           <p-button
@@ -82,31 +85,40 @@
     </div>
 
     <div class="form-detail-checkbox">
-      <span>Cài đặt trạng thái hiển thị</span>
       <div class="form-checkbox">
-        <div class="flex align-items-center">
-          <p-radioButton
-            name="status"
-            value="1"
-            formControlName="status"
-            inputId="ACTIVE"
-          />
-          <label for="ACTIVE" class="ml-2" style="margin-left: 10px"
-            >Hiển thị</label
-          >
-        </div>
+        <span>Cài đặt trạng thái hiển thị</span>
+        <div class="form-checkbox">
+          <div class="flex align-items-center">
+            <p-radioButton
+              name="status"
+              value="1"
+              formControlName="status"
+              inputId="ACTIVE"
+            />
+            <label for="ACTIVE" class="ml-2" style="margin-left: 10px"
+              >Hiển thị</label
+            >
+          </div>
 
-        <div class="flex align-items-center">
-          <p-radioButton
-            name="status"
-            value="0"
-            formControlName="status"
-            inputId="INACTIVE"
-          />
-          <label for="INACTIVE" class="ml-2" style="margin-left: 10px"
-            >Không hiển thị</label
-          >
+          <div class="flex align-items-center">
+            <p-radioButton
+              name="status"
+              value="0"
+              formControlName="status"
+              inputId="INACTIVE"
+            />
+            <label for="INACTIVE" class="ml-2" style="margin-left: 10px"
+              >Không hiển thị</label
+            >
+          </div>
         </div>
+      </div>
+      <div class="form-button">
+        <p-button
+          label="Xóa"
+          severity="danger"
+          [style]="{ width: '100px', height: '30px' }"
+        />
       </div>
     </div>
   </div>

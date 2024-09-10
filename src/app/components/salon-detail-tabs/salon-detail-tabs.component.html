@@ -59,6 +59,7 @@
   <div [hidden]="currentTab !== 'assignData'">
     <app-salon-detail-assign-data
       [salonData]="salonData"
+      (updateSalonServices)="onUpdateSalonServices($event)"
     ></app-salon-detail-assign-data>
   </div>
 
@@ -75,9 +76,6 @@
   </div>
 
   <!-- Save Data Button -->
-  <!-- <p-button (click)="saveSalon()" label="Lưu lại" />
-  <p-button (click)="onDeleteSalon()" label="Xóa" /> -->
-
   <div class="overview-service-footer" #footer>
     <p-button
       label="Lưu lại"

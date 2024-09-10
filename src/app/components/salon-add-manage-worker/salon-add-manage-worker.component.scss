@@ -1,6 +1,6 @@
 .overview-sector-wrapper {
-  max-height: 1520px;
-  height: 600px;
+  max-height: 800px;
+  height: 550px;
   max-width: 1225px;
   margin: 0 auto;
   background: #fff;
@@ -184,20 +184,26 @@
     }
 
     .form-detail-checkbox {
-      display: grid;
+      display: flex;
+      justify-content: space-around;
       margin: 4px;
       margin-top: 70px;
       margin-bottom: 30px;
 
-      span {
-        margin-bottom: 5px;
-        color: #9ea1a5;
+      .form-checkbox {
+        span {
+          color: #9ea1a5;
+        }
+
+        .form-checkbox {
+          display: flex;
+          margin-top: 17px;
+          gap: 30px;
+        }
       }
 
-      .form-checkbox {
-        display: flex;
-        margin-top: 5px;
-        gap: 30px;
+      .form-button {
+        margin-top: 20px;
       }
     }
   }

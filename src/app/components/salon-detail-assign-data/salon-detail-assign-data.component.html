@@ -34,26 +34,98 @@
     </div>
   </form>
 
+  <!-- Form Add Service
   <div class="sector-checkbox-wrapper">
-    <div class="sector-checkbox">
-      <div *ngFor="let sector of sectors">
-        <div class="sector-checkbox-item">
-          <input type="checkbox" [checked]="sector.checked" />
-          {{ sector.title }}
+    <div class="sector-checkbox" style="max-height: 414px; overflow-y: auto">
+      <form [formGroup]="salonForm">
+        <div *ngFor="let sector of sectors">
+          <div class="sector-checkbox-item">
+            <input
+              type="checkbox"
+              [formControlName]="sector._id"
+              (change)="onSectorChange(sector, $event)"
+              [checked]="sector.checked"
+              [checked]="salonData.sectors.includes(sector._id)" 
+              style="
+                width: 17px;
+                height: 17px;
+                border-radius: 16px;
+                margin-right: 10px;
+              "
+            />
+            {{ sector.title }}
+          </div>
+          <div
+            style="padding-left: 25px"
+            *ngIf="sector.children && sector.children.length"
+          >
+            <ng-container *ngFor="let child of sector.children">
+              <div class="sector-checkbox-item-children">
+                <input
+                  type="checkbox"
+                  [formControlName]="child._id"
+                  (change)="onSectorChange(child, $event)"
+                  [checked]="child.checked"
+                  style="
+                    width: 17px;
+                    height: 17px;
+                    border-radius: 16px;
+                    margin-right: 10px;
+                  "
+                />
+                {{ child.title || "No Title Available" }}
+              </div>
+            </ng-container>
+          </div>
         </div>
-        <!-- Check if there are any children and display them with indentation -->
-        <div
-          *ngIf="sector.children && sector.children.length > 0"
-          style="padding-left: 20px"
-        >
-          <ng-container *ngFor="let child of sector.children">
-            <div class="sector-checkbox-item">
-              <input type="checkbox" [checked]="child.checked" />
-              {{ child.title || "No Title Available" }}
-            </div>
-          </ng-container>
+      </form>
+    </div>
+  </div> -->
+
+  <!-- Form Add Service -->
+  <div class="sector-checkbox-wrapper">
+    <div class="sector-checkbox" style="max-height: 414px; overflow-y: auto">
+      <form [formGroup]="salonForm">
+        <div *ngFor="let sector of sectors">
+          <div class="sector-checkbox-item">
+            <input
+              type="checkbox"
+              [formControlName]="sector._id"
+              (change)="onSectorChange(sector, $event)"
+              [checked]="salonData.service_ids.includes(sector._id)"
+              style="
+                width: 17px;
+                height: 17px;
+                border-radius: 16px;
+                margin-right: 10px;
+              "
+            />
+            {{ sector.title }}
+          </div>
+          <div
+            style="padding-left: 25px"
+            *ngIf="sector.children && sector.children.length"
+          >
+            <ng-container *ngFor="let child of sector.children">
+              <div class="sector-checkbox-item-children">
+                <input
+                  type="checkbox"
+                  [formControlName]="child._id"
+                  (change)="onSectorChange(child, $event)"
+                  [checked]="salonData.service_ids.includes(child._id)"
+                  style="
+                    width: 17px;
+                    height: 17px;
+                    border-radius: 16px;
+                    margin-right: 10px;
+                  "
+                />
+                {{ child.title || "No Title Available" }}
+              </div>
+            </ng-container>
+          </div>
         </div>
-      </div>
+      </form>
     </div>
   </div>
 </div>

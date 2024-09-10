@@ -83,7 +83,7 @@ export class SalonTabsComponent {
     const salonData = {
       ...informationFormValue,
       ...this.SalonAddIntroductionComponent.salonForm.value,
-      serviceIds: this.selectedServiceIds, // Include selected services
+      service_ids: this.selectedServiceIds, // Include selected services
     };
 
     this.salonSrv.addSalon(salonData).subscribe({
