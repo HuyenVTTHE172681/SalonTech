@@ -1,6 +1,7 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Salon } from '../../model/salon';
+import { libraryService } from '../../services/library.service';
 
 @Component({
   selector: 'app-salon-add-information',
@@ -13,7 +14,7 @@ export class SalonAddInformationComponent implements OnInit {
 
   salonForm!: FormGroup;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private librarySrv: libraryService) {}
 
   ngOnInit(): void {
     this.initForm();
@@ -40,4 +41,8 @@ export class SalonAddInformationComponent implements OnInit {
       status: [this.salonData?.status || '', Validators.required],
     });
   }
+
+  // uploadPicture() {
+  //   this.librarySrv.uploadPicture().
+  // }
 }
