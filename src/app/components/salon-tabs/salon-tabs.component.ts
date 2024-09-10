@@ -46,27 +46,6 @@ export class SalonTabsComponent {
     this.currentTab = tab;
   }
 
-  // addSalon(): void {
-  //   const informationFormValue =
-  //     this.SalonAddInformationComponent.salonForm.value;
-
-  //   if (informationFormValue.status) {
-  //     informationFormValue.status = Number(informationFormValue.status);
-  //   }
-
-  //   this.salonSrv
-  //     .addSalon({
-  //       ...informationFormValue,
-  //       ...this.SalonAddIntroductionComponent.salonForm.value,
-  //     })
-  //     .subscribe({
-  //       next: (res) => {
-  //         console.log('Add successfully');
-  //         this.router.navigate(['/salon']);
-  //       },
-  //     });
-  // }
-
   addSalon(): void {
     const informationFormValue =
       this.SalonAddInformationComponent.salonForm.value;
@@ -74,11 +53,6 @@ export class SalonTabsComponent {
     if (informationFormValue.status) {
       informationFormValue.status = Number(informationFormValue.status);
     }
-
-    // const assignData = this.SalonAddAssignDataComponent.salonForm.value;
-    // if(assignData.) {
-
-    // }
 
     const salonData = {
       ...informationFormValue,

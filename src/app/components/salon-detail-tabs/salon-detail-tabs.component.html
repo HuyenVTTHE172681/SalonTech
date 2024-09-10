@@ -50,7 +50,7 @@
     ></app-salon-detail-information>
   </div> -->
 
-  <div *ngIf="currentTab === 'information'">
+  <div [hidden]="currentTab !== 'information'">
     <app-salon-detail-information
       [salonData]="salonData"
     ></app-salon-detail-information>
@@ -59,7 +59,6 @@
   <div [hidden]="currentTab !== 'assignData'">
     <app-salon-detail-assign-data
       [salonData]="salonData"
-      (updateSalonServices)="onUpdateSalonServices($event)"
     ></app-salon-detail-assign-data>
   </div>
 
@@ -76,7 +75,7 @@
   </div>
 
   <!-- Save Data Button -->
-  <div class="overview-service-footer" #footer>
+  <div class="overview-service-footer">
     <p-button
       label="Lưu lại"
       severity="danger"

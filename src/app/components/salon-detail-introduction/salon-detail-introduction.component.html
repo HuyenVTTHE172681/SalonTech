@@ -8,6 +8,7 @@
     <form [formGroup]="salonForm">
       <p-editor
         formControlName="short_description"
+        [(ngModel)]="salonData.short_description"
         [style]="{ height: '320px' }"
       ></p-editor>
     </form>

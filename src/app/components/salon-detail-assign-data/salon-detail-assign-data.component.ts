@@ -26,7 +26,6 @@ export class SalonDetailAssignDataComponent {
       next: (data) => {
         this.sectors = data;
         this.initForm();
-        
       },
       error: (err) => {
         console.log(err);
