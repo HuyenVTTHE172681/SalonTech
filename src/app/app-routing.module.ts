@@ -24,6 +24,7 @@ import { OverviewBookingContentComponent } from './components/overview-booking-c
 import { OverviewRevenueContentComponent } from './components/overview-revenue-content/overview-revenue-content.component';
 import { SalonTabsComponent } from './components/salon-tabs/salon-tabs.component';
 import { SalonDetailTabsComponent } from './components/salon-detail-tabs/salon-detail-tabs.component';
+import { CustomerAddComponent } from './components/customer-add/customer-add.component';
 
 const routes: Routes = [
   {
@@ -50,6 +51,10 @@ const routes: Routes = [
   {
     path: 'customer',
     component: CustomerContentComponent,
+  },
+  {
+    path: 'customer/add-customer',
+    component: CustomerAddComponent
   },
   {
     path: 'salon',
