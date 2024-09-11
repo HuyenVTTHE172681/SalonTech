@@ -77,6 +77,8 @@ import { SalonDetailInformationComponent } from './components/salon-detail-infor
 import { SalonDetailAssignDataComponent } from './components/salon-detail-assign-data/salon-detail-assign-data.component';
 import { SalonDetailIntroductionComponent } from './components/salon-detail-introduction/salon-detail-introduction.component';
 import { SalonDetailManageWorkerComponent } from './components/salon-detail-manage-worker/salon-detail-manage-worker.component';
+import { CustomerAddComponent } from './components/customer-add/customer-add.component';
+import { CustomerBookingHistoryComponent } from './components/customer-booking-history/customer-booking-history.component';
 
 @NgModule({
   declarations: [
@@ -115,6 +117,8 @@ import { SalonDetailManageWorkerComponent } from './components/salon-detail-mana
     SalonDetailAssignDataComponent,
     SalonDetailIntroductionComponent,
     SalonDetailManageWorkerComponent,
+    CustomerAddComponent,
+    CustomerBookingHistoryComponent,
   ],
   imports: [
     BrowserModule,
@@ -148,6 +152,7 @@ import { SalonDetailManageWorkerComponent } from './components/salon-detail-mana
     ConfirmDialogModule,
     RippleModule,
     EditorModule,
+    TagModule,
   ],
   providers: [
     provideClientHydration(),
