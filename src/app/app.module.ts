@@ -78,7 +78,6 @@ import { SalonDetailAssignDataComponent } from './components/salon-detail-assign
 import { SalonDetailIntroductionComponent } from './components/salon-detail-introduction/salon-detail-introduction.component';
 import { SalonDetailManageWorkerComponent } from './components/salon-detail-manage-worker/salon-detail-manage-worker.component';
 import { CustomerAddComponent } from './components/customer-add/customer-add.component';
-import { CustomerBookingHistoryComponent } from './components/customer-booking-history/customer-booking-history.component';
 
 @NgModule({
   declarations: [
@@ -118,7 +117,6 @@ import { CustomerBookingHistoryComponent } from './components/customer-booking-h
     SalonDetailIntroductionComponent,
     SalonDetailManageWorkerComponent,
     CustomerAddComponent,
-    CustomerBookingHistoryComponent,
   ],
   imports: [
     BrowserModule,
