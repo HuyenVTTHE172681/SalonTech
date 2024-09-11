@@ -18,18 +18,22 @@ export class libraryService {
       .pipe(catchError(this.handleError));
   }
 
-//   upload(file: File): Observable<HttpEvent<any>> {
-//     const formData: FormData = new FormData();
+  uploadImage(file: File): Observable<any> {
+    const formData = new FormData();
+    formData.append('file', file); 
 
-//     formData.append('file', file);
+    return this.http.post<any>(`${this.baseUrl}/library/upload`, formData);
+  }
 
-//     const req = new HttpRequest('POST', `${this.baseUrl}/upload`, formData, {
-//       reportProgress: true,
-//       responseType: 'json',
-//     });
+  upload(file: File): Observable<any> {
+    const formData: FormData = new FormData();
 
-//     return this.http.request(req);
-//   }
+    formData.append('file', file);
+    
+    return this.http
+      .post<any>(`${this.baseUrl}/library/upload`, formData)
+      .pipe(catchError(this.handleError));
+  }
 
   // Hàm xử lý lỗi
   private handleError(error: HttpErrorResponse) {
