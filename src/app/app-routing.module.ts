@@ -25,6 +25,7 @@ import { OverviewRevenueContentComponent } from './components/overview-revenue-c
 import { SalonTabsComponent } from './components/salon-tabs/salon-tabs.component';
 import { SalonDetailTabsComponent } from './components/salon-detail-tabs/salon-detail-tabs.component';
 import { CustomerAddComponent } from './components/customer-add/customer-add.component';
+import { CustomerEditComponent } from './components/customer-edit/customer-edit.component';
 
 const routes: Routes = [
   {
@@ -55,6 +56,10 @@ const routes: Routes = [
   {
     path: 'customer/add-customer',
     component: CustomerAddComponent
+  },
+  {
+    path: 'customer/edit-customer/:id',
+    component: CustomerEditComponent
   },
   {
     path: 'salon',
