@@ -1,1 +1,271 @@
-<p>customer-edit works!</p>
+<app-header></app-header>
+
+<div class="overview-page">
+  <div class="service-title">
+    <a class="icon-back" routerLink="/customer">
+      <i
+        class="pi pi-angle-left"
+        style="font-size: 1.5rem; margin-right: 8px"
+      ></i>
+      Chi tiết khách hàng
+    </a>
+
+    <a class="icon-close" routerLink="/customer">
+      <i class="pi pi-times icon-close"></i>
+    </a>
+  </div>
+
+  <div class="overview-service-page">
+    <div class="overview-sector-wrapper">
+      <!-- FORM EDIT SERVICE -->
+      <form [formGroup]="customerForm" class="sector-form">
+        <div class="form-information">
+          <div class="title-form">
+            <span class="font-bold block mb-2">Khai báo thông tin chung</span>
+          </div>
+          <div class="form-detail-content">
+            <div class="detail-content-input1">
+              <p style="margin-bottom: 5px; color: #9ea1a5">
+                Mã khách hàng<span>*</span>
+              </p>
+              <input
+                type="text"
+                formControlName="code"
+                class="input-field"
+                placeholder="Nhập mã salon"
+              />
+              <br />
+            </div>
+
+            <div formGroupName="user">
+              <div class="detail-content-input2">
+                <p style="margin-bottom: 5px; color: #9ea1a5">
+                  Tên khách hàng <span>*</span>
+                </p>
+                <input
+                  type="text"
+                  formControlName="name"
+                  class="input-field"
+                  placeholder="Nhập tên Salon"
+                />
+                <br />
+              </div>
+
+              <div class="address">
+                <p style="margin-bottom: 5px; color: #9ea1a5">
+                  Tỉnh/ Thành phố <span>*</span>
+                </p>
+                <!-- <div class="address-input">
+                  <div class="detail-content-input2">
+                    <p-dropdown
+                      formControlName="city"
+                      [options]="cities"
+                      optionLabel="name"
+                      placeholder="Tỉnh/Thành phố"
+                      (onChange)="selectedCity($event.value)"
+                    ></p-dropdown>
+                    <br />
+                  </div>
+
+                  <div class="detail-content-input2">
+                    <p-dropdown
+                      formControlName="district"
+                      [options]="districts"
+                      optionLabel="name"
+                      placeholder="Quận/Huyện"
+                      (onChange)="selectedDistrict($event.value)"
+                    ></p-dropdown>
+                    <br />
+                  </div>
+
+                  <div class="detail-content-input2">
+                    <p-dropdown
+                      formControlName="commune"
+                      [options]="communes"
+                      optionLabel="name"
+                      placeholder="Phường/Xã"
+                    ></p-dropdown>
+                    <br />
+                  </div>
+                </div> -->
+              </div>
+
+              <div class="detail-content-input2">
+                <p style="margin-bottom: 5px; color: #9ea1a5">
+                  Địa chỉ chi tiết <span>*</span>
+                </p>
+                <input
+                  type="text"
+                  formControlName="address"
+                  class="input-field"
+                  placeholder="Nhập địa chỉ chi tiết..."
+                />
+                <br />
+              </div>
+
+              <div class="detail-content-input2">
+                <p style="margin-bottom: 5px; color: #9ea1a5">
+                  Email <span>*</span>
+                </p>
+                <input
+                  type="text"
+                  formControlName="email"
+                  class="input-field"
+                  placeholder="Nhập email"
+                />
+                <br />
+              </div>
+
+              <div class="detail-content-input2">
+                <p style="margin-bottom: 5px; color: #9ea1a5">
+                  Số điện thoại <span>*</span>
+                </p>
+                <input
+                  type="text"
+                  formControlName="phone"
+                  class="input-field"
+                  placeholder="Nhập số điện thoại"
+                />
+                <br />
+              </div>
+
+              <div class="detail-content-input2">
+                <p style="margin-bottom: 5px; color: #9ea1a5">
+                  Password <span>*</span>
+                </p>
+                <input
+                  type="text"
+                  formControlName="password"
+                  class="input-field"
+                  placeholder="Nhập password"
+                />
+                <br />
+              </div>
+            </div>
+
+            <div class="form-detail-checkbox">
+              <span>Cài đặt trạng thái</span>
+              <div class="form-checkbox">
+                <div class="flex align-items-center">
+                  <p-radioButton
+                    name="status"
+                    value="1"
+                    formControlName="status"
+                    inputId="ACTIVE"
+                  />
+                  <label for="ACTIVE" class="ml-2" style="margin-left: 10px"
+                    >Hoạt động</label
+                  >
+                </div>
+
+                <div class="flex align-items-center">
+                  <p-radioButton
+                    name="status"
+                    value="0"
+                    formControlName="status"
+                    inputId="INACTIVE"
+                  />
+                  <label for="INACTIVE" class="ml-2" style="margin-left: 10px"
+                    >Dừng hoạt động</label
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="cover-picture">
+          <div class="picture-action">
+            <div class="avatar">
+              <!-- <img [src]="avatar" alt="avatar" /> -->
+              <!-- <img [src]="avatar" alt="avatar" *ngIf="avatar; else noImage" /> -->
+              <ng-template #noImage
+                ><p
+                  style="text-align: center; color: #9ea1a5; margin-top: 80px"
+                >
+                  Upload picture
+                </p></ng-template
+              >
+            </div>
+            <div class="avatar-action">
+              <!-- <a class="icon-edit" (click)="avatarInputFile.click()">Sửa</a> -->
+              <span
+                style="color: #9ea1a5; margin-left: 10px; margin-right: 10px"
+              >
+                |
+              </span>
+              <!-- <a class="icon-delete" (click)="onDeleteAvatar()">Xóa</a> -->
+            </div>
+            <!-- Input file để chọn ảnh, ẩn đi -->
+            <!-- <input
+              type="file"
+              #avatarInputFile
+              formControlName="avatar"
+              (change)="onSelectedFileAvatar($event)"
+              style="display: none"
+            /> -->
+          </div>
+        </div>
+      </form>
+    </div>
+    <!-- Table -->
+    <div class="overview-booking-history">
+      <div class="title-form">
+        <span class="font-bold block mb-2">Lịch sử đặt booking </span>
+      </div>
+      <p-table [tableStyle]="{ width: '1720px' }">
+        <ng-template pTemplate="header">
+          <tr>
+            <th>STT</th>
+            <th>Mã booking</th>
+            <th>Thợ</th>
+            <th>Dịch vụ</th>
+            <th>Lĩnh vực</th>
+            <th>Ngày check in</th>
+            <th>Thành tiền (đ)</th>
+            <th>Trạng thái</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body">
+          <tr>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+    <div class="paginator">
+      <div class="pahinator-left">Tổng bản ghi:</div>
+      <div class="justify-content-end">
+        <!-- <p-paginator
+          (onPageChange)="onPageChange($event)"
+          [first]="(page - 1) * size"
+          [rows]="size"
+          [totalRecords]="totalItems"
+          [rowsPerPageOptions]="[5, 10, 15]"
+          [showFirstLastIcon]="false"
+        /> -->
+      </div>
+    </div>
+
+    <div class="overview-service-footer" #footer>
+      <p-button
+        label="Chỉnh sửa"
+        [outlined]="true"
+        severity="contrast"
+        [style]="{ width: '100px', height: '30px' }"
+      />
+      <p-button
+        label="Thoát"
+        severity="contrast"
+        [style]="{ width: '150px', height: '30px', background: '#3b3420' }"
+        [routerLink]="['/customer']"
+      />
+    </div>
+  </div>
+</div>

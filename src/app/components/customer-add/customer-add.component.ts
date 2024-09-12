@@ -40,14 +40,6 @@ export class CustomerAddComponent {
         avatar: [''],
         password: [''],
       }),
-      // name: [''],
-      // city: [''],
-      // district: [''],
-      // commune: [''],
-      // address: [''],
-      // email: [''],
-      // phone: [''],
-      // avatar: [''],
     });
 
     this.getAllCity();
@@ -71,23 +63,36 @@ export class CustomerAddComponent {
     if (!city) {
       this.customerForm.controls['district'].setValue('');
       this.customerForm.controls['commune'].setValue('');
-
-      this.districts = [];
-      this.communes = [];
       return;
     }
 
     this.loading = true;
     const city_code = city.code; // Chuyển đổi mã thành phố sang số
+    this.getAllDistrict(city_code);
+  }
+
+  getAllDistrict(city_code: any) {
+    this.districts = [];
     this.commonSrv.getAllDistricts(city_code).subscribe(
       (res) => {
-        console.log('districts: ', res);
-        this.districts = res.data; // Sử dụng đúng dữ liệu trả về từ API
-        this.loading = false;
+        this.districts = res; // Sử dụng đúng dữ liệu trả về này API
+        console.log('districts: ', this.districts);
       },
       (error) => {
         console.log('Something went wrong: ', error);
-        this.loading = false;
+      }
+    );
+  }
+
+  getAllCommunes(district_code: any) {
+    this.communes = [];
+    this.commonSrv.getAllCommunes(district_code).subscribe(
+      (res) => {
+        this.communes = res;
+        console.log('communes: ', this.communes);
+      },
+      (error) => {
+        console.log('Something went wrong: ', error);
       }
     );
   }
@@ -95,49 +100,18 @@ export class CustomerAddComponent {
   selectedDistrict(district: any) {
     if (!district) {
       this.customerForm.controls['commune'].setValue('');
-      this.communes = [];
       return;
     }
 
     this.loading = true;
-    const district_code = district.code; // Use correct district code
-    this.commonSrv.getAllCommunes(district_code).subscribe(
-      (res) => {
-        console.log('communes: ', res);
-        this.communes = res; // Use the correct data
-        this.loading = false;
-      },
-      (error) => {
-        console.log('Something went wrong: ', error);
-        this.loading = false;
-      }
-    );
+    const district_code = district.code;
+    this.getAllCommunes(district_code);
   }
-
-  // onSubmitFormAddCustomer(form: NgForm) {
-  //   if (this.customerForm.valid) {
-  //     const formValue = {
-  //       ...this.customerForm.value,
-  //       status: Number(this.customerForm.value.status),
-  //     };
-
-  //     this.customerSrv.addCustomer(formValue).subscribe(
-  //       (res) => {
-  //         alert('Add successfully!');
-  //         console.log('Customer:', formValue);
-  //         this.router.navigate(['/customer']);
-  //       },
-  //       (error) => {
-  //         console.log('Error:', error);
-  //       }
-  //     );
-  //   }
-  // }
 
   onSubmitFormAddCustomer() {
     if (this.customerForm.valid) {
       // Tạo đối tượng formValue với cấu trúc phù hợp
-      const formValue : Customer = {
+      const formValue: Customer = {
         ...this.customerForm.value,
         status: Number(this.customerForm.value.status),
         user: {
