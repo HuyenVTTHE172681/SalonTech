@@ -28,12 +28,27 @@ export class CustomerService {
       .pipe(catchError(this.handleError));
   }
 
+  addCustomer(customer: Customer): Observable<Customer> {
+    return this.http
+      .post<Customer>(`${this.baseUrl}/customer`, customer)
+      .pipe(catchError(this.handleError));
+  }
+
   private handleError(error: HttpErrorResponse) {
+    // Log the error message in detail
     if (error.error instanceof ErrorEvent) {
-      console.log(error.error.message);
+      // Client-side or network error
+      console.error('An error occurred:', error.error.message);
     } else {
-      console.log(error.status);
+      // Backend returned an unsuccessful response code
+      console.error(
+        `Backend returned code ${error.status}, ` +
+          `body was: ${JSON.stringify(error.error)}`
+      );
     }
-    return throwError(console.log('Something is wrong!'));
+    // Return an observable with a user-facing error message
+    return throwError(
+      () => new Error('Something went wrong; please try again later.')
+    );
   }
 }
