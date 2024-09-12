@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CustomerService } from '../../services/customer.service';
 import { Customer } from '../../model/customer';
 
-enum StatusCustomer {
-  All = -1,
+enum StatusSector {
+  ALL = -1,
   ACTIVE = 1,
   INACTIVE = 0,
 }
@@ -14,18 +14,21 @@ enum StatusCustomer {
 })
 export class CustomerContentComponent implements OnInit {
   page: number = 1;
-  size: number = 3;
+  size: number = 5;
   customerType: number = -1;
-  status: number = StatusCustomer.All;
+  status: number = StatusSector.ALL;
   totalItems: number = 0;
   customers: Customer[] = [];
   filterCustomers: Customer[] = [];
 
   statusList = [
-    { label: 'Tất cả', value: StatusCustomer.All },
-    { label: 'Online', value: StatusCustomer.ACTIVE },
-    { label: 'Offline', value: StatusCustomer.INACTIVE },
+    { name: 'Tất cả', value: StatusSector.ALL },
+    { name: 'Đang hoạt động', value: StatusSector.ACTIVE },
+    { name: 'Dừng hoạt động', value: StatusSector.INACTIVE },
   ];
+
+  selectedStatus: any = this.statusList[0];
+
   constructor(private customerSrv: CustomerService) {}
 
   ngOnInit(): void {
@@ -36,30 +39,22 @@ export class CustomerContentComponent implements OnInit {
   date1: Date | undefined;
   date2: Date | undefined;
 
-  getStatus(status: number) {
-    switch (status) {
-      case 1:
-        return 'Online';
-      case 0:
-        return 'Offline';
-      default:
-        return 'Nothing';
-    }
+  getStatus(status: number): string {
+    return status === 1 ? 'Đang hoạt động' : 'Dừng hoạt động';
   }
 
   getStyle(status: number) {
     switch (status) {
       case 1:
         return 'success';
-      case 0:
-        return 'danger';
       default:
-        return 'warning';
+        return 'danger';
     }
   }
 
   filterStatus(event: any) {
-    this.status = this.statusList[event.index].value;
+    this.page = 1;
+    this.status = this.selectedStatus.value;
     this.getAllCustomer();
   }
 
@@ -69,6 +64,7 @@ export class CustomerContentComponent implements OnInit {
       .subscribe({
         next: (data) => {
           this.customers = data.items;
+          console.log('Customer: ', this.customers);
           this.totalItems = data.totalItems;
           this.filteredCustomersWithStatus();
         },
@@ -81,7 +77,7 @@ export class CustomerContentComponent implements OnInit {
 
   filteredCustomersWithStatus() {
     this.filterCustomers =
-      this.status === -1
+      this.status === StatusSector.ALL
         ? this.customers
         : this.customers.filter((customer) => customer.status === this.status);
   }

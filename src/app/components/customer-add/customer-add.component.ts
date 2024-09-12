@@ -31,14 +31,18 @@ export class CustomerAddComponent {
       status: [null],
       user: this.fb.group({
         name: [''],
-        phone: [''],
         city: [''],
         district: [''],
         commune: [''],
-        address: [''],
-        email: [''],
         avatar: [''],
         password: [''],
+        phone: [''],
+        email: [''],
+        address: [''],
+        birthday: [''],
+        userName: [''],
+        status: [0],
+        role: ['customer'],
       }),
     });
 
@@ -113,9 +117,10 @@ export class CustomerAddComponent {
       // Tạo đối tượng formValue với cấu trúc phù hợp
       const formValue: Customer = {
         ...this.customerForm.value,
-        status: Number(this.customerForm.value.status),
+        // status: Number(this.customerForm.value.status),
         user: {
           ...this.customerForm.value.user,
+          name: this.customerForm.value.user.name,
           city: this.customerForm.value.user.city,
           district: this.customerForm.value.user.district,
           commune: this.customerForm.value.user.commune,
@@ -124,6 +129,10 @@ export class CustomerAddComponent {
           phone: this.customerForm.value.user.phone,
           email: this.customerForm.value.user.email,
           address: this.customerForm.value.user.address,
+          birthday: this.customerForm.value.user.birthday,
+          userName: this.customerForm.value.user.userName,
+          status: 0,
+          role: 'customer',
         },
       };
 

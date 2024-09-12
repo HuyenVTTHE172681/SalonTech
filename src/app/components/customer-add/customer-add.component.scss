@@ -106,9 +106,14 @@
             }
 
             .address {
+              span {
+                color: red;
+              }
+
               .address-input {
                 display: flex;
-                justify-content: space-between;
+                justify-content: start;
+                gap: 20px;
 
                 .detail-content-input2 {
                   width: 250px;
@@ -250,85 +255,6 @@
             }
           }
         }
-      }
-    }
-
-    .overview-booking-history {
-      max-height: 600px; // 1520
-      // height: 1520px;
-      height: auto;
-      max-width: 1790px;
-      margin: 0 auto;
-      background: #fff;
-      border-radius: 5px;
-      padding: 30px;
-      position: relative;
-      margin-top: 30px;
-      display: grid;
-
-      .title-form {
-        font-size: 18px;
-        font-weight: 700;
-        color: #1b1b1c;
-        display: flex;
-        align-items: flex-end;
-        margin-bottom: 20px;
-
-        span {
-          flex-shrink: 0;
-          margin-right: 5px;
-        }
-      }
-
-      .title-form::after {
-        content: "";
-        height: 1px;
-        background: #cecece;
-        width: 100%;
-        margin-bottom: 4px;
-      }
-
-      th {
-        background: #3b3420;
-        color: #fff;
-      }
-      .button {
-        width: 79px;
-        height: 27px;
-        border-radius: 6px;
-        font-weight: bold;
-        background-color: #3b3420;
-        color: #fff;
-        font-family: "Open Sans", sans-serif;
-      }
-
-      .custom-button {
-        background-color: #8b4513 !important;
-        border-color: #8b4513 !important;
-        font-size: 12px !important;
-        height: 30px !important;
-        width: 86px !important;
-      }
-    }
-
-    .paginator {
-      max-height: 600px; // 1520
-      // height: 1520px;
-      height: auto;
-      max-width: 1800px;
-      margin: 0 auto;
-      background: #fff;
-      border-radius: 5px;
-      padding: 30px;
-      position: relative;
-      margin-top: 30px;
-      display: flex;
-      justify-content: space-between;
-
-      .pahinator-left {
-        display: block;
-        text-align: center;
-        padding: 1.5rem 0rem;
       }
     }
 
