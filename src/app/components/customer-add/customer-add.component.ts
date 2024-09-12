@@ -4,6 +4,7 @@ import { CommonService } from '../../services/common.service';
 import { CustomerService } from '../../services/customer.service';
 import { Router } from '@angular/router';
 import { libraryService } from '../../services/library.service';
+import { Customer } from '../../model/customer';
 
 @Component({
   selector: 'app-customer-add',
@@ -27,14 +28,26 @@ export class CustomerAddComponent {
   ngOnInit(): void {
     this.customerForm = this.fb.group({
       code: [''],
-      name: [''],
-      city: [''],
-      district: [''],
-      commune: [''],
-      address: [''],
-      email: [''],
-      phone: [''],
-      avatar: [''],
+      status: [null],
+      user: this.fb.group({
+        name: [''],
+        phone: [''],
+        city: [''],
+        district: [''],
+        commune: [''],
+        address: [''],
+        email: [''],
+        avatar: [''],
+        password: [''],
+      }),
+      // name: [''],
+      // city: [''],
+      // district: [''],
+      // commune: [''],
+      // address: [''],
+      // email: [''],
+      // phone: [''],
+      // avatar: [''],
     });
 
     this.getAllCity();
@@ -101,30 +114,53 @@ export class CustomerAddComponent {
     );
   }
 
-  onSubmitFormAddCustomer(form: NgForm) {
+  // onSubmitFormAddCustomer(form: NgForm) {
+  //   if (this.customerForm.valid) {
+  //     const formValue = {
+  //       ...this.customerForm.value,
+  //       status: Number(this.customerForm.value.status),
+  //     };
+
+  //     this.customerSrv.addCustomer(formValue).subscribe(
+  //       (res) => {
+  //         alert('Add successfully!');
+  //         console.log('Customer:', formValue);
+  //         this.router.navigate(['/customer']);
+  //       },
+  //       (error) => {
+  //         console.log('Error:', error);
+  //       }
+  //     );
+  //   }
+  // }
+
+  onSubmitFormAddCustomer() {
     if (this.customerForm.valid) {
-      const formValue = {
+      // Tạo đối tượng formValue với cấu trúc phù hợp
+      const formValue : Customer = {
         ...this.customerForm.value,
-        // Chuyển đổi dữ liệu nếu cần thiết
-        city: this.customerForm.value.city
-          ? this.customerForm.value.city.code
-          : null,
-        district: this.customerForm.value.district
-          ? this.customerForm.value.district.code
-          : null,
-        commune: this.customerForm.value.commune
-          ? this.customerForm.value.commune.code
-          : null,
+        status: Number(this.customerForm.value.status),
+        user: {
+          ...this.customerForm.value.user,
+          city: this.customerForm.value.user.city,
+          district: this.customerForm.value.user.district,
+          commune: this.customerForm.value.user.commune,
+          avatar: this.customerForm.value.user.avatar,
+          password: this.customerForm.value.user.password,
+          phone: this.customerForm.value.user.phone,
+          email: this.customerForm.value.user.email,
+          address: this.customerForm.value.user.address,
+        },
       };
 
+      // Gọi API để thêm mới Customer
       this.customerSrv.addCustomer(formValue).subscribe(
         (res) => {
           alert('Add successfully!');
-          console.log('Customer:', formValue);
           this.router.navigate(['/customer']);
         },
         (error) => {
-          console.log('Error:', error);
+          console.error('Error:', error);
         }
       );
     }
