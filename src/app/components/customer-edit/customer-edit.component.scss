@@ -309,19 +309,22 @@
         height: 30px !important;
         width: 86px !important;
       }
+
+      .status-active {
+        color: #22c55e;
+        font-weight: bold;
+      }
+
+      .status-inactive {
+        color: red;
+        font-weight: bold;
+      }
     }
 
     .paginator {
-      max-height: 600px; // 1520
-      // height: 1520px;
-      height: auto;
       max-width: 1800px;
       margin: 0 auto;
       background: #fff;
-      border-radius: 5px;
-      padding: 30px;
-      position: relative;
-      margin-top: 30px;
       display: flex;
       justify-content: space-between;
 

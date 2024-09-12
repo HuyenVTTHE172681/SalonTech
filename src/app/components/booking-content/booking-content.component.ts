@@ -68,7 +68,7 @@ export class BookingContentComponent implements OnInit {
           console.log('Booking:', data);
           this.bookings = data.items;
           this.totalItems = data.totalItems;
-          
+
           this.bookings.forEach((booking) => {
             booking.serviceNames = booking.services
               ?.map((service) => service.name)

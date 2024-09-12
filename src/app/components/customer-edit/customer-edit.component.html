@@ -208,11 +208,11 @@
       </form>
     </div>
     <!-- Table -->
-    <div class="overview-booking-history">
+    <div class="overview-booking-history" *ngIf="bookingHistories.length > 0">
       <div class="title-form">
         <span class="font-bold block mb-2">Lịch sử đặt booking </span>
       </div>
-      <p-table [tableStyle]="{ width: '1720px' }">
+      <p-table [value]="bookingHistories" [tableStyle]="{ width: '1720px' }">
         <ng-template pTemplate="header">
           <tr>
             <th>STT</th>
@@ -225,45 +225,54 @@
             <th>Trạng thái</th>
           </tr>
         </ng-template>
-        <ng-template pTemplate="body">
+        <ng-template pTemplate="body" let-booking let-i="rowIndex">
           <tr>
-            <td>1</td>
-            <td>2</td>
-            <td>3</td>
-            <td>4</td>
-            <td>1</td>
-            <td>2</td>
-            <td>3</td>
-            <td>4</td>
+            <td>{{ i + 1 }}</td>
+            <td style="color: #2c6dda">{{ booking?.code }}</td>
+            <td>{{ booking?.customer_id }}</td>
+            <td>{{ booking?.service_ids }}</td>
+            <td>{{ booking?.sector_ids }}</td>
+            <td>{{ formatDate(booking?.checkin_date) }}</td>
+            <td>{{ booking?.total_money | number }}</td>
+            <td
+              [ngClass]="{
+                'status-active': booking.status === 1,
+                'status-inactive': booking.status !== 1
+              }"
+            >
+              {{ booking?.status === 1 ? "Hoàn Thành" : "Đã Hủy" }}
+            </td>
           </tr>
         </ng-template>
       </p-table>
     </div>
-    <div class="paginator">
-      <div class="pahinator-left">Tổng bản ghi:</div>
+    <div class="paginator" *ngIf="bookingHistories.length > 0">
+      <div class="pahinator-left">
+        Tổng bản ghi:<strong> {{ totalItems }}</strong>
+      </div>
       <div class="justify-content-end">
-        <!-- <p-paginator
+        <p-paginator
           (onPageChange)="onPageChange($event)"
           [first]="(page - 1) * size"
           [rows]="size"
           [totalRecords]="totalItems"
           [rowsPerPageOptions]="[5, 10, 15]"
           [showFirstLastIcon]="false"
-        /> -->
+        />
       </div>
     </div>
 
-    <div class="overview-service-footer" #footer>
+    <div class="overview-service-footer" #footer >
       <p-button
         label="Chỉnh sửa"
         [outlined]="true"
         severity="contrast"
-        [style]="{ width: '100px', height: '30px' }"
+        [style]="{ width: '140px', height: '30px' }"
       />
       <p-button
         label="Thoát"
         severity="contrast"
-        [style]="{ width: '150px', height: '30px', background: '#3b3420' }"
+        [style]="{ width: '180px', height: '30px', background: '#3b3420' }"
         [routerLink]="['/customer']"
       />
     </div>
