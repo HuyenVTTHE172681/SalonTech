@@ -1,4 +1,4 @@
-import { User } from "./auth";
+import { User } from './user';
 
 export interface Customer {
   _id: string;
@@ -10,5 +10,5 @@ export interface Customer {
   modified_by?: string; // Optional field
   modified_date?: string; // Optional field
   customer_type?: number; // Optional field
-  user?: User; // Optional nested User object
+  user: User; // Optional nested User object
 }
