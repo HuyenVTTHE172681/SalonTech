@@ -46,4 +46,16 @@ export class BookingService {
     }
     return throwError(console.log('Something is wrong!'));
   }
+
+  getBookingHistoryByCustomerId(
+    customer_id: string,
+    page: number,
+    size: number
+  ): Observable<IResponeList<Booking>> {
+    return this.http
+      .get<IResponeList<Booking>>(
+        `${this.baseUrl}/booking/booking-histories?customer_id=${customer_id}&filter=&page=${page}&size=${size}`
+      )
+      .pipe(catchError(this.handleError));
+  }
 }
