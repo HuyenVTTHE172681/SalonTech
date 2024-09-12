@@ -34,6 +34,18 @@ export class CustomerService {
       .pipe(catchError(this.handleError));
   }
 
+  getCustomerById(id: string): Observable<Customer> {
+    return this.http
+      .get<Customer>(`${this.baseUrl}/customer/${id}`)
+      .pipe(catchError(this.handleError));
+  }
+
+  updateCustomer(id: string, customer: Customer): Observable<Customer> {
+    return this.http
+      .put<Customer>(`${this.baseUrl}/customer/${id}`, customer)
+      .pipe(catchError(this.handleError));
+  }
+
   private handleError(error: HttpErrorResponse) {
     // Log the error message in detail
     if (error.error instanceof ErrorEvent) {
