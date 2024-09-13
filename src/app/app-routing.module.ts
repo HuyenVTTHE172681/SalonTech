@@ -1,31 +1,31 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './components/login/login.component';
-import { RegisterComponent } from './components/register/register.component';
-import { ForumComponent } from './components/forum/forum.component';
-import { OverviewServiceAddComponent } from './components/overview-service-add/overview-service-add.component';
-import { OverviewServiceEditComponent } from './components/overview-service-edit/overview-service-edit.component';
-import { OverviewSectorContentComponent } from './components/overview-sector-content/overview-sector-content.component';
-import { OverviewSectorAddComponent } from './components/overview-sector-add/overview-sector-add.component';
-import { OverviewSectorEditComponent } from './components/overview-sector-edit/overview-sector-edit.component';
-import { OverviewUserContentComponent } from './components/overview-user-content/overview-user-content.component';
-import { OverviewUserAddComponent } from './components/overview-user-add/overview-user-add.component';
-import { OverviewContentComponent } from './components/overview-content/overview-content.component';
-import { OverviewServiceContentComponent } from './components/overview-service-content/overview-service-content.component';
-import { BookingContentComponent } from './components/booking-content/booking-content.component';
-import { CustomerContentComponent } from './components/customer-content/customer-content.component';
-import { EmployeeContentComponent } from './components/employee-content/employee-content.component';
-import { SalonContentComponent } from './components/salon-content/salon-content.component';
-import { VoucherContentComponent } from './components/voucher-content/voucher-content.component';
-import { RateContentComponent } from './components/rate-content/rate-content.component';
-import { NotificationContentComponent } from './components/notification-content/notification-content.component';
-import { OverviewBookingContentComponent } from './components/overview-booking-content/overview-booking-content.component';
-import { OverviewRevenueContentComponent } from './components/overview-revenue-content/overview-revenue-content.component';
-import { SalonTabsComponent } from './components/salon-tabs/salon-tabs.component';
-import { SalonDetailTabsComponent } from './components/salon-detail-tabs/salon-detail-tabs.component';
-import { CustomerAddComponent } from './components/customer-add/customer-add.component';
-import { CustomerEditComponent } from './components/customer-edit/customer-edit.component';
-import { OverviewUserTabsComponent } from './components/overview-user-tabs/overview-user-tabs.component';
+import { CustomerContentComponent } from './components/customer/customer-content/customer-content.component';
+import { EmployeeContentComponent } from './components/employee/employee-content/employee-content.component';
+import { SalonContentComponent } from './components/salon/salon-content/salon-content.component';
+import { NotificationContentComponent } from './components/notification/notification-content/notification-content.component';
+import { SalonTabsComponent } from './components/salon/add-salon/salon-tabs/salon-tabs.component';
+import { SalonDetailTabsComponent } from './components/salon/edit-salon/salon-detail-tabs/salon-detail-tabs.component';
+import { CustomerAddComponent } from './components/customer/customer-add/customer-add.component';
+import { CustomerEditComponent } from './components/customer/customer-edit/customer-edit.component';
+import { OverviewUserTabsComponent } from './components/overview/user/overview-user-tabs/overview-user-tabs.component';
+import { OverviewContentComponent } from './components/overview/overview-content/overview-content.component';
+import { OverviewServiceContentComponent } from './components/overview/service/overview-service-content/overview-service-content.component';
+import { OverviewServiceAddComponent } from './components/overview/service/overview-service-add/overview-service-add.component';
+import { OverviewServiceEditComponent } from './components/overview/service/overview-service-edit/overview-service-edit.component';
+import { OverviewSectorContentComponent } from './components/overview/sector/overview-sector-content/overview-sector-content.component';
+import { OverviewSectorAddComponent } from './components/overview/sector/overview-sector-add/overview-sector-add.component';
+import { OverviewSectorEditComponent } from './components/overview/sector/overview-sector-edit/overview-sector-edit.component';
+import { OverviewUserContentComponent } from './components/overview/user/overview-user-content/overview-user-content.component';
+import { OverviewUserAddComponent } from './components/overview/user/overview-user-add/overview-user-add.component';
+import { OverviewBookingContentComponent } from './components/overview/overview-booking-content/overview-booking-content.component';
+import { OverviewRevenueContentComponent } from './components/overview/overview-revenue-content/overview-revenue-content.component';
+import { LoginComponent } from './components/page/login/login.component';
+import { RegisterComponent } from './components/page/register/register.component';
+import { BookingContentComponent } from './components/booking/booking-content/booking-content.component';
+import { VoucherContentComponent } from './components/voucher/voucher-content/voucher-content.component';
+import { RateContentComponent } from './components/rating/rate-content/rate-content.component';
+import { ForumContentComponent } from './components/forum/forum-content/forum-content.component';
 
 const routes: Routes = [
   {
@@ -79,7 +79,7 @@ const routes: Routes = [
   },
   {
     path: 'forum',
-    component: ForumComponent,
+    component: ForumContentComponent,
   },
   {
     path: 'notification',
