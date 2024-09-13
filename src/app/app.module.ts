@@ -39,6 +39,7 @@ import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { ChartModule } from 'primeng/chart';
 import { RippleModule } from 'primeng/ripple';
 import { EditorModule } from 'primeng/editor';
+import { QRCodeModule } from 'angularx-qrcode';
 
 // Custom Components
 import { HeaderComponent } from './components/header/header.component';
@@ -157,6 +158,7 @@ import { OverviewUserAssignDataComponent } from './components/overview-user-assi
     RippleModule,
     EditorModule,
     TagModule,
+    QRCodeModule,
   ],
   providers: [
     provideClientHydration(),
