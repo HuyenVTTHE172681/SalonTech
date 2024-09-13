@@ -72,6 +72,11 @@ export class OverviewUserTabsComponent {
     });
   }
 
+  onUpdateUserMenu(selectedMenu: string[]): void {
+    this.newUserData.menu_ids = selectedMenu;
+    console.log('Updated Menu:', selectedMenu);
+  }
+
   saveUser(): void {
     // Ensure that the child components and their forms are initialized
     console.log(this.OverviewUserDetailComponent.userForm.value);

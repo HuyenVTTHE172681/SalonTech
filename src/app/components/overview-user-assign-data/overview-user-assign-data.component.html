@@ -31,12 +31,13 @@
   <div class="sector-checkbox-wrapper">
     <div class="sector-checkbox" style="max-height: 414px; overflow-y: auto">
       <form [formGroup]="userForm">
-        <div *ngFor="let menu of menus">
+        <div *ngFor="let item of menu">
           <div class="sector-checkbox-item">
             <input
               type="checkbox"
-              [formControlName]="menu._id"
+              [formControlName]="item._id"
               (change)="onMenuChange(menu, $event)"
+              [checked]="newUserData.menu_ids.includes(item._id)"
               style="
                 width: 17px;
                 height: 17px;
@@ -44,7 +45,7 @@
                 margin-right: 10px;
               "
             />
-            {{ menu.name }}
+            {{ item.name || "No Title Available" }}
           </div>
         </div>
       </form>
