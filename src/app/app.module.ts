@@ -79,6 +79,8 @@ import { SalonDetailIntroductionComponent } from './components/salon-detail-intr
 import { SalonDetailManageWorkerComponent } from './components/salon-detail-manage-worker/salon-detail-manage-worker.component';
 import { CustomerAddComponent } from './components/customer-add/customer-add.component';
 import { CustomerEditComponent } from './components/customer-edit/customer-edit.component';
+import { OverviewUserTabsComponent } from './components/overview-user-tabs/overview-user-tabs.component';
+import { OverviewUserAssignDataComponent } from './components/overview-user-assign-data/overview-user-assign-data.component';
 
 @NgModule({
   declarations: [
@@ -119,6 +121,8 @@ import { CustomerEditComponent } from './components/customer-edit/customer-edit.
     SalonDetailManageWorkerComponent,
     CustomerAddComponent,
     CustomerEditComponent,
+    OverviewUserTabsComponent,
+    OverviewUserAssignDataComponent,
   ],
   imports: [
     BrowserModule,
