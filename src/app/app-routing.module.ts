@@ -9,7 +9,6 @@ import { OverviewSectorContentComponent } from './components/overview-sector-con
 import { OverviewSectorAddComponent } from './components/overview-sector-add/overview-sector-add.component';
 import { OverviewSectorEditComponent } from './components/overview-sector-edit/overview-sector-edit.component';
 import { OverviewUserContentComponent } from './components/overview-user-content/overview-user-content.component';
-import { OverviewUserDetailComponent } from './components/overview-user-detail/overview-user-detail.component';
 import { OverviewUserAddComponent } from './components/overview-user-add/overview-user-add.component';
 import { OverviewContentComponent } from './components/overview-content/overview-content.component';
 import { OverviewServiceContentComponent } from './components/overview-service-content/overview-service-content.component';
@@ -26,6 +25,7 @@ import { SalonTabsComponent } from './components/salon-tabs/salon-tabs.component
 import { SalonDetailTabsComponent } from './components/salon-detail-tabs/salon-detail-tabs.component';
 import { CustomerAddComponent } from './components/customer-add/customer-add.component';
 import { CustomerEditComponent } from './components/customer-edit/customer-edit.component';
+import { OverviewUserTabsComponent } from './components/overview-user-tabs/overview-user-tabs.component';
 
 const routes: Routes = [
   {
@@ -55,11 +55,11 @@ const routes: Routes = [
   },
   {
     path: 'customer/add-customer',
-    component: CustomerAddComponent
+    component: CustomerAddComponent,
   },
   {
-    path: 'customer/edit-customer/:id',
-    component: CustomerEditComponent
+    path: 'customer/edit-customer', // customer/edit-customer/:id
+    component: CustomerEditComponent,
   },
   {
     path: 'salon',
@@ -115,7 +115,7 @@ const routes: Routes = [
   },
   {
     path: 'home/overview-user/edit-user/:id',
-    component: OverviewUserDetailComponent,
+    component: OverviewUserTabsComponent,
   },
   {
     path: 'home/overview-user/add-user',
