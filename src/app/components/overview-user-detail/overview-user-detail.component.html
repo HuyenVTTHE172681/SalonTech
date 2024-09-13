@@ -1,180 +1,141 @@
-<app-header></app-header>
-
 <div class="overview-service-page">
-  <!-- TITLE -->
-  <div class="service-title">
-    <a class="icon-back" routerLink="/home/overview-user">
-      <i
-        class="pi pi-angle-left"
-        style="font-size: 1.5rem; margin-right: 8px"
-      ></i>
-      Khởi tạo tài khoản
-    </a>
-
-    <!-- <a class="icon-center">Thông tin</a>
-    <a>Gán dữ liệu</a> -->
-    <div class="service-title-center">
-      <a class="icon-center active">Thông tin</a>
-      <a class="icon-center">Gán dữ liệu</a>
+  <div class="overview-sector-wrapper">
+    <div class="title-form">
+      <span class="font-bold block mb-2">Thông tin chung</span>
     </div>
 
-    <a class="icon-close" routerLink="/home/overview-user">
-      <i class="pi pi-times icon-close"></i>
-    </a>
-  </div>
-
-  <div class="overview-sector-wrapper">
     <!-- FORM EDIT SERVICE -->
     <form [formGroup]="userForm" class="sector-form">
-      <div class="title-form">
-        <span class="font-bold block mb-2">Thông tin chung</span>
+      <div class="form-information" style="width: 668px">
+        <div class="form-detail-content">
+          <div class="detail-content-input1">
+            <p style="margin-bottom: 5px; color: #9ea1a5">
+              Tên nhân viên <span>*</span>
+            </p>
+            <input
+              type="text"
+              formControlName="name"
+              class="input-field"
+              placeholder="Nhập tên người dùng"
+            />
+            <br />
+          </div>
+
+          <div class="detail-content-input2">
+            <p style="margin-bottom: 5px; color: #9ea1a5">
+              Email dùng làm tài khoản đăng nhập <span>*</span>
+            </p>
+            <input
+              type="text"
+              formControlName="email"
+              class="input-field"
+              placeholder="Nhập mail của người dùng"
+            />
+            <br />
+          </div>
+
+          <div class="detail-content-input2">
+            <p style="margin-bottom: 5px; color: #9ea1a5">
+              Mật khẩu <span>*</span>
+            </p>
+            <input
+              type="text"
+              formControlName="_id"
+              class="input-field"
+              placeholder="Nhập mật khẩu"
+            />
+            <br />
+          </div>
+
+          <div class="detail-content-input2">
+            <p style="margin-bottom: 5px; color: #9ea1a5">
+              Số điện thoại <span>*</span>
+            </p>
+            <input
+              type="text"
+              formControlName="phone"
+              class="input-field"
+              placeholder="Nhập số điện thoại"
+            />
+            <br />
+          </div>
+        </div>
+        <div class="form-detail-checkbox">
+          <span>Cài đặt trạng thái</span>
+          <div class="form-checkbox">
+            <div class="flex align-items-center">
+              <p-radioButton
+                name="status"
+                value="1"
+                formControlName="status"
+                inputId="ACTIVE"
+              />
+              <label for="ACTIVE" class="ml-2" style="margin-left: 10px"
+                >Hoạt động</label
+              >
+            </div>
+
+            <div class="flex align-items-center">
+              <p-radioButton
+                name="status"
+                value="0"
+                formControlName="status"
+                inputId="INACTIVE"
+              />
+              <label for="INACTIVE" class="ml-2" style="margin-left: 10px"
+                >Dừng hoạt động</label
+              >
+            </div>
+
+            <div class="flex align-items-center">
+              <p-radioButton
+                name="status"
+                value="2"
+                formControlName="status"
+                inputId="KEYWORD"
+              />
+              <label for="KEYWORD" class="ml-2" style="margin-left: 10px"
+                >Khóa</label
+              >
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div class="form-detail-content">
-        <div class="detail-content-input1">
-          <p style="margin-bottom: 5px; color: #9ea1a5">
-            Tên nhân viên <span>*</span>
-          </p>
-          <input
-            type="text"
-            formControlName="name"
-            class="input-field"
-            placeholder="Nhập tên người dùng"
-          />
-          <br />
-        </div>
-
-        <div class="detail-content-input2">
-          <p style="margin-bottom: 5px; color: #9ea1a5">
-            Email dùng làm tài khoản đăng nhập <span>*</span>
-          </p>
-          <input
-            type="text"
-            formControlName="email"
-            class="input-field"
-            placeholder="Nhập mail của người dùng"
-          />
-          <br />
-        </div>
-
-        <div class="detail-content-input2">
-          <p style="margin-bottom: 5px; color: #9ea1a5">
-            Mật khẩu <span>*</span>
-          </p>
-          <input
-            type="text"
-            formControlName="_id"
-            class="input-field"
-            placeholder="Nhập mật khẩu"
-          />
-          <br />
-        </div>
-
-        <div class="detail-content-input2">
-          <p style="margin-bottom: 5px; color: #9ea1a5">
-            Số điện thoại <span>*</span>
-          </p>
-          <input
-            type="text"
-            formControlName="phone"
-            class="input-field"
-            placeholder="Nhập số điện thoại"
-          />
-          <br />
-        </div>
-      </div>
-      <div class="form-detail-checkbox">
-        <span>Cài đặt trạng thái</span>
-        <div class="form-checkbox">
-          <div class="flex align-items-center">
-            <p-radioButton
-              name="status"
-              value="1"
-              formControlName="status"
-              inputId="ACTIVE"
-            />
-            <label for="ACTIVE" class="ml-2" style="margin-left: 10px"
-              >Hoạt động</label
-            >
+      <div class="sector-avatar">
+        <div class="cover-picture">
+          <div class="picture-action">
+            <div class="avatar">
+              <!-- <img [src]="cover" height="200" alt="avatar" /> -->
+              <img [src]="avatar" alt="avatar" *ngIf="avatar; else noImage" />
+              <ng-template #noImage>
+                <!-- <p
+                  style="text-align: center; color: #9ea1a5; margin-top: 120px"
+                >
+                  Upload picture
+                </p> -->
+                <img src="/src/assets/avata.png" alt="Default Avatar" />
+              </ng-template>
+            </div>
+            <div class="avatar-action">
+              <a class="icon-edit" (click)="coverInputFile.click()">Sửa</a>
+              <span
+                style="color: #9ea1a5; margin-left: 10px; margin-right: 10px"
+              >
+                |
+              </span>
+              <a class="icon-delete" (click)="onDeleteAvatar()">Xóa</a>
+            </div>
           </div>
-
-          <div class="flex align-items-center">
-            <p-radioButton
-              name="status"
-              value="0"
-              formControlName="status"
-              inputId="INACTIVE"
-            />
-            <label for="INACTIVE" class="ml-2" style="margin-left: 10px"
-              >Dừng hoạt động</label
-            >
-          </div>
-
-          <div class="flex align-items-center">
-            <p-radioButton
-              name="status"
-              value="2"
-              formControlName="status"
-              inputId="KEYWORD"
-            />
-            <label for="KEYWORD" class="ml-2" style="margin-left: 10px"
-              >Khóa</label
-            >
-          </div>
+          <input
+            type="file"
+            formControlName="cover"
+            #coverInputFile
+            (change)="onSelectedFileAvatar($event)"
+            style="display: none"
+          />
         </div>
       </div>
     </form>
-
-    <div class="sector-avatar">
-      <div class="avatar">
-        <img src="" alt="avatar" />
-      </div>
-      <div class="avatar-action">
-        <a class="icon-edit" href="#">Sửa</a>
-        <span style="color: #9ea1a5"> | </span>
-        <a class="icon-delete" href="#">Xóa</a>
-      </div>
-    </div>
-  </div>
-
-  <div class="overview-service-footer" #footer>
-    <p-button
-      label="Thoát"
-      severity="danger"
-      [style]="{ width: '100px', height: '30px' }"
-      *ngIf="!editMode"
-      (click)="onCancel()"
-    />
-    <p-button
-      label="Sửa"
-      [outlined]="true"
-      severity="secondary"
-      [style]="{ width: '100px', height: '30px' }"
-      *ngIf="!editMode"
-      (click)="toggleEditMode()"
-    />
-    <p-button
-      label="Xóa"
-      severity="danger"
-      [style]="{ width: '100px', height: '30px' }"
-      *ngIf="editMode"
-      (click)="onDelete()"
-    />
-    <p-button
-      label="Lưu"
-      [outlined]="true"
-      severity="contrast"
-      [style]="{ width: '100px', height: '30px' }"
-      *ngIf="editMode"
-      (click)="onSubmitFormEditUser()"
-    />
-    <p-button
-      label="Lưu & Thoát"
-      severity="success"
-      [style]="{ width: '180px', height: '30px' }"
-      *ngIf="editMode"
-      (click)="onSubmitFormEditUser()"
-      [routerLink]="['/home/overview-user']"
-    />
   </div>
 </div>

@@ -1,0 +1,110 @@
+.overview-sector-wrapper {
+  max-height: 1520px;
+  height: 600px;
+  max-width: 1225px;
+  margin: 0 auto;
+  background: #fff;
+  box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.03);
+  border-radius: 5px;
+  padding: 30px;
+  position: relative;
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-between;
+
+  .sector-form {
+    width: 658px; // Fixed width for the form
+
+    .title-form {
+      font-size: 15px;
+      font-weight: 700;
+      color: #1b1b1c;
+      display: flex;
+      align-items: flex-end;
+      margin-bottom: 20px;
+
+      span {
+        flex-shrink: 0;
+        margin-right: 5px;
+      }
+    }
+
+    .title-form::after {
+      content: "";
+      height: 1px;
+      background: #cecece;
+      width: 100%;
+      margin-bottom: 4px;
+    }
+
+    .detail-content-input1 {
+      display: grid;
+      align-items: center;
+
+      span {
+        color: red;
+      }
+
+      input {
+        font-size: 1rem;
+        color: #4b5563;
+        background: #ffffff;
+        padding: 0.75rem 0.75rem;
+        border: 1px solid #d1d5db;
+        transition: background-color 0.2s, color 0.2s, border-color 0.2s,
+          box-shadow 0.2s;
+        appearance: none;
+        border-radius: 6px;
+      }
+    }
+
+    .form-detail-checkbox {
+      display: grid;
+      margin: 4px;
+      margin-top: 88px;
+      margin-bottom: 30px;
+
+      span {
+        margin-bottom: 5px;
+        color: #9ea1a5;
+      }
+
+      .form-checkbox {
+        display: flex;
+        margin-top: 5px;
+        gap: 30px;
+      }
+    }
+  }
+
+  .sector-checkbox-wrapper {
+    width: 440px;
+    height: 450px;
+    border: #cecece 1px solid;
+    border-radius: 5px;
+
+    .sector-checkbox {
+      padding: 12px;
+
+      .sector-checkbox-item {
+        display: flex;
+        align-items: center;
+        padding: 10px;
+        font-size: 15px;
+        font-weight: 700;
+        border-bottom: #cecece 1px solid;
+        margin-bottom: 8px;
+      }
+
+      .sector-checkbox-item-children {
+        display: flex;
+        align-items: center;
+        padding: 10px;
+        font-size: 14px;
+        font-weight: 600;
+        border-bottom: #cecece 1px solid;
+        margin-bottom: 8px;
+      }
+    }
+  }
+}

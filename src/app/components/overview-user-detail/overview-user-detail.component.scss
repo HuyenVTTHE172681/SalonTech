@@ -6,55 +6,9 @@
   display: block;
   justify-content: center;
 
-  .service-title {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-bottom: 24px;
-
-    .icon-back {
-      font-size: 18px;
-      line-height: 24px;
-      color: #000000;
-      font-weight: 700;
-      text-decoration: none;
-    }
-
-    .service-title-center {
-      font-size: 14px;
-      line-height: 24px;
-      color: #000000;
-      font-weight: 700;
-      text-decoration: none;
-
-      .icon-center {
-        font-size: 14px;
-        line-height: 24px;
-        color: #000000;
-        font-weight: 700;
-        text-decoration: none;
-        // border-bottom: #000000 2px solid;
-
-        &.active {
-          margin: 25px;
-          padding: 10px;
-          border-bottom: #000000 3px solid;
-        }
-      }
-    }
-
-    .icon-close {
-      font-size: 18px;
-      line-height: 24px;
-      color: #000000;
-      font-weight: 700;
-      text-decoration: none;
-    }
-  }
-
   .overview-sector-wrapper {
     max-height: 650px;
-    height: 640px;
+    height: auto;
     max-width: 1225px;
     margin: 0 auto;
     background: #fff;
@@ -63,33 +17,36 @@
     padding: 30px;
     position: relative;
     margin-top: 30px;
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+
+    .title-form {
+      font-size: 15px;
+      font-weight: 700;
+      color: #1b1b1c;
+      display: flex;
+      align-items: flex-end;
+      margin-bottom: 20px;
+      width: 668px;
+
+      span {
+        flex-shrink: 0;
+        margin-right: 5px;
+      }
+    }
+
+    .title-form::after {
+      content: "";
+      height: 1px;
+      background: #cecece;
+      width: 100%;
+      margin-bottom: 4px;
+    }
 
     .sector-form {
-      width: 688px; // Fixed width for the form
-
-      .title-form {
-        font-size: 15px;
-        font-weight: 700;
-        color: #1b1b1c;
-        display: flex;
-        align-items: flex-end;
-        margin-bottom: 20px;
-
-        span {
-          flex-shrink: 0;
-          margin-right: 5px;
-        }
-      }
-
-      .title-form::after {
-        content: "";
-        height: 1px;
-        background: #cecece;
-        width: 100%;
-        margin-bottom: 4px;
-      }
+      max-width: 1225px;
+      gap: 100px;
+      display: flex;
+      justify-content: space-between;
 
       .detail-content-input1,
       .detail-content-input2 {
@@ -116,7 +73,7 @@
       .form-detail-checkbox {
         display: grid;
         margin: 4px;
-        margin-top: 88px;
+        margin-top: 56px;
         margin-bottom: 30px;
 
         span {
@@ -150,8 +107,6 @@
           width: 100%;
           height: 100%;
           object-fit: cover;
-          padding: 107px; 
-          // margin: 55px 43px 55px 43px;
         }
       }
 
@@ -180,5 +135,3 @@
     margin-right: 138px;
   }
 }
-
-

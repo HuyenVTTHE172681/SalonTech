@@ -1,0 +1,53 @@
+<div class="overview-sector-wrapper">
+  <!-- FORM EDIT SERVICE -->
+  <form class="sector-form">
+    <div class="title-form">
+      <span class="font-bold block mb-2">Gán dữ liệu</span>
+    </div>
+
+    <div class="form-detail-content">
+      <div class="detail-content-input1">
+        <div class="input-button" style="display: flex; align-items: center">
+          <input
+            type="text"
+            formControlName="code"
+            class="input-field"
+            placeholder="Dịch vụ"
+            [style]="{ width: '549px', height: '40px' }"
+          />
+          <p-button
+            label="Chi tiết"
+            [outlined]="true"
+            severity="contrast"
+            [style]="{ marginLeft: '10px', height: '40px' }"
+          ></p-button>
+        </div>
+        <br />
+      </div>
+    </div>
+  </form>
+
+  <!-- Form Add Service -->
+  <div class="sector-checkbox-wrapper">
+    <div class="sector-checkbox" style="max-height: 414px; overflow-y: auto">
+      <form [formGroup]="userForm">
+        <div *ngFor="let menu of menus">
+          <div class="sector-checkbox-item">
+            <input
+              type="checkbox"
+              [formControlName]="menu._id"
+              (change)="onMenuChange(menu, $event)"
+              style="
+                width: 17px;
+                height: 17px;
+                border-radius: 16px;
+                margin-right: 10px;
+              "
+            />
+            {{ menu.name }}
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

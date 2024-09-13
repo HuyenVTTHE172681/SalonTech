@@ -1,0 +1,72 @@
+<app-header></app-header>
+
+<div class="overview-service-page">
+  <!-- TITLE -->
+  <div class="service-title">
+    <a class="icon-back" routerLink="/home/overview-user">
+      <i
+        class="pi pi-angle-left"
+        style="font-size: 1.5rem; margin-right: 8px"
+      ></i>
+      Khởi tạo tài khoản
+    </a>
+
+    <!-- <a class="icon-center">Thông tin</a>
+    <a>Gán dữ liệu</a> -->
+    <div class="service-title-center">
+      <a
+        class="icon-center"
+        [class.active]="currentTab === 'information'"
+        (click)="switchTab('information')"
+        >Thông tin</a
+      >
+      <a
+        class="icon-center"
+        [class.active]="currentTab === 'assignData'"
+        (click)="switchTab('assignData')"
+        >Gán dữ liệu</a
+      >
+    </div>
+
+    <a class="icon-close" routerLink="/home/overview-user">
+      <i class="pi pi-times icon-close"></i>
+    </a>
+  </div>
+
+  <!-- Display child component based on current tab -->
+
+  <div [hidden]="currentTab !== 'information'">
+    <app-overview-user-detail
+      [newUserData]="newUserData"
+    ></app-overview-user-detail>
+  </div>
+
+  <div [hidden]="currentTab !== 'assignData'">
+    <app-overview-user-assign-data
+      [newUserData]="newUserData"
+    ></app-overview-user-assign-data>
+  </div>
+
+  <div class="overview-service-footer" #footer>
+    <!-- *ngIf="!editMode" -->
+    <p-button
+      label="Thoát"
+      severity="danger"
+      [style]="{ width: '100px', height: '30px' }"
+      (click)="onCancel()"
+    />
+    <p-button
+      label="Xóa"
+      severity="danger"
+      [style]="{ width: '100px', height: '30px' }"
+      (click)="onDeleteUser()"
+    />
+    <p-button
+      label="Lưu"
+      [outlined]="true"
+      severity="contrast"
+      [style]="{ width: '100px', height: '30px' }"
+      (click)="saveUser()"
+    />
+  </div>
+</div>

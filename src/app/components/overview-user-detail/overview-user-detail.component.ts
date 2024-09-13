@@ -1,121 +1,77 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../../services/user.service';
 import { User } from '../../model/user';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IResponeList } from '../../model/common.model';
-
-enum StatusUser {
-  ALL = -1,
-  ACTIVE = 1,
-  INACTIVE = 0,
-  KEYWORD = 2,
-}
+import { libraryService } from '../../services/library.service';
 
 @Component({
   selector: 'app-overview-user-detail',
   templateUrl: './overview-user-detail.component.html',
   styleUrl: './overview-user-detail.component.scss',
 })
-export class OverviewUserDetailComponent implements OnInit {
-  userForm: FormGroup;
-  editMode: boolean = false;
-  page: number = 1;
-  size: number = 5; // display 10 item per page
-  status: number = StatusUser.ALL;
-  users: User[] = [];
+export class OverviewUserDetailComponent {
+  @Input() newUserData!: User;
 
+  userForm!: FormGroup;
   constructor(
     private formBuilder: FormBuilder,
-    private userSrv: UserService,
-    private router: Router,
-    private route: ActivatedRoute
-  ) {
+    private librarySrv: libraryService
+  ) {}
+
+  initForm(): void {
     this.userForm = this.formBuilder.group({
-      _id: [{ value: '', disabled: true }],
-      name: [{ value: '', disabled: true }, [Validators.required]],
-      email: [
-        { value: '', disabled: true },
-        [Validators.required, Validators.email],
-      ],
-      status: [{ value: null, disabled: true }, Validators.required],
-      phone: [{ value: '', disabled: true }, [Validators.required]],
-      modified_by: [{ value: '', disabled: true }],
-      modified_date: [{ value: '', disabled: true }],
+      _id: [this.newUserData?._id],
+      name: [this.newUserData?.name],
+      email: [this.newUserData?.email],
+      status: [this.newUserData?.status],
+      phone: [this.newUserData?.phone],
+      modified_by: [this.newUserData?.modified_by],
+      modified_date: [this.newUserData?.modified_date],
+      avatar: [this.newUserData?.avatar],
     });
   }
 
-  ngOnInit(): void {
-    this.route.paramMap.subscribe((param) => {
-      const id = param.get('id');
-      if (id) {
-        this.getUserById(id);
-      }
-    });
-  }
-
-  getUserById(id: string): void {
-    this.userSrv.getUserById(id).subscribe(
-      (data) => {
-        console.log('User data fetched from API:', data);
-        this.userForm.patchValue(data);
-      },
-      (err) => {
-        console.log(err);
-      }
-    );
-  }
-
-  toggleEditMode(): void {
-    this.editMode = !this.editMode;
-    if (this.editMode) {
-      this.userForm.enable();
-    } else {
-      this.userForm.disable();
+  ngOnChanges(): void {
+    if (this.newUserData) {
+      this.initForm();
     }
   }
 
-  onSubmitFormEditUser(): void {
-    if (this.userForm.valid) {
-      const updatedUser: User = this.userForm.getRawValue(); // Use getRawValue() to get values of disabled controls as well
+  avatar: string | ArrayBuffer | null = null;
 
-      // Convert status from string to number
-      updatedUser.status = Number(updatedUser.status);
+  // Avatar picture
+  onSelectedFileAvatar(event: any) {
+    if (event.target.files && event.target.files[0]) {
+      const file = event.target.files[0];
 
-      console.log('Update User data: ', updatedUser);
-
-      this.userSrv.updateUser(updatedUser).subscribe(
-        (res) => {
-          console.log('User updated successfully:', res);
-
-          // Confirm if API response reflects the correct updated status
-          console.log('Updated User Info from API Response:', res);
-
-          console.log('Updated User Info:', updatedUser);
-
-          this.toggleEditMode();
+      // Sử dụng service để upload file
+      this.librarySrv.uploadImage(file).subscribe({
+        next: (response: any) => {
+          this.avatar = response.secure_url; // Giả sử server trả về secure_url là URL của ảnh
+          this.userForm.patchValue({ avatar: this.avatar }); // Cập nhật URL vào form
         },
-        (err) => {
-          console.log(err);
-        }
-      );
+        error: (err) => {
+          console.error('Lỗi khi tải lên avatar:', err);
+        },
+      });
+
+      // Xem trước ảnh
+      var reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = (event: any) => {
+        this.avatar = event.target.result;
+      };
     }
   }
 
-  onCancel(): void {
-    this.router.navigate(['/home/overview-user']);
-  }
-
-  onDelete(): void {
-    this.userSrv.deleteUser(this.userForm.get('_id')?.value).subscribe(
-      (res) => {
-        alert('User deleted successfully');
-        console.log('User deleted successfully:', res);
-        this.router.navigate(['/home/overview-user']);
-      },
-      (err) => {
-        console.error('Error deleting user:', err);
-      }
-    );
+  @ViewChild('avatarInputFile') avatarInputFile!: ElementRef<HTMLInputElement>;
+  onDeleteAvatar(): void {
+    this.avatar = null; // Xóa ảnh bìa hiển thị
+    this.userForm.get('avatar')?.setValue(null); // Xóa giá trị trong form control
+    if (this.avatarInputFile) {
+      this.avatarInputFile.nativeElement.value = ''; // Đặt lại giá trị input file
+    }
   }
 }
