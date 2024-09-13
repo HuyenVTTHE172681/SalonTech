@@ -17,5 +17,6 @@ export class User {
   cover?: string; // Optional field
   customer_id?: string; // Optional field
   modified_by?: string; // Optional field
-  modified_date?: string; // Optional field
+  modified_date?: string; // Optional field;
+  menu_ids: string[] = [];
 }
