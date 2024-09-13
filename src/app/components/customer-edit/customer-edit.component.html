@@ -37,6 +37,19 @@
               <br />
             </div>
 
+            <div class="detail-content-input2" style="display: none">
+              <p style="margin-bottom: 5px; color: #9ea1a5">
+                Mật khẩu <span>*</span>
+              </p>
+              <input
+                type="text"
+                formControlName="_id"
+                class="input-field"
+                placeholder="Nhập mật khẩu"
+              />
+              <br />
+            </div>
+
             <div formGroupName="user">
               <div class="detail-content-input2">
                 <p style="margin-bottom: 5px; color: #9ea1a5">
@@ -51,11 +64,11 @@
                 <br />
               </div>
 
-              <div class="address">
+              <!-- <div class="address">
                 <p style="margin-bottom: 5px; color: #9ea1a5">
                   Tỉnh/ Thành phố <span>*</span>
                 </p>
-                <!-- <div class="address-input">
+                <div class="address-input">
                   <div class="detail-content-input2">
                     <p-dropdown
                       formControlName="city"
@@ -87,8 +100,8 @@
                     ></p-dropdown>
                     <br />
                   </div>
-                </div> -->
-              </div>
+                </div>
+              </div> -->
 
               <div class="detail-content-input2">
                 <p style="margin-bottom: 5px; color: #9ea1a5">
@@ -125,6 +138,19 @@
                   formControlName="phone"
                   class="input-field"
                   placeholder="Nhập số điện thoại"
+                />
+                <br />
+              </div>
+
+              <div class="detail-content-input2">
+                <p style="margin-bottom: 5px; color: #9ea1a5">
+                  Username <span>*</span>
+                </p>
+                <input
+                  type="text"
+                  formControlName="userName"
+                  class="input-field"
+                  placeholder="Nhập user name"
                 />
                 <br />
               </div>
@@ -176,43 +202,46 @@
         <div class="cover-picture">
           <div class="picture-action">
             <div class="avatar">
-              <!-- <img [src]="avatar" alt="avatar" /> -->
-              <!-- <img [src]="avatar" alt="avatar" *ngIf="avatar; else noImage" /> -->
+              <img [src]="avatar" alt="avatar" *ngIf="avatar; else noImage" />
               <ng-template #noImage
                 ><p
-                  style="text-align: center; color: #9ea1a5; margin-top: 80px"
+                  style="text-align: center; color: #9ea1a5; margin-top: 120px"
                 >
                   Upload picture
                 </p></ng-template
               >
             </div>
             <div class="avatar-action">
-              <!-- <a class="icon-edit" (click)="avatarInputFile.click()">Sửa</a> -->
+              <a class="icon-edit" (click)="avatarInputFile.click()">Sửa</a>
               <span
                 style="color: #9ea1a5; margin-left: 10px; margin-right: 10px"
               >
                 |
               </span>
-              <!-- <a class="icon-delete" (click)="onDeleteAvatar()">Xóa</a> -->
+              <a class="icon-delete" (click)="onDeleteAvatar()">Xóa</a>
             </div>
             <!-- Input file để chọn ảnh, ẩn đi -->
-            <!-- <input
+            <input
               type="file"
               #avatarInputFile
               formControlName="avatar"
               (change)="onSelectedFileAvatar($event)"
               style="display: none"
-            /> -->
+            />
           </div>
         </div>
       </form>
     </div>
     <!-- Table -->
-    <div class="overview-booking-history" *ngIf="bookingHistories.length > 0">
+    <div class="overview-booking-history">
       <div class="title-form">
         <span class="font-bold block mb-2">Lịch sử đặt booking </span>
       </div>
-      <p-table [value]="bookingHistories" [tableStyle]="{ width: '1720px' }">
+      <p-table
+        [value]="bookingHistories"
+        [tableStyle]="{ width: '1720px' }"
+        *ngIf="bookingHistories.length > 0"
+      >
         <ng-template pTemplate="header">
           <tr>
             <th>STT</th>
@@ -246,9 +275,9 @@
         </ng-template>
       </p-table>
     </div>
-    <div class="paginator" *ngIf="bookingHistories.length > 0">
+    <div class="paginator" *ngIf="bookingHistories.length > 0" style="margin-left: 329px; margin-right: 329px;">
       <div class="pahinator-left">
-        Tổng bản ghi:<strong> {{ totalItems }}</strong>
+        Tổng bản ghi:<strong> {{ totalItems }} </strong>
       </div>
       <div class="justify-content-end">
         <p-paginator
@@ -262,12 +291,25 @@
       </div>
     </div>
 
-    <div class="overview-service-footer" #footer >
+    <div class="paginator" *ngIf="bookingHistories.length === 0" style="margin-left: 329px;"> 
+      <div class="pahinator-left">
+        Tổng số bản ghi:<strong> Không có bản ghi nào.</strong>
+      </div>
+    </div>
+
+    <div class="overview-service-footer" #footer>
+      <p-button
+        label="Xóa"
+        severity="danger"
+        [style]="{ width: '100px', height: '30px' }"
+        (onClick)="deleteCustomer()"
+      />
       <p-button
         label="Chỉnh sửa"
         [outlined]="true"
         severity="contrast"
         [style]="{ width: '140px', height: '30px' }"
+        (onClick)="onSubmitFormEditCustomer()"
       />
       <p-button
         label="Thoát"

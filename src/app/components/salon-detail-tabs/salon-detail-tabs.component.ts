@@ -68,33 +68,6 @@ export class SalonDetailTabsComponent {
     console.log('Updated Services:', selectedServices);
   }
 
-  // saveSalon(): void {
-  //   const informationFormValue =
-  //     this.SalonDetailInformationComponent.salonForm.value;
-
-  //   // Convert the status fields to numbers
-  //   if (informationFormValue.status) {
-  //     informationFormValue.status = Number(informationFormValue.status);
-  //   }
-  //   const assignDataFormValue =
-  //     this.SalonDetailAssignDataComponent.salonForm.value;
-
-  //   const salonData = {
-  //     ...informationFormValue,
-  //     ...assignDataFormValue,
-  //     service_ids: this.salonData.service_ids, // Include updated services
-  //   };
-
-  //   this.salonSrv.updateSalon(this.salonId, { ...salonData }).subscribe({
-  //     next: (res) => {
-  //       this.getSalonDetail();
-  //       console.log('Update: ', this.salonData);
-  //       alert('Update successfully');
-  //       this.router.navigate(['/salon']);
-  //     },
-  //   });
-  // }
-
   saveSalon(): void {
     // Ensure that the child components and their forms are initialized
     console.log(this.SalonDetailIntroductionComponent.salonForm.value);

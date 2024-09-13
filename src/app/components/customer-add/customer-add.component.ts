@@ -25,10 +25,11 @@ export class CustomerAddComponent {
     private router: Router,
     private librarySrv: libraryService
   ) {}
+
   ngOnInit(): void {
     this.customerForm = this.fb.group({
       code: [''],
-      status: [null],
+      status: [1], // Set default status value
       user: this.fb.group({
         name: [''],
         city: [''],
@@ -41,7 +42,6 @@ export class CustomerAddComponent {
         address: [''],
         birthday: [''],
         userName: [''],
-        status: [0],
         role: ['customer'],
       }),
     });
@@ -65,13 +65,13 @@ export class CustomerAddComponent {
 
   selectedCity(city: any) {
     if (!city) {
-      this.customerForm.controls['district'].setValue('');
-      this.customerForm.controls['commune'].setValue('');
+      this.customerForm.get('user.district')?.setValue(''); // Corrected access to nested controls
+      this.customerForm.get('user.commune')?.setValue('');
       return;
     }
 
     this.loading = true;
-    const city_code = city.code; // Chuyển đổi mã thành phố sang số
+    const city_code = city.code;
     this.getAllDistrict(city_code);
   }
 
@@ -79,7 +79,7 @@ export class CustomerAddComponent {
     this.districts = [];
     this.commonSrv.getAllDistricts(city_code).subscribe(
       (res) => {
-        this.districts = res; // Sử dụng đúng dữ liệu trả về này API
+        this.districts = res;
         console.log('districts: ', this.districts);
       },
       (error) => {
@@ -103,7 +103,7 @@ export class CustomerAddComponent {
 
   selectedDistrict(district: any) {
     if (!district) {
-      this.customerForm.controls['commune'].setValue('');
+      this.customerForm.get('user.commune')?.setValue('');
       return;
     }
 
@@ -114,25 +114,11 @@ export class CustomerAddComponent {
 
   onSubmitFormAddCustomer() {
     if (this.customerForm.valid) {
-      // Tạo đối tượng formValue với cấu trúc phù hợp
       const formValue: Customer = {
         ...this.customerForm.value,
-        // status: Number(this.customerForm.value.status),
         user: {
           ...this.customerForm.value.user,
-          name: this.customerForm.value.user.name,
-          city: this.customerForm.value.user.city,
-          district: this.customerForm.value.user.district,
-          commune: this.customerForm.value.user.commune,
-          avatar: this.customerForm.value.user.avatar,
-          password: this.customerForm.value.user.password,
-          phone: this.customerForm.value.user.phone,
-          email: this.customerForm.value.user.email,
-          address: this.customerForm.value.user.address,
-          birthday: this.customerForm.value.user.birthday,
-          userName: this.customerForm.value.user.userName,
-          status: 0,
-          role: 'customer',
+          status: 0, // Set status here if needed
         },
       };
 
@@ -154,23 +140,21 @@ export class CustomerAddComponent {
   }
 
   avatar: string | ArrayBuffer | null = null;
-  // Avatar picture
+
   onSelectedFileAvatar(event: any) {
     if (event.target.files && event.target.files[0]) {
       const file = event.target.files[0];
 
-      // Sử dụng service để upload file
       this.librarySrv.uploadImage(file).subscribe({
         next: (response: any) => {
-          this.avatar = response.secure_url; // Giả sử server trả về secure_url là URL của ảnh
-          this.customerForm.patchValue({ avatar: this.avatar }); // Cập nhật URL vào form
+          this.avatar = response.secure_url;
+          this.customerForm.get('user.avatar')?.setValue(this.avatar);
         },
         error: (err) => {
           console.error('Lỗi khi tải lên avatar:', err);
         },
       });
 
-      // Xem trước ảnh
       var reader = new FileReader();
       reader.readAsDataURL(file);
       reader.onload = (event: any) => {
@@ -181,10 +165,10 @@ export class CustomerAddComponent {
 
   @ViewChild('avatarInputFile') avatarInputFile!: ElementRef<HTMLInputElement>;
   onDeleteAvatar(): void {
-    this.avatar = null; // Xóa ảnh bìa hiển thị
-    this.customerForm.get('avatar')?.setValue(null); // Xóa giá trị trong form control
+    this.avatar = null;
+    this.customerForm.get('user.avatar')?.setValue(null);
     if (this.avatarInputFile) {
-      this.avatarInputFile.nativeElement.value = ''; // Đặt lại giá trị input file
+      this.avatarInputFile.nativeElement.value = '';
     }
   }
 }
