@@ -46,6 +46,12 @@ export class CustomerService {
       .pipe(catchError(this.handleError));
   }
 
+  deleteCustomer(id: string) {
+    return this.http
+      .delete(`${this.baseUrl}/customer/${id}`)
+      .pipe(catchError(this.handleError));
+  }
+
   private handleError(error: HttpErrorResponse) {
     // Log the error message in detail
     if (error.error instanceof ErrorEvent) {
