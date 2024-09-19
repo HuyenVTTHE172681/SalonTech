@@ -1,11 +1,9 @@
 <div class="navbar">
-  <!-- ====== HEADER LOGO LEFT ====== -->
   <div class="site-left">
     <i class="pi pi-align-justify" style="font-size: 1.5rem"></i>
     <a routerLink="/home" class="logo"><h2>LOGO</h2></a>
   </div>
 
-  <!-- ====== HEADER CENTER ====== -->
   <div class="navbar-center">
     <div class="navbar-center-item">
       <!-- ====== CENTER ACTIVE ====== -->
@@ -46,9 +44,10 @@
       <span>4</span>
     </a>
 
-    <h3>Tano TV</h3>
+    <h3>{{ userName }}</h3>
+    <h3>Tano</h3>
 
-    <div class="avata">
+    <div class="avata" (click)="optionTopbar.toggle($event)">
       <p-avatar
         image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png"
         shape="circle"
@@ -57,3 +56,31 @@
     </div>
   </div>
 </div>
+
+<p-overlayPanel #optionTopbar styleClass="option-topbar">
+  <div style="margin-right: 18px">
+    <div>
+      <ul class="" style="list-style: none" (onClick)="sidebarVisible2 = true">
+        <li class="align-items-center gap-2">
+          <i
+            class="pi pi-spin pi-cog"
+            style="font-size: 1rem; margin-right: 10px"
+          ></i>
+          <span class="font-medium">Thay đổi mật khẩu</span>
+        </li>
+      </ul>
+    </div>
+    <div>
+      <ul class="" style="list-style: none">
+        <li class="align-items-center gap-2">
+          <i
+            class="pi pi-sign-out"
+            style="font-size: 1rem; margin-right: 10px"
+          ></i>
+          <span class="font-medium">Logout</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</p-overlayPanel>
+
