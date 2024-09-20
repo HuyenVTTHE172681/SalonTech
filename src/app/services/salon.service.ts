@@ -13,10 +13,16 @@ export class SalonService {
   constructor(private http: HttpClient) {}
 
   // Hàm để lấy dữ liệu từ API
-  getAllSalon(page: number, size: number, status: number): Observable<any> {
+  getAllSalon(
+    page: number,
+    size: number,
+    status: number,
+    searchText: string = ''
+  ): Observable<any> {
+    const filter = searchText ? `filter=${searchText}` : ''; // If searchText exists, add it to the filter
     return this.http
       .get(
-        `${this.baseUrl}/salon?filter=&page=${page}&size=${size}&status=${status}`
+        `${this.baseUrl}/salon?${filter}&page=${page}&size=${size}&status=${status}`
       )
       .pipe(catchError(this.handleError));
   }
