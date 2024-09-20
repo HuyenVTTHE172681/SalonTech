@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SalonService } from '../../../services/salon.service';
 import { Salon } from '../../../model/salon';
-import { Sector } from '../../../model/sector';
-import { FormGroup } from '@angular/forms';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 enum StatusSalon {
   ALL = -1,
@@ -30,7 +29,10 @@ export class SalonContentComponent implements OnInit {
     { label: 'Đang chờ duyệt', value: StatusSalon.PENDING },
   ];
 
-  constructor(private salonSrv: SalonService) {}
+  constructor(
+    private salonSrv: SalonService,
+    private spinner: NgxSpinnerService
+  ) {}
 
   ngOnInit() {
     this.getAllSalon();
@@ -94,6 +96,8 @@ export class SalonContentComponent implements OnInit {
   // Get all salon
   // Get all salons, including search
   getAllSalon() {
+    this.spinner.show();
+    console.log('Spinner is shown');
     this.salonSrv
       .getAllSalon(this.page, this.size, this.status, this.searchText)
       .subscribe({
@@ -101,9 +105,11 @@ export class SalonContentComponent implements OnInit {
           this.salons = data.items;
           this.totalItems = data.totalItems;
           this.filterSalons();
+          this.spinner.hide();
         },
         error: (error) => {
           console.log(error);
+          this.spinner.hide();
         },
       });
   }
