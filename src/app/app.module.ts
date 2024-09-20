@@ -82,6 +82,7 @@ import { BookingContentComponent } from './components/booking/booking-content/bo
 import { VoucherContentComponent } from './components/voucher/voucher-content/voucher-content.component';
 import { RateContentComponent } from './components/rating/rate-content/rate-content.component';
 import { SidebarModule } from 'primeng/sidebar';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   declarations: [
@@ -160,6 +161,7 @@ import { SidebarModule } from 'primeng/sidebar';
     QRCodeModule,
     ProgressSpinnerModule,
     SidebarModule,
+    NgxSpinnerModule.forRoot(), // Import module spinner
   ],
   providers: [
     provideClientHydration(),
