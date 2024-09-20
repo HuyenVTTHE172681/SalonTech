@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MenuService } from '../../../services/menu.service';
 import { Menu } from '../../../model/menu';
 import { Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-header',
@@ -18,7 +19,11 @@ export class HeaderComponent implements OnInit {
   showIcon: boolean = false;
   passwordType: string = 'password';
 
-  constructor(private menuSrv: MenuService, private router: Router) {}
+  constructor(
+    private menuSrv: MenuService,
+    private router: Router,
+    private spinner: NgxSpinnerService
+  ) {}
 
   ngOnInit() {
     console.log('Menu');
@@ -27,14 +32,17 @@ export class HeaderComponent implements OnInit {
   }
 
   getAllMenu() {
+    this.spinner.show();
     this.menuSrv.getAllMenu(this.page, this.size).subscribe({
       next: (data) => {
         console.log('Menu: ', this.menu);
         this.menu = data.items;
+        this.spinner.hide();
       },
 
       error: (error) => {
         console.log(error);
+        this.spinner.hide();
       },
     });
   }
