@@ -55,6 +55,11 @@
             ></i>
             <input
               pInputText
+              type="text"
+              name="search"
+              [(ngModel)]="searchText"
+              autocomplete="off"
+              (input)="onSearchChange()"
               placeholder="Nhập từ khóa..."
               [style]="{
                 width: '200px',
