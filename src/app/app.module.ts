@@ -37,6 +37,7 @@ import { ChartModule } from 'primeng/chart';
 import { RippleModule } from 'primeng/ripple';
 import { EditorModule } from 'primeng/editor';
 import { QRCodeModule } from 'angularx-qrcode';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 // Custom Components
 import { CustomerContentComponent } from './components/customer/customer-content/customer-content.component';
@@ -80,6 +81,7 @@ import { HeaderComponent } from './components/page/header/header.component';
 import { BookingContentComponent } from './components/booking/booking-content/booking-content.component';
 import { VoucherContentComponent } from './components/voucher/voucher-content/voucher-content.component';
 import { RateContentComponent } from './components/rating/rate-content/rate-content.component';
+import { SidebarModule } from 'primeng/sidebar';
 
 @NgModule({
   declarations: [
@@ -156,6 +158,8 @@ import { RateContentComponent } from './components/rating/rate-content/rate-cont
     EditorModule,
     TagModule,
     QRCodeModule,
+    ProgressSpinnerModule,
+    SidebarModule,
   ],
   providers: [
     provideClientHydration(),
