@@ -1,7 +1,7 @@
 <div class="navbar">
   <div class="site-left">
     <i class="pi pi-align-justify" style="font-size: 1.5rem"></i>
-    <a routerLink="/home" class="logo"><h2>LOGO</h2></a>
+    <a (click)="goToHome()" class="logo"><h2>LOGO</h2></a>
   </div>
 
   <div class="navbar-center">
@@ -58,29 +58,97 @@
 </div>
 
 <p-overlayPanel #optionTopbar styleClass="option-topbar">
-  <div style="margin-right: 18px">
-    <div>
-      <ul class="" style="list-style: none" (onClick)="sidebarVisible2 = true">
-        <li class="align-items-center gap-2">
-          <i
-            class="pi pi-spin pi-cog"
-            style="font-size: 1rem; margin-right: 10px"
-          ></i>
-          <span class="font-medium">Thay đổi mật khẩu</span>
-        </li>
-      </ul>
-    </div>
-    <div>
-      <ul class="" style="list-style: none">
-        <li class="align-items-center gap-2">
-          <i
-            class="pi pi-sign-out"
-            style="font-size: 1rem; margin-right: 10px"
-          ></i>
-          <span class="font-medium">Logout</span>
-        </li>
-      </ul>
-    </div>
+  <div style="margin-right: 18px; display: grid">
+    <p-button
+      label="Thay đổi mật khẩu"
+      icon="pi pi-spin pi-cog"
+      [text]="true"
+      [plain]="true"
+      (onClick)="isShowChangePassword = true"
+    />
+
+    <p-button
+      label="Logout"
+      icon="pi pi-sign-out"
+      [text]="true"
+      [plain]="true"
+      (onClick)="onLogOut()"
+    />
   </div>
 </p-overlayPanel>
 
+<p-sidebar
+  [style]="{ width: '30%' }"
+  [(visible)]="isShowChangePassword"
+  class="sidebar"
+>
+  <ng-template pTemplate="header" class="sidebar-header">
+    <h3>Cập nhật mật khẩu tài khoản {{ userName }}</h3>
+  </ng-template>
+  <ng-template pTemplate="footer"></ng-template>
+
+  <form class="sidebar-form">
+    <div class="sector-changePassword">
+      <div class="form-row" [ngStyle]="{ padding: '20px' }">
+        <label for="" class="col-sm-4" [ngStyle]="{ marginRight: '166px' }">
+          Mật khẩu
+          <span style="color: red">*</span>
+        </label>
+        <input
+          [type]="passwordType"
+          pInputText
+          formControlName="password"
+          class="input-field"
+          placeholder="Mật khẩu"
+          [ngStyle]="{ maxWidth: '490px' }"
+        />
+        <i
+          [ngStyle]="{ marginLeft: '20px' }"
+          [ngClass]="
+            showIcon ? 'pi pi-eye-slash input-icon' : 'pi pi-eye input-icon'
+          "
+          aria-hidden="true"
+          (click)="onChange()"
+        ></i>
+      </div>
+
+      <div class="form-row" [ngStyle]="{ padding: '20px' }">
+        <label for="" class="col-sm-4" [ngStyle]="{ marginRight: '100px' }">
+          Nhập lại mật khẩu
+          <span style="color: red">*</span>
+        </label>
+        <input
+          [type]="passwordType"
+          pInputText
+          formControlName="password"
+          class="input-field"
+          placeholder="Nhập lại mật khẩu"
+          [ngStyle]="{ maxWidth: '490px' }"
+        />
+        <i
+          [ngStyle]="{ marginLeft: '20px' }"
+          [ngClass]="
+            showIcon ? 'pi pi-eye-slash input-icon' : 'pi pi-eye input-icon'
+          "
+          aria-hidden="true"
+          (click)="onChange()"
+        ></i>
+      </div>
+
+      <div class="form-row" [ngStyle]="{ margin: '25px 0px' }">
+        <div
+          class="button"
+          [ngStyle]="{ display: 'flex', justifyContent: 'end' }"
+        >
+          <p-button label="Lưu lại" [raised]="true" />
+          <p-button
+            label="Hủy"
+            [raised]="true"
+            severity="secondary"
+            [ngStyle]="{ marginLeft: '10px' }"
+          />
+        </div>
+      </div>
+    </div>
+  </form>
+</p-sidebar>

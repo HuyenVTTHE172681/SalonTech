@@ -11,6 +11,10 @@ import { AuthenService } from '../../../services/authen.service';
 })
 export class LoginComponent implements OnInit {
   loginObj: any;
+  isLoading: boolean = false;
+  error: string = '';
+  showIcon: boolean = false;
+  passwordType: string = 'password';
 
   constructor(
     private fb: FormBuilder,
@@ -27,22 +31,40 @@ export class LoginComponent implements OnInit {
 
   login() {
     if (this.loginObj.valid) {
-      this.authenticationSrv.login(this.loginObj.value).subscribe(
-        (res) => {
-          console.log(res);
-          localStorage.setItem('token', res.token);
-          localStorage.setItem('refresh_token', res.refresh_token);
-          this.router.navigate(['/home']);
-        },
-        (err) => {
-          console.log(err);
-          console.log(Token);
-          alert('Đăng nhap khong hop le. Vui long thu lai.');
-        }
-      );
+      this.isLoading = true;
+      setTimeout(() => {
+        this.authenticationSrv.login(this.loginObj.value).subscribe(
+          (res) => {
+            console.log(res);
+            localStorage.setItem('token', res.token);
+            localStorage.setItem('refresh_token', res.refresh_token);
+            this.isLoading = false;
+            this.router.navigate(['/home']);
+          },
+          (err) => {
+            console.log(err);
+            console.log(Token);
+            alert('Đăng nhập không hợp lệ. Vui long thử lại.');
+            this.isLoading = false;
+          }
+        );
+      }, 1000);
     } else {
       this.loginObj.markAllAsTouched(); // Đánh dấu tất cả các control để hiển thị lỗi
       alert('Vui lòng nhập đầy đủ thông tin hợp lệ.');
+    }
+  }
+
+
+  onChange() {
+    if (this.passwordType === 'password') {
+      this.passwordType = 'text';
+      this.showIcon = true;
+      console.log(this.showIcon);
+    } else {
+      this.passwordType = 'password';
+      this.showIcon = false;
+      console.log(this.showIcon, this.passwordType);
     }
   }
 }

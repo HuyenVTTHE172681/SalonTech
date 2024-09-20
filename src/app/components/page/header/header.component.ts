@@ -13,7 +13,10 @@ export class HeaderComponent implements OnInit {
   size: number = 10;
   menu: Menu[] = [];
   userName: string | null = '';
-  sidebarVisible2: boolean = false;
+  isShowChangePassword: boolean = false;
+  isLoading: boolean = false;
+  showIcon: boolean = false;
+  passwordType: string = 'password';
 
   constructor(private menuSrv: MenuService, private router: Router) {}
 
@@ -38,5 +41,25 @@ export class HeaderComponent implements OnInit {
 
   goToHome() {
     this.router.navigate(['/home']);
+  }
+
+  onLogOut() {
+    this.isLoading = true;
+    setTimeout(() => {
+      this.router.navigate(['/login']);
+    }, 1000);
+    localStorage.removeItem('loggedIn');
+  }
+
+  onChange() {
+    if (this.passwordType === 'password') {
+      this.passwordType = 'text';
+      this.showIcon = true;
+      console.log(this.showIcon);
+    } else {
+      this.passwordType = 'password';
+      this.showIcon = false;
+      console.log(this.showIcon, this.passwordType);
+    }
   }
 }
