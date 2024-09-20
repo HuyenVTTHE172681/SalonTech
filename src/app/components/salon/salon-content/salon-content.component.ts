@@ -22,6 +22,7 @@ export class SalonContentComponent implements OnInit {
   salons: Salon[] = [];
   filteredSalons: Salon[] = [];
   totalItems: number = 0;
+  searchText: string = '';
   statuses = [
     { label: 'Tất cả', value: StatusSalon.ALL },
     { label: 'Đang hoạt động', value: StatusSalon.ACTIVE },
@@ -32,6 +33,11 @@ export class SalonContentComponent implements OnInit {
   constructor(private salonSrv: SalonService) {}
 
   ngOnInit() {
+    this.getAllSalon();
+  }
+
+  onSearchChange() {
+    this.page = 1;
     this.getAllSalon();
   }
 
@@ -86,17 +92,20 @@ export class SalonContentComponent implements OnInit {
   }
 
   // Get all salon
+  // Get all salons, including search
   getAllSalon() {
-    this.salonSrv.getAllSalon(this.page, this.size, this.status).subscribe({
-      next: (data) => {
-        this.salons = data.items;
-        this.totalItems = data.totalItems;
-        this.filterSalons();
-      },
-      error: (error) => {
-        console.log(error);
-      },
-    });
+    this.salonSrv
+      .getAllSalon(this.page, this.size, this.status, this.searchText)
+      .subscribe({
+        next: (data) => {
+          this.salons = data.items;
+          this.totalItems = data.totalItems;
+          this.filterSalons();
+        },
+        error: (error) => {
+          console.log(error);
+        },
+      });
   }
 
   filterSalons() {
