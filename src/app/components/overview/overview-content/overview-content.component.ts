@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DashboardService } from '../../../services/dashboard.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-overview-content',
@@ -14,7 +15,10 @@ export class OverviewContentComponent implements OnInit {
 
   options: any;
 
-  constructor(private dashboard: DashboardService) {}
+  constructor(
+    private dashboard: DashboardService,
+    private spinner: NgxSpinnerService
+  ) {}
   ngOnInit() {
     const documentStyle = getComputedStyle(document.documentElement);
     const textColor = documentStyle.getPropertyValue('--text-color');
@@ -91,11 +95,13 @@ export class OverviewContentComponent implements OnInit {
   }
 
   getDashboard() {
+    this.spinner.show();
     this.dashboard
       .getDashboard(this.fromDate, this.toDate)
       .subscribe((data) => {
         console.log('Date:', data);
         this.data = data;
+        this.spinner.hide();
       });
   }
 }
