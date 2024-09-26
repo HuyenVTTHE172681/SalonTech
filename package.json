@@ -20,6 +20,7 @@
     "@angular/router": "^18.1.0",
     "angularx-qrcode": "^18.0.1",
     "chart.js": "^4.4.4",
+    "ng-angular-popup": "^0.6.2",
     "ngx-spinner": "^17.0.0",
     "primeflex": "^3.3.1",
     "primeicons": "^7.0.0",

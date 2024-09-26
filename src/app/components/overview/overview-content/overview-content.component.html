@@ -79,8 +79,9 @@
         <div class="chart-option">
           <a href="#" class="active">Tháng</a> | <a href="">Tuần</a>
         </div>
-        <p-chart type="line" [data]="data" [options]="options" />
+        <p-chart type="line" *ngIf="data" [data]="data" [options]="options"></p-chart>
       </div>
+      <canvas id="chartCanvas" style="max-height: 250px"></canvas>
     </div>
     <!-- =========== RIGHT =========== -->
     <div class="overview-right">

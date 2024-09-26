@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DashboardService } from '../../../services/dashboard.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { plugins } from 'chart.js';
 
 @Component({
   selector: 'app-overview-content',
@@ -8,90 +9,17 @@ import { NgxSpinnerService } from 'ngx-spinner';
   styleUrl: './overview-content.component.scss',
 })
 export class OverviewContentComponent implements OnInit {
-  data: any;
   fromDate: string = '2024-01-18';
   toDate: string = '2024-05-21';
   bookingTotal: string | null = null;
-
-  options: any;
 
   constructor(
     private dashboard: DashboardService,
     private spinner: NgxSpinnerService
   ) {}
   ngOnInit() {
-    const documentStyle = getComputedStyle(document.documentElement);
-    const textColor = documentStyle.getPropertyValue('--text-color');
-    const textColorSecondary = documentStyle.getPropertyValue(
-      '--text-color-secondary'
-    );
-    const surfaceBorder = documentStyle.getPropertyValue('--surface-border');
-
-    this.data = {
-      labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-      datasets: [
-        {
-          type: 'line',
-          label: 'Dataset 1',
-          borderColor: documentStyle.getPropertyValue('--blue-500'),
-          borderWidth: 2,
-          fill: false,
-          tension: 0.4,
-          data: [50, 25, 12, 48, 56, 76, 42],
-        },
-        {
-          type: 'bar',
-          label: 'Dataset 2',
-          backgroundColor: documentStyle.getPropertyValue('--green-500'),
-          data: [21, 84, 24, 75, 37, 65, 34],
-          borderColor: 'white',
-          borderWidth: 2,
-        },
-        {
-          type: 'bar',
-          label: 'Dataset 3',
-          backgroundColor: documentStyle.getPropertyValue('--orange-500'),
-          data: [41, 52, 24, 74, 23, 21, 32],
-        },
-      ],
-    };
-
-    this.options = {
-      maintainAspectRatio: false,
-      aspectRatio: 0.6,
-      plugins: {
-        legend: {
-          labels: {
-            color: textColor,
-          },
-        },
-      },
-      scales: {
-        x: {
-          ticks: {
-            color: textColorSecondary,
-          },
-          grid: {
-            color: surfaceBorder,
-          },
-        },
-        y: {
-          ticks: {
-            color: textColorSecondary,
-          },
-          grid: {
-            color: surfaceBorder,
-          },
-        },
-      },
-    };
-
     this.getDashboard();
-  }
-
-  // Phương thức format revenue
-  formatRevenue(revenue: number): string {
-    return revenue.toLocaleString('vi-VN');
+    this.getChart();
   }
 
   getDashboard() {
@@ -103,5 +31,97 @@ export class OverviewContentComponent implements OnInit {
         this.data = data;
         this.spinner.hide();
       });
+  }
+
+  // dashboarData: any = null;
+
+  options: any;
+  data: any;
+  // dashboarData: any = null;
+
+  getChart(): void {
+    this.dashboard.getDashboardChart('2024-04-10', '2024-05-20').subscribe(
+      (response) => {
+        console.log('Chart:', response);
+        this.processChartData(response);
+      },
+      (error) => {
+        console.error('Failed to get chart data:', error);
+      }
+    );
+  }
+
+  processChartData(dashboarData: any): void {
+    const documentStyle = getComputedStyle(document.documentElement);
+
+    // Extracting and formatting months from labels (assuming labels are dates in 'YYYY-MM-DD' format)
+    const labels = dashboarData.chartData.labels.map((label: string) => {
+      const date = new Date(label);
+      return date.toLocaleString('default', { month: 'long' }); // 'long' gives full month names (e.g., April)
+    });
+
+    // Removing duplicate months
+    const uniqueLabels = Array.from(new Set(labels));
+
+    // Assuming the data for "Số đơn" and "Doanh thu" are at index 0 and 1 respectively in the datasets array
+    const ordersData = dashboarData.chartData.datasets[0].data;
+    const revenueData = dashboarData.chartData.datasets[1].data;
+
+    console.log('Unique Labels:', uniqueLabels); // Check if labels are correctly retrieved
+    console.log('Orders Data:', ordersData); // Check if data is properly retrieved
+    console.log('Revenue Data:', revenueData);
+
+    this.data = {
+      labels: uniqueLabels,
+      datasets: [
+        {
+          type: 'line',
+          label: 'Số đơn',
+          borderColor: documentStyle.getPropertyValue('--blue-500'),
+          borderWidth: 2,
+          fill: false,
+          tension: 0.4,
+          data: ordersData,
+        },
+        {
+          type: 'bar',
+          label: 'Doanh thu',
+          backgroundColor: documentStyle.getPropertyValue('--green-500'),
+          data: revenueData, // Example static data
+          borderColor: 'white',
+          borderWidth: 2,
+        },
+      ],
+    };
+
+    this.options = {
+      maintainAspectRatio: false,
+      aspectRatio: 0.6,
+      plugins: {
+        legend: {
+          labels: {
+            color: documentStyle.getPropertyValue('--text-color'),
+          },
+        },
+      },
+      scales: {
+        x: {
+          ticks: {
+            color: documentStyle.getPropertyValue('--text-color-secondary'),
+          },
+          grid: {
+            color: documentStyle.getPropertyValue('--surface-border'),
+          },
+        },
+        y: {
+          ticks: {
+            color: documentStyle.getPropertyValue('--text-color-secondary'),
+          },
+          grid: {
+            color: documentStyle.getPropertyValue('--surface-border'),
+          },
+        },
+      },
+    };
   }
 }

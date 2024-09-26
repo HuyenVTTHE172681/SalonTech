@@ -48,6 +48,14 @@ export class DashboardService {
       .pipe(catchError(this.handleError));
   }
 
+  getDashboardChart(fromDate: string, toData: string): Observable<any> {
+    return this.http
+      .get(
+        `${this.baseUrl}/dashboard/chart?fromDate=${fromDate}&toDate=${toData}`
+      )
+      .pipe(catchError(this.handleError));
+  }
+
   // Hàm xử lý lỗi
   private handleError(error: HttpErrorResponse) {
     console.error('An error occurred:', error.message);

@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Token } from '@angular/compiler';
 import { AuthenService } from '../../../services/authen.service';
+import { NgToastService } from 'ng-angular-popup';
+import { timeout } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +21,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private authenticationSrv: AuthenService,
-    private router: Router
+    private router: Router,
+    private toast: NgToastService
   ) {}
 
   ngOnInit(): void {
@@ -38,6 +41,10 @@ export class LoginComponent implements OnInit {
             console.log(res);
             localStorage.setItem('token', res.token);
             localStorage.setItem('refresh_token', res.refresh_token);
+            // Show success toast
+            // this.toast.success('Success Message', res.message, { timeOut: 3000 });
+            this.toast.success('Success Message', res.message, 3000);
+            alert('Đăng nhập hợp lệ.');
             this.isLoading = false;
             this.router.navigate(['/home']);
           },
@@ -45,6 +52,12 @@ export class LoginComponent implements OnInit {
             console.log(err);
             console.log(Token);
             alert('Đăng nhập không hợp lệ. Vui long thử lại.');
+            // this.toast.error({ detail: "Error Mesage", summary: "Login Failed, try again later!!", duration: 3000 });
+            this.toast.warning(
+              'This is new Warning message',
+              'Login Failed, try again later!!',
+              3000
+            );
             this.isLoading = false;
           }
         );
@@ -54,7 +67,6 @@ export class LoginComponent implements OnInit {
       alert('Vui lòng nhập đầy đủ thông tin hợp lệ.');
     }
   }
-
 
   onChange() {
     if (this.passwordType === 'password') {

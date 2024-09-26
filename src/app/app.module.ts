@@ -83,6 +83,7 @@ import { VoucherContentComponent } from './components/voucher/voucher-content/vo
 import { RateContentComponent } from './components/rating/rate-content/rate-content.component';
 import { SidebarModule } from 'primeng/sidebar';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { NgToastModule } from 'ng-angular-popup';
 
 @NgModule({
   declarations: [
@@ -162,6 +163,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     ProgressSpinnerModule,
     SidebarModule,
     NgxSpinnerModule.forRoot(), // Import module spinner
+    NgToastModule
   ],
   providers: [
     provideClientHydration(),
